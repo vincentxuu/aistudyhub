@@ -1,0 +1,171 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Happy Hues Palette 2
+ * https://www.happyhues.co/palettes/2
+ *
+ * Light:  bg #fffffe, headline #00214d, paragraph #1b2d45, button #00ebc7/#00214d, stroke #00214d
+ * Dark:   bg #001534, headline #fffffe, paragraph #b8c7dc, button #00ebc7/#00214d, link #fde24f
+ * Card:   light #fffffe on #f2f4f6, dark #001e4a on #001534
+ * Accent: highlight #00ebc7, secondary #ff5470, tertiary #fde24f
+ */
+
+:root {
+  --bg-base: #fffffe;
+  --bg-subtle: #f2f4f6;
+  --surface: #fffffe;
+  --surface-strong: #fffffe;
+
+  --sea-ink: #00214d;
+  --sea-ink-soft: #1b2d45;
+
+  --lagoon: #00ebc7;           /* highlight / button bg */
+  --lagoon-deep: #00c4a7;      /* hover state of lagoon */
+  --palm: #00214d;             /* button text / stroke */
+
+  --accent-secondary: #ff5470; /* secondary accent (errors, alerts) */
+  --accent-tertiary: #fde24f;  /* tertiary accent (warnings, flags) */
+
+  --line: rgba(0, 33, 77, 0.12);
+  --header-bg: rgba(255, 255, 254, 0.88);
+  --chip-bg: #f2f4f6;
+  --chip-line: rgba(0, 33, 77, 0.12);
+
+  --correct: #059669;
+  --correct-bg: rgba(5, 150, 105, 0.08);
+  --correct-border: rgba(5, 150, 105, 0.25);
+  --wrong: #e11d48;
+  --wrong-bg: rgba(225, 29, 72, 0.08);
+  --wrong-border: rgba(225, 29, 72, 0.25);
+  --flagged: #d97706;
+  --flagged-bg: rgba(217, 119, 6, 0.08);
+  --flagged-border: rgba(217, 119, 6, 0.25);
+
+  --selected-bg: rgba(0, 235, 199, 0.06);
+  --selected-border: rgba(0, 196, 167, 0.5);
+  --hover-border: rgba(0, 196, 167, 0.3);
+  --hover-bg: rgba(0, 235, 199, 0.03);
+
+  /* Primary button */
+  --btn-primary-bg: #00ebc7;
+  --btn-primary-text: #00214d;
+  --btn-primary-border: transparent;
+  --btn-primary-hover: #00c4a7;
+}
+
+:root[data-theme="dark"] {
+  --bg-base: #001534;
+  --bg-subtle: #001e4a;
+  --surface: #001e4a;
+  --surface-strong: #002254;
+
+  --sea-ink: #fffffe;
+  --sea-ink-soft: #b8c7dc;
+
+  /* Dark: button/link = yellow #fde24f per Happy Hues Palette 2 dark section */
+  --lagoon: #fde24f;
+  --lagoon-deep: #e5cc3a;
+  --palm: #00214d;
+
+  --line: rgba(255, 255, 254, 0.12);
+  --header-bg: rgba(0, 21, 52, 0.88);
+  --chip-bg: #001e4a;
+  --chip-line: rgba(255, 255, 254, 0.12);
+
+  --correct: #34d399;
+  --correct-bg: rgba(52, 211, 153, 0.12);
+  --correct-border: rgba(52, 211, 153, 0.3);
+  --wrong: #fb7185;
+  --wrong-bg: rgba(251, 113, 133, 0.12);
+  --wrong-border: rgba(251, 113, 133, 0.3);
+  --flagged: #fbbf24;
+  --flagged-bg: rgba(251, 191, 36, 0.12);
+  --flagged-border: rgba(251, 191, 36, 0.3);
+
+  --selected-bg: rgba(253, 226, 79, 0.08);
+  --selected-border: rgba(253, 226, 79, 0.4);
+  --hover-border: rgba(253, 226, 79, 0.25);
+  --hover-bg: rgba(253, 226, 79, 0.04);
+
+  /* Primary button: yellow bg + deep blue text (per palette dark section) */
+  --btn-primary-bg: #fde24f;
+  --btn-primary-text: #00214d;
+  --btn-primary-border: transparent;
+  --btn-primary-hover: #e5cc3a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-base: #001534;
+    --bg-subtle: #001e4a;
+    --surface: #001e4a;
+    --surface-strong: #002254;
+
+    --sea-ink: #fffffe;
+    --sea-ink-soft: #b8c7dc;
+
+    /* Dark: button/link = yellow #fde24f */
+    --lagoon: #fde24f;
+    --lagoon-deep: #e5cc3a;
+    --palm: #00214d;
+
+    --line: rgba(255, 255, 254, 0.12);
+    --header-bg: rgba(0, 21, 52, 0.88);
+    --chip-bg: #001e4a;
+    --chip-line: rgba(255, 255, 254, 0.12);
+
+    --correct: #34d399;
+    --correct-bg: rgba(52, 211, 153, 0.12);
+    --correct-border: rgba(52, 211, 153, 0.3);
+    --wrong: #fb7185;
+    --wrong-bg: rgba(251, 113, 133, 0.12);
+    --wrong-border: rgba(251, 113, 133, 0.3);
+    --flagged: #fbbf24;
+    --flagged-bg: rgba(251, 191, 36, 0.12);
+    --flagged-border: rgba(251, 191, 36, 0.3);
+
+    --selected-bg: rgba(253, 226, 79, 0.08);
+    --selected-border: rgba(253, 226, 79, 0.4);
+    --hover-border: rgba(253, 226, 79, 0.25);
+    --hover-bg: rgba(253, 226, 79, 0.04);
+
+    --btn-primary-bg: #fde24f;
+    --btn-primary-text: #00214d;
+    --btn-primary-border: transparent;
+    --btn-primary-hover: #e5cc3a;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body, #app { min-height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--sea-ink-soft);
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* No global heading or link styles — Tailwind classes control everything. */
+
+/* No global `a` styles — Tailwind classes control everything.
+   asChild buttons render as <a>, so any global color here
+   would override the button's text-[var(--btn-primary-text)]. */
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise-in {
+  animation: rise-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
