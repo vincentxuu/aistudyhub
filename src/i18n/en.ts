@@ -137,6 +137,21 @@ export default {
   'study.prev': 'Previous',
   'study.next': 'Next',
 
+  // Settings
+  'settings.title': 'Settings',
+  'settings.language': 'Language',
+  'settings.theme': 'Theme',
+  'settings.data': 'Learning Data',
+  'settings.export': 'Export Learning Data',
+  'settings.import': 'Import Learning Data',
+  'settings.importSuccess': 'Import successful: {count} records',
+  'settings.importError': 'Import failed: invalid format',
+  'settings.clearAll': 'Clear All Data',
+  'settings.clearConfirm': 'Clear all learning data? This cannot be undone.',
+  'settings.stats': '{exams} exams · {wrong} wrong answers',
+  'settings.bestScore': 'Best {score}%',
+  'settings.noData': 'No learning data yet',
+
   // Common
   'common.loading': 'Loading...',
   'common.error': 'An error occurred',

@@ -136,6 +136,21 @@ export default {
   'study.prev': '上一題',
   'study.next': '下一題',
 
+  // Settings
+  'settings.title': '設定',
+  'settings.language': '語言',
+  'settings.theme': '主題',
+  'settings.data': '學習紀錄',
+  'settings.export': '匯出學習紀錄',
+  'settings.import': '匯入學習紀錄',
+  'settings.importSuccess': '匯入成功：{count} 筆紀錄',
+  'settings.importError': '匯入失敗：格式不正確',
+  'settings.clearAll': '清除所有資料',
+  'settings.clearConfirm': '確定要清除所有學習紀錄嗎？此操作無法復原。',
+  'settings.stats': '{exams} 次模擬考 · {wrong} 題錯題',
+  'settings.bestScore': '最高 {score}%',
+  'settings.noData': '尚無學習紀錄',
+
   // Common
   'common.loading': '載入中...',
   'common.error': '發生錯誤',

@@ -1,5 +1,6 @@
 import { BarChart3, BookOpen, Clock, Dumbbell, Play, Target } from '@sketchyicons/react'
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { useState } from 'react'
 import Footer from '../components/Footer.tsx'
 import Header from '../components/Header.tsx'
 import { Badge } from '../components/ui/badge.tsx'
@@ -8,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card.
 import { Progress } from '../components/ui/progress.tsx'
 import { useI18n } from '../i18n/index.ts'
 import { getDomainCounts, getExamQuestions } from '../lib/questions.ts'
+import { getUserStats } from '../lib/user-data.ts'
 
 export const Route = createFileRoute('/')({ component: HomePage })
 
@@ -18,6 +20,13 @@ function HomePage() {
   const totalQuestions = examQuestions.length
   const sortedDomains = Object.entries(domainCounts).sort(([a], [b]) => a.localeCompare(b))
   const maxCount = Math.max(...Object.values(domainCounts))
+  const [stats] = useState(() => {
+    try {
+      return getUserStats()
+    } catch {
+      return { examCount: 0, wrongCount: 0, bestScore: null }
+    }
+  })
 
   return (
     <>
@@ -35,6 +44,14 @@ function HomePage() {
             {t('landing.subtitle')}
           </p>
         </section>
+
+        {/* User stats */}
+        {stats.examCount > 0 && (
+          <p className="rise-in mb-6 text-center text-sm text-[var(--sea-ink-soft)]" style={{ animationDelay: '50ms' }}>
+            {t('settings.stats', { exams: stats.examCount, wrong: stats.wrongCount })}
+            {stats.bestScore !== null && ` · ${t('settings.bestScore', { score: stats.bestScore })}`}
+          </p>
+        )}
 
         {/* AIF-C01 Exam Card */}
         <Card className="rise-in mx-auto max-w-xl" style={{ animationDelay: '100ms' }}>

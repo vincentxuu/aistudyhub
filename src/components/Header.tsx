@@ -1,4 +1,4 @@
-import { Brain } from '@sketchyicons/react'
+import { Brain, Settings } from '@sketchyicons/react'
 import { Link } from '@tanstack/react-router'
 import { useI18n } from '../i18n/index.ts'
 import ThemeToggle from './ThemeToggle.tsx'
@@ -31,6 +31,11 @@ export default function Header() {
             <span className="text-xs font-bold">{locale === 'zh-TW' ? 'EN' : '中'}</span>
           </Button>
           <ThemeToggle />
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/settings" aria-label={t('settings.title')} title={t('settings.title')}>
+              <Settings className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </nav>
     </header>

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as DiagnosticCodeRouteImport } from './routes/diagnostic.$code'
 import { Route as ExamCodeRouteImport } from './routes/exam.$code'
 import { Route as PracticeCodeRouteImport } from './routes/practice.$code'
@@ -20,6 +21,11 @@ import { Route as ExamCodeResultsSessionIdRouteImport } from './routes/exam.$cod
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiagnosticCodeRoute = DiagnosticCodeRouteImport.update({
@@ -56,6 +62,7 @@ const ExamCodeResultsSessionIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/settings': typeof SettingsRoute
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/settings': typeof SettingsRoute
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
@@ -75,6 +83,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/settings': typeof SettingsRoute
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/settings'
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/settings'
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/settings'
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SettingsRoute: typeof SettingsRoute
   DiagnosticCodeRoute: typeof DiagnosticCodeRoute
   ExamCodeRoute: typeof ExamCodeRoute
   PracticeCodeRoute: typeof PracticeCodeRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diagnostic/$code': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SettingsRoute: SettingsRoute,
   DiagnosticCodeRoute: DiagnosticCodeRoute,
   ExamCodeRoute: ExamCodeRoute,
   PracticeCodeRoute: PracticeCodeRoute,
