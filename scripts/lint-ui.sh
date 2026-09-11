@@ -63,6 +63,14 @@ if echo "$MATCHES" | grep -q '!text-\|!bg-\|!border-\|!important'; then
   FAIL=1
 fi
 
+# 8. Emoji in i18n files (icons should be in components, not translation strings)
+MATCHES=$(grep -rn '[💡✅📘⚠️🧠❌🔑🎯☁️]' src/i18n/ 2>/dev/null || true)
+if [ -n "$MATCHES" ]; then
+  echo "❌ Emoji in i18n files (use @sketchyicons/react in components instead):"
+  echo "$MATCHES"
+  FAIL=1
+fi
+
 if [ $FAIL -eq 0 ]; then
   echo "✅ All checks passed"
 fi
