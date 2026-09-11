@@ -108,6 +108,18 @@ export default {
   'wrongAnswers.empty': '太棒了！沒有錯題',
   'wrongAnswers.reviewed_label': '已複習',
 
+  // Knowledge Chain
+  'knowledgeChain.title': '知識鏈',
+  'knowledgeChain.description': '用一條鏈記住整個 Domain',
+
+  // Tips
+  'tips.longStem': '長題幹技巧：從倒數第二句開始讀，確認問的是什麼，再回頭看情境。',
+
+  // Results extras
+  'results.threshold': '建議穩定 85% 以上再報名考試',
+  'results.importantDomains': '合計 52%，最重要',
+  'results.readGuide': '閱讀完整備考指南',
+
   // Common
   'common.loading': '載入中...',
   'common.error': '發生錯誤',

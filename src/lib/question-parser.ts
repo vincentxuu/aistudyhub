@@ -320,6 +320,110 @@ function parseFormatBHints(content: string, filename: string): Partial<Question>
   return questions
 }
 
+// --- Format D parser (recommended for AI-generated) ---
+function parseFormatD(
+  content: string,
+  filename: string,
+): { meta: Record<string, string>; questions: Partial<Question>[] } {
+  const questions: Partial<Question>[] = []
+
+  // Extract YAML frontmatter
+  const fmMatch = content.match(/^---\n([\s\S]*?)\n---/)
+  const meta: Record<string, string> = {}
+  if (fmMatch) {
+    for (const line of fmMatch[1].split('\n')) {
+      const kv = line.match(/^(\w[\w-]*):\s*(.+)/)
+      if (kv) meta[kv[1].trim()] = kv[2].trim()
+    }
+  }
+
+  const domainFromMeta = meta.domain || 'Unknown'
+  const domainInfo = guessDomain(domainFromMeta)
+
+  // Split by ## Q markers
+  const blocks = content.split(/^## Q\d+/m).filter((b) => b.trim())
+
+  for (const block of blocks) {
+    // Skip the frontmatter block
+    if (block.includes('---') && !block.match(/^[A-Z]\./m)) continue
+
+    // Parse metadata lines
+    const typeMatch = block.match(/^Type:\s*(.+)/m)
+    const diffMatch = block.match(/^Difficulty:\s*(\d)/m)
+    const tagsMatch = block.match(/^Tags:\s*(.+)/m)
+
+    // Extract stem: text between metadata lines and first option
+    const metaEnd = block.search(/\n[A-Z]\.\s/)
+    if (metaEnd === -1) continue
+
+    // Find where metadata ends and stem begins
+    const lines = block.slice(0, metaEnd).split('\n')
+    const stemLines: string[] = []
+    let pastMeta = false
+    for (const line of lines) {
+      if (/^(Type|Difficulty|Tags|Concepts):/i.test(line.trim())) {
+        pastMeta = true
+        continue
+      }
+      if (pastMeta && line.trim()) {
+        stemLines.push(line)
+      } else if (pastMeta) {
+        // Allow blank lines within stem after meta
+        if (stemLines.length > 0) stemLines.push(line)
+      }
+    }
+    const stem = stemLines.join('\n').trim()
+    if (!stem) continue
+
+    // Parse options
+    const optionSection = block.slice(metaEnd)
+    const options: { label: string; text: string }[] = []
+    const optRegex = /^([A-F])\.\s+(.+)/gm
+    let m
+    while ((m = optRegex.exec(optionSection)) !== null) {
+      options.push({ label: m[1], text: m[2].trim() })
+    }
+    if (options.length === 0) continue
+
+    // Parse answer
+    const answerMatch = block.match(/^Answer:\s*(.+)/m)
+    if (!answerMatch) continue
+    const answerRaw = answerMatch[1].trim()
+    const correctAnswers = answerRaw
+      .split(/[,，]\s*/)
+      .map((a) => a.trim())
+      .filter(Boolean)
+
+    // Parse other fields
+    const hintMatch = block.match(/^Hint:\s*(.+)/m)
+    const explMatch = block.match(/^Explanation:\s*([\s\S]*?)(?=^(?:Why others wrong|Trap|Mnemonic|---|\n## Q))/m)
+    const whyMatch = block.match(/^Why others wrong:\s*([\s\S]*?)(?=^(?:Trap|Mnemonic|---|\n## Q))/m)
+    const trapMatch = block.match(/^Trap:\s*([\s\S]*?)(?=^(?:Mnemonic|---|\n## Q))/m)
+    const mnemonicMatch = block.match(/^Mnemonic:\s*(.+)/m)
+
+    const type = typeMatch ? typeMatch[1].trim().toLowerCase() : 'single'
+
+    questions.push({
+      stem,
+      options,
+      correctAnswers,
+      type: type as 'single' | 'multi' | 'ordering' | 'matching',
+      domain: domainInfo.domainNumber > 0 ? domainInfo.domain : domainFromMeta,
+      domainNumber: domainInfo.domainNumber || 3,
+      difficulty: diffMatch ? (parseInt(diffMatch[1], 10) as 1 | 2 | 3) : 1,
+      hint: hintMatch ? hintMatch[1].trim() : null,
+      explanation: explMatch ? explMatch[1].trim() : null,
+      whyOthersWrong: whyMatch ? whyMatch[1].trim() : null,
+      trap: trapMatch ? trapMatch[1].trim() : null,
+      mnemonic: mnemonicMatch ? mnemonicMatch[1].trim() : null,
+      keyTerms: tagsMatch ? tagsMatch[1].split(/[,，]\s*/).map((t) => t.trim()) : [],
+      sourceFile: filename,
+    })
+  }
+
+  return { meta, questions }
+}
+
 function detectSubFormat(content: string): 'B-full' | 'B-hints' {
   if (/^## Question \d/m.test(content) && content.includes('⭐')) return 'B-full'
   return 'B-hints'
@@ -356,6 +460,11 @@ export function parseQuestions(
     rawQuestions = sub === 'B-full' ? parseFormatB(content, filename) : parseFormatBHints(content, filename)
   } else if (format === 'C') {
     rawQuestions = parseFormatC(content, filename)
+  } else if (format === 'D') {
+    const result = parseFormatD(content, filename)
+    rawQuestions = result.questions
+    if (result.meta.exam && !overrides.examCode) overrides.examCode = result.meta.exam
+    if (result.meta.lang && !overrides.lang) overrides.lang = result.meta.lang as 'en' | 'zh-TW'
   } else {
     throw new Error(`Parser for format ${format} not yet implemented`)
   }

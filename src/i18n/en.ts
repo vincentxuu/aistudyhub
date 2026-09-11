@@ -108,6 +108,19 @@ export default {
   'wrongAnswers.empty': 'Great! No wrong answers',
   'wrongAnswers.reviewed_label': 'Reviewed',
 
+  // Knowledge Chain
+  'knowledgeChain.title': 'Knowledge Chain',
+  'knowledgeChain.description': 'Memorize the entire Domain in one chain',
+
+  // Tips
+  'tips.longStem':
+    "Long stem tip: Start from the second-to-last sentence to find what's being asked, then read the scenario.",
+
+  // Results extras
+  'results.threshold': 'Aim for 85%+ consistently before registering',
+  'results.importantDomains': '52% combined, most important',
+  'results.readGuide': 'Read Full Prep Guide',
+
   // Common
   'common.loading': 'Loading...',
   'common.error': 'An error occurred',

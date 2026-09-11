@@ -5,6 +5,7 @@ import {
   CircleCheck,
   CircleX,
   Dumbbell,
+  ExternalLink,
   Home,
   Lightbulb,
   RotateCcw,
@@ -19,7 +20,8 @@ import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import { useI18n } from '../i18n/index.ts'
-import { getWrongAnswers, loadResult, saveWrongAnswersFromResult } from '../lib/questions.ts'
+import { getChainForDomain } from '../lib/knowledge-chains.ts'
+import { loadResult, saveWrongAnswersFromResult } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
 export const Route = createFileRoute('/exam/$code_/results/$sessionId')({ component: ResultsPage })
@@ -117,6 +119,7 @@ function ResultsPage() {
             {result.correctCount}/{result.totalQuestions} · {minutes}m {seconds}s
           </p>
           <p className="mt-1 text-xs text-[var(--sea-ink-soft)]">{t('results.passingScore', { score: 70 })}</p>
+          <p className="mt-3 text-xs font-semibold text-[var(--sea-ink-soft)]">{t('results.threshold')}</p>
         </section>
 
         {/* Domain breakdown */}
@@ -125,22 +128,42 @@ function ResultsPage() {
             <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--sea-ink-soft)]">
               {t('results.domainBreakdown')}
             </h3>
-            {result.domainBreakdown.map((d) => (
-              <div key={d.domain} className="space-y-1.5">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="min-w-0 flex-1 truncate text-sm text-[var(--sea-ink)]">{d.domain}</span>
-                  <span
-                    className={cn(
-                      'shrink-0 font-mono text-xs font-bold tabular-nums',
-                      d.percentage >= 70 ? 'text-[var(--correct)]' : 'text-[var(--wrong)]',
-                    )}
-                  >
-                    {d.correct}/{d.total} ({d.percentage}%)
-                  </span>
+            {result.domainBreakdown.map((d) => {
+              const isImportant =
+                d.domain === 'Fundamentals of Generative AI' || d.domain === 'Applications of Foundation Models'
+              const chain = getChainForDomain(result.examCode, d.domain)
+              return (
+                <div key={d.domain} className="space-y-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="min-w-0 flex-1 truncate text-sm text-[var(--sea-ink)]">
+                      {d.domain}
+                      {isImportant && (
+                        <Badge variant="warning" className="ml-2 text-[10px]">
+                          {t('results.importantDomains')}
+                        </Badge>
+                      )}
+                    </span>
+                    <span
+                      className={cn(
+                        'shrink-0 font-mono text-xs font-bold tabular-nums',
+                        d.percentage >= 70 ? 'text-[var(--correct)]' : 'text-[var(--wrong)]',
+                      )}
+                    >
+                      {d.correct}/{d.total} ({d.percentage}%)
+                    </span>
+                  </div>
+                  <Progress value={d.percentage} variant={d.percentage >= 70 ? 'default' : 'danger'} />
+                  {chain && (
+                    <details className="mt-1">
+                      <summary className="cursor-pointer text-[10px] font-semibold text-[var(--sea-ink-soft)]">
+                        {t('knowledgeChain.title')}
+                      </summary>
+                      <p className="mt-1 text-[10px] leading-relaxed text-[var(--sea-ink-soft)]">{chain.chain}</p>
+                    </details>
+                  )}
                 </div>
-                <Progress value={d.percentage} variant={d.percentage >= 70 ? 'default' : 'danger'} />
-              </div>
-            ))}
+              )
+            })}
           </CardContent>
         </Card>
 
@@ -161,6 +184,18 @@ function ResultsPage() {
               <Home className="h-4 w-4" /> {t('results.backToHome')}
             </Link>
           </Button>
+        </div>
+
+        {/* Prep guide link */}
+        <div className="rise-in mt-3" style={{ animationDelay: '180ms' }}>
+          <a
+            href="https://quidproquo.cc/posts/ai/2026-08-18-aws-aif-c01-prep-guide/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--line)] bg-[var(--bg-subtle)] px-4 py-2.5 text-sm font-semibold text-[var(--sea-ink)] transition-all hover:bg-[var(--surface)]"
+          >
+            <ExternalLink className="h-4 w-4" /> {t('results.readGuide')}
+          </a>
         </div>
 
         {/* Wrong answer journal link */}

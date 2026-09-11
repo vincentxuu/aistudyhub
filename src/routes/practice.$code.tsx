@@ -26,6 +26,7 @@ import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import type { TranslationKey } from '../i18n/index.ts'
 import { useI18n } from '../i18n/index.ts'
+import { getKnowledgeChains } from '../lib/knowledge-chains.ts'
 import type { Question } from '../lib/question-types.ts'
 import {
   getDomainCounts,
@@ -372,7 +373,32 @@ function PracticePage() {
             </Button>
           </div>
 
-          <div className="mt-8 space-y-2">
+          {/* Knowledge chains for practiced domains */}
+          {(() => {
+            const practicedDomains = [...new Set(questions.map((q) => q.domain))]
+            const chains = getKnowledgeChains(examCode).filter((c) => practicedDomains.includes(c.domain))
+            if (chains.length === 0) return null
+            return (
+              <Card className="mt-8">
+                <CardContent className="space-y-3">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--sea-ink-soft)]">
+                    {t('knowledgeChain.title')}
+                  </h3>
+                  <p className="text-xs text-[var(--sea-ink-soft)]">{t('knowledgeChain.description')}</p>
+                  {chains.map((c) => (
+                    <div key={c.domainNumber} className="rounded-lg border border-[var(--line)] px-3 py-2">
+                      <span className="mr-2 font-mono text-xs font-bold text-[var(--sea-ink-soft)]">
+                        D{c.domainNumber}
+                      </span>
+                      <span className="text-xs leading-relaxed text-[var(--sea-ink)]">{c.chain}</span>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            )
+          })()}
+
+          <div className="mt-4 space-y-2">
             {questions.map((q) => {
               const ans = answers[q.id] || []
               const correct = q.correctAnswers.every((a) => ans.includes(a)) && ans.length === q.correctAnswers.length
@@ -463,6 +489,7 @@ function PracticePage() {
             onSelectOption={selectOption}
             disabled={isRevealed}
             showResult={isRevealed}
+            showTips
             questionNumber={currentIndex + 1}
           />
 

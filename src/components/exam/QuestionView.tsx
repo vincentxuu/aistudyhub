@@ -1,3 +1,5 @@
+import { Lightbulb } from '@sketchyicons/react'
+import { useI18n } from '../../i18n/index.ts'
 import type { Question } from '../../lib/question-types.ts'
 import { cn } from '../../lib/utils.ts'
 import { Badge } from '../ui/badge.tsx'
@@ -9,6 +11,7 @@ export interface QuestionViewProps {
   onSelectOption: (label: string) => void
   disabled?: boolean
   showResult?: boolean
+  showTips?: boolean
   questionNumber?: number
   className?: string
 }
@@ -19,10 +22,13 @@ export function QuestionView({
   onSelectOption,
   disabled = false,
   showResult = false,
+  showTips = false,
   questionNumber,
   className,
 }: QuestionViewProps) {
+  const { t } = useI18n()
   const isMulti = question.type === 'multi'
+  const isLongStem = question.stem.length > 100
 
   return (
     <div className={cn('rise-in', className)}>
@@ -40,6 +46,13 @@ export function QuestionView({
           </Badge>
         )}
       </div>
+
+      {showTips && isLongStem && (
+        <div className="mb-3 flex items-start gap-2 rounded-lg border border-[var(--flagged-border)] bg-[var(--flagged-bg)] px-3 py-2 text-xs text-[var(--sea-ink-soft)]">
+          <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--flagged)]" />
+          <span>{t('tips.longStem')}</span>
+        </div>
+      )}
 
       <p className="mb-6 text-[clamp(0.95rem,2.2vw,1.15rem)] font-medium leading-[1.7] text-[var(--sea-ink)]">
         {question.stem}
