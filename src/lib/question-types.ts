@@ -40,4 +40,4 @@ export interface Question {
   lang: 'en' | 'zh-TW'
 }
 
-export type Format = 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+export type Format = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'I'

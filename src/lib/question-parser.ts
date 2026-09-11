@@ -20,8 +20,10 @@ export function detectFormat(content: string, filename: string): Format {
   if (filename.endsWith('.json')) return 'F'
   if (/^---\n(?:exam|course|series):/m.test(content)) return 'D'
   if (/^## Question \d/m.test(content) && content.includes('⭐')) return 'B'
+  if (/^### Q\d/m.test(content) && /\*\*正確答案\*\*/m.test(content)) return 'G'
   if (/^### Q\d/m.test(content) && content.includes('<details>')) return 'A'
   if (/^\*\*\d+\.\*\*/m.test(content) && /\*\*答案[：:]/m.test(content)) return 'C'
+  if (/Q\d+\.\s/m.test(content) && /^解答[：:]/m.test(content)) return 'I'
   if (/^\d+[.)]\s/m.test(content) && /^Answer:/m.test(content)) return 'E'
   throw new Error(`Unrecognized format in ${filename}`)
 }
@@ -37,7 +39,8 @@ function extractDetails(block: string, label: string): string | null {
 
 function parseOptions(text: string): { options: QuestionOption[]; type: 'single' | 'multi' } {
   const options: QuestionOption[] = []
-  const optionRegex = /^[-\s]*([A-F])[.)]\s*(.+)$/gm
+  // Match: "- A.", "* A.", "  A.", or bare "A." at start of line
+  const optionRegex = /^[\s*-]*([A-F])[.)]\s+(.+)$/gm
   let m
   while ((m = optionRegex.exec(text)) !== null) {
     options.push({ label: m[1], text: m[2].trim() })
@@ -424,6 +427,146 @@ function parseFormatD(
   return { meta, questions }
 }
 
+// --- Format G parser (### Q01 + **正確答案** + **詳細解析**) ---
+// Also handles Format H (same structure, different option bullet style)
+function parseFormatG(content: string, filename: string): Partial<Question>[] {
+  const questions: Partial<Question>[] = []
+
+  // Pre-scan for domain sections (## Domain N: ...)
+  const domainSections: { offset: number; domain: string; domainNumber: number }[] = []
+  const domainHeaderRegex = /^## Domain\s+(\d)[:\s]/gim
+  let dm
+  while ((dm = domainHeaderRegex.exec(content)) !== null) {
+    const num = parseInt(dm[1], 10)
+    domainSections.push({
+      offset: dm.index,
+      domain: DOMAIN_MAP[num] || `Domain ${num}`,
+      domainNumber: num,
+    })
+  }
+
+  function domainAtOffset(offset: number): { domain: string; domainNumber: number } {
+    let result = { domain: 'Unknown', domainNumber: 0 }
+    for (const ds of domainSections) {
+      if (ds.offset <= offset) result = { domain: ds.domain, domainNumber: ds.domainNumber }
+    }
+    return result
+  }
+
+  // Split by ### Q markers, keeping track of offset
+  const qRegex = /^### Q\d+/gm
+  const qStarts: number[] = []
+  let qm
+  while ((qm = qRegex.exec(content)) !== null) {
+    qStarts.push(qm.index)
+  }
+
+  for (let i = 0; i < qStarts.length; i++) {
+    const start = qStarts[i]
+    const end = i + 1 < qStarts.length ? qStarts[i + 1] : content.length
+    const block = content.slice(start, end).replace(/^### Q\d+\s*/, '')
+
+    const currentDomain = domainAtOffset(start)
+
+    // Extract stem: text before first option line (handles * A., - A., A. styles)
+    const optionStart = block.search(/\n[\s*-]*[A-F][.)]\s+\S/)
+    if (optionStart === -1) continue
+    const stem = block.slice(0, optionStart).replace(/^\s+/, '').trim()
+    if (stem.length < 10) continue
+
+    const { options } = parseOptions(block)
+    if (options.length === 0) continue
+
+    // Extract answer from **正確答案**：X
+    const answerMatch = block.match(/\*\*正確答案\*\*[：:]\s*([A-F])/i)
+    if (!answerMatch) continue
+    const correctAnswers = [answerMatch[1]]
+
+    // Extract explanation from **詳細解析**：\n...
+    let explanation: string | null = null
+    const explMatch = block.match(/\*\*詳細解析\*\*[：:]\s*\n?([\s\S]*?)(?=\n### Q|\n---\s*$|$)/)
+    if (explMatch) {
+      explanation = explMatch[1].trim()
+    }
+
+    questions.push({
+      stem,
+      options,
+      correctAnswers,
+      type: guessQuestionType(stem),
+      ...currentDomain,
+      difficulty: 1,
+      explanation,
+      sourceFile: filename,
+    })
+  }
+
+  return questions
+}
+
+// --- Format I parser (Q1. stem + 解答：X + 解析：text, plain text) ---
+function parseFormatI(content: string, filename: string): Partial<Question>[] {
+  const questions: Partial<Question>[] = []
+  let currentDomain = { domain: 'Unknown', domainNumber: 0 }
+
+  // Split by Q-number markers
+  const parts = content.split(/(?=Q\d+\.\s)/)
+
+  for (const part of parts) {
+    // Check for domain headers within the part
+    const domainInfo = guessDomain(part)
+    if (domainInfo.domainNumber > 0) currentDomain = domainInfo
+
+    const qMatch = part.match(/^Q\d+\.\s/)
+    if (!qMatch) continue
+
+    // Split into question part and answer part
+    const answerSplit = part.split(/^解答[：:]\s*/m)
+    if (answerSplit.length < 2) continue
+
+    const questionPart = answerSplit[0]
+    const answerPart = answerSplit[1]
+
+    // Extract stem (text between Q number and first option)
+    const stemText = questionPart.replace(/^Q\d+\.\s*/, '')
+    const optionStart = stemText.search(/\n[A-F][.)]\s/)
+    if (optionStart === -1) continue
+    const stem = stemText.slice(0, optionStart).trim()
+
+    // Parse options
+    const { options } = parseOptions(questionPart)
+    if (options.length === 0) continue
+
+    // Extract answer letter
+    const answerLetter = answerPart.match(/^([A-F])/m)
+    if (!answerLetter) continue
+    const correctAnswers = [answerLetter[1]]
+
+    // Extract explanation
+    let explanation: string | null = null
+    const explMatch = answerPart.match(/解析[：:]\s*([\s\S]*?)(?=Q\d+\.|$)/)
+    if (explMatch) {
+      explanation = explMatch[1].trim()
+    } else {
+      const afterAnswer = answerPart.replace(/^[A-F]\s*\n?/, '').trim()
+      if (afterAnswer.length > 10) explanation = afterAnswer
+    }
+
+    questions.push({
+      stem,
+      options,
+      correctAnswers,
+      type: guessQuestionType(stem),
+      ...currentDomain,
+      difficulty: 1,
+      explanation,
+      sourceFile: filename,
+    })
+  }
+
+  return questions
+}
+
 function detectSubFormat(content: string): 'B-full' | 'B-hints' {
   if (/^## Question \d/m.test(content) && content.includes('⭐')) return 'B-full'
   return 'B-hints'
@@ -465,6 +608,10 @@ export function parseQuestions(
     rawQuestions = result.questions
     if (result.meta.exam && !overrides.examCode) overrides.examCode = result.meta.exam
     if (result.meta.lang && !overrides.lang) overrides.lang = result.meta.lang as 'en' | 'zh-TW'
+  } else if (format === 'G') {
+    rawQuestions = parseFormatG(content, filename)
+  } else if (format === 'I') {
+    rawQuestions = parseFormatI(content, filename)
   } else {
     throw new Error(`Parser for format ${format} not yet implemented`)
   }

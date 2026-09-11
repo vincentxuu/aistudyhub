@@ -24,7 +24,7 @@ function collectFiles(p: string): string[] {
   const stat = statSync(p)
   if (stat.isDirectory()) {
     return readdirSync(p)
-      .filter(f => f.endsWith('.md') || f.endsWith('.json'))
+      .filter(f => f.endsWith('.md') || f.endsWith('.json') || f.endsWith('.txt'))
       .map(f => resolve(p, f))
   }
   return [resolve(p)]
