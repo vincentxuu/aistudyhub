@@ -120,6 +120,22 @@ export default {
   'results.importantDomains': '合計 52%，最重要',
   'results.readGuide': '閱讀完整備考指南',
 
+  // Study Mode
+  'study.title': '學習模式',
+  'study.subtitle': '逐層揭露，理解每一題',
+  'study.richOnly': '只顯示有完整解析的題目',
+  'study.start': '開始學習',
+  'study.showHint': '💡 顯示提示',
+  'study.showAnswer': '✅ 顯示答案',
+  'study.showExplanation': '📘 顯示詳解',
+  'study.showTrap': '⚠️ 常見陷阱',
+  'study.showMnemonic': '🧠 記憶口訣',
+  'study.showWhyWrong': '❌ 其他選項為什麼不對',
+  'study.keyTerms': '🔑 關鍵字',
+  'study.answer': '答案',
+  'study.prev': '上一題',
+  'study.next': '下一題',
+
   // Common
   'common.loading': '載入中...',
   'common.error': '發生錯誤',

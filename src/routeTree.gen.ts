@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DiagnosticCodeRouteImport } from './routes/diagnostic.$code'
 import { Route as ExamCodeRouteImport } from './routes/exam.$code'
 import { Route as PracticeCodeRouteImport } from './routes/practice.$code'
+import { Route as StudyCodeRouteImport } from './routes/study.$code'
 import { Route as WrongAnswersCodeRouteImport } from './routes/wrong-answers.$code'
 import { Route as ExamCodeResultsSessionIdRouteImport } from './routes/exam.$code_.results.$sessionId'
 
@@ -36,6 +37,11 @@ const PracticeCodeRoute = PracticeCodeRouteImport.update({
   path: '/practice/$code',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudyCodeRoute = StudyCodeRouteImport.update({
+  id: '/study/$code',
+  path: '/study/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WrongAnswersCodeRoute = WrongAnswersCodeRouteImport.update({
   id: '/wrong-answers/$code',
   path: '/wrong-answers/$code',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
+  '/study/$code': typeof StudyCodeRoute
   '/wrong-answers/$code': typeof WrongAnswersCodeRoute
   '/exam/$code/results/$sessionId': typeof ExamCodeResultsSessionIdRoute
 }
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
+  '/study/$code': typeof StudyCodeRoute
   '/wrong-answers/$code': typeof WrongAnswersCodeRoute
   '/exam/$code/results/$sessionId': typeof ExamCodeResultsSessionIdRoute
 }
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
+  '/study/$code': typeof StudyCodeRoute
   '/wrong-answers/$code': typeof WrongAnswersCodeRoute
   '/exam/$code_/results/$sessionId': typeof ExamCodeResultsSessionIdRoute
 }
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
+    | '/study/$code'
     | '/wrong-answers/$code'
     | '/exam/$code/results/$sessionId'
   fileRoutesByTo: FileRoutesByTo
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
+    | '/study/$code'
     | '/wrong-answers/$code'
     | '/exam/$code/results/$sessionId'
   id:
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
+    | '/study/$code'
     | '/wrong-answers/$code'
     | '/exam/$code_/results/$sessionId'
   fileRoutesById: FileRoutesById
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   DiagnosticCodeRoute: typeof DiagnosticCodeRoute
   ExamCodeRoute: typeof ExamCodeRoute
   PracticeCodeRoute: typeof PracticeCodeRoute
+  StudyCodeRoute: typeof StudyCodeRoute
   WrongAnswersCodeRoute: typeof WrongAnswersCodeRoute
   ExamCodeResultsSessionIdRoute: typeof ExamCodeResultsSessionIdRoute
 }
@@ -139,6 +152,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeCodeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/study/$code': {
+      id: '/study/$code'
+      path: '/study/$code'
+      fullPath: '/study/$code'
+      preLoaderRoute: typeof StudyCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/wrong-answers/$code': {
       id: '/wrong-answers/$code'
       path: '/wrong-answers/$code'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiagnosticCodeRoute: DiagnosticCodeRoute,
   ExamCodeRoute: ExamCodeRoute,
   PracticeCodeRoute: PracticeCodeRoute,
+  StudyCodeRoute: StudyCodeRoute,
   WrongAnswersCodeRoute: WrongAnswersCodeRoute,
   ExamCodeResultsSessionIdRoute: ExamCodeResultsSessionIdRoute,
 }

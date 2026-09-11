@@ -121,6 +121,22 @@ export default {
   'results.importantDomains': '52% combined, most important',
   'results.readGuide': 'Read Full Prep Guide',
 
+  // Study Mode
+  'study.title': 'Study Mode',
+  'study.subtitle': 'Progressive reveal, understand every question',
+  'study.richOnly': 'Show only questions with full explanations',
+  'study.start': 'Start Studying',
+  'study.showHint': '💡 Show Hint',
+  'study.showAnswer': '✅ Show Answer',
+  'study.showExplanation': '📘 Show Explanation',
+  'study.showTrap': '⚠️ Common Trap',
+  'study.showMnemonic': '🧠 Memory Aid',
+  'study.showWhyWrong': '❌ Why Others Are Wrong',
+  'study.keyTerms': '🔑 Key Terms',
+  'study.answer': 'Answer',
+  'study.prev': 'Previous',
+  'study.next': 'Next',
+
   // Common
   'common.loading': 'Loading...',
   'common.error': 'An error occurred',

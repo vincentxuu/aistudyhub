@@ -98,6 +98,14 @@ function HomePage() {
               </Button>
             </div>
 
+            {/* Study Mode */}
+            <Button asChild variant="secondary" className="w-full">
+              <Link to="/study/$code" params={{ code: 'aif-c01' }}>
+                <BookOpen className="h-4 w-4" />
+                {t('study.title')} — {t('study.subtitle')}
+              </Link>
+            </Button>
+
             {/* Diagnostic */}
             <div className="border-t border-[var(--line)] pt-4">
               <Button asChild variant="outline" className="w-full">
