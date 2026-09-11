@@ -1,20 +1,27 @@
 Last updated: 2026-09-11
 
 ## Current Status
-- Project scaffolded with TanStack Start + Tailwind + shadcn components
-- 192 AIF-C01 questions imported (4 source files, deduplicated)
-- Happy Hues Palette 2 applied
-- @sketchyicons/react for icons
-- i18n (zh-TW default, en) with useI18n hook
-- Shared exam components: OptionCard, QuestionView, CircularTimer, QuestionGrid
-- CLAUDE.md with component rules and color rules
-- lint:ui script catches UI anti-patterns
-- Biome linter + formatter configured
-- verify script (biome + lint:ui + build)
-- session:start script
-- pre-commit hook via simple-git-hooks
+- Live at: https://aistudyhub.vincent-xu-work.workers.dev
+- GitHub: https://github.com/vincentxuu/aistudyhub
+- 500 AIF-C01 questions (8 source files, 7 parser formats, all enriched with hint/trap/mnemonic)
+- 5 modes: Mock Exam, Practice, Study (progressive reveal), Diagnostic, Wrong Answer Journal
+- Settings page with export/import JSON
+- Happy Hues Palette 2 (cyan buttons light / yellow buttons dark)
+- i18n: zh-TW default, English
+- @sketchyicons/react hand-drawn icons
+- Biome + lint:ui (8 checks) + pre-commit hook (simple-git-hooks)
+- CI (GitHub Actions) + Deploy (Cloudflare Workers)
+- CLAUDE.md with component/color/icon rules
 
-## Next
-- Deploy to Cloudflare Pages
-- More question banks (Claude, NVIDIA, Microsoft certs)
-- Course track (CS229 etc.)
+## Known Issues
+- UI needs polish pass (colors, icon sizing, contrast on some pages)
+- questions.json bundled client-side (778KB) — should move to D1
+
+## Next (prioritized)
+- P0: UI polish — visually check every page, fix remaining issues
+- P1: D1 anonymous session (spec at docs/D1-SESSION-SPEC.md)
+- P1: GitHub OAuth login + cross-device sync
+- P2: More cert question banks (Claude, NVIDIA, Microsoft, Google)
+- P2: Course quiz generation from quidproquo 229 lecture articles
+- P3: Custom domain
+- P3: SEO (sitemap, OG images, structured data)
