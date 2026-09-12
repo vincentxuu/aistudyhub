@@ -10,9 +10,9 @@ const config = defineConfig({
   plugins: [
     devtools(),
     tailwindcss(),
+    cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tanstackStart(),
     viteReact(),
-    cloudflare(),
   ],
 })
 
