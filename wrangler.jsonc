@@ -1,8 +1,7 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aistudyhub",
   "compatibility_date": "2026-09-01",
-  "main": "./dist/server/server.js",
-  "assets": {
-    "directory": "./dist/client"
-  }
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry"
 }
