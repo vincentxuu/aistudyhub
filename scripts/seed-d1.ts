@@ -48,6 +48,9 @@ for (const q of questions) {
     escSql(q.sourceFile),
     escSql(q.generatedBy),
     q.reviewed ? '1' : '0',
+    escSql(q.plainExplanation),
+    jsonOrNull(q.optionAnalysis),
+    jsonOrNull(q.references),
   ].join(', ')
 
   current.push(`(${values})`)
@@ -64,7 +67,7 @@ const tmpDir = resolve('.wrangler/tmp')
 execSync(`mkdir -p ${tmpDir}`)
 
 for (let i = 0; i < batches.length; i++) {
-  const sql = `INSERT OR REPLACE INTO questions (id, hash, exam_code, lang, domain, domain_number, difficulty, type, stem, options, correct_answers, hint, explanation, why_others_wrong, trap, mnemonic, key_terms, tags, source_file, generated_by, reviewed) VALUES\n${batches[i].join(',\n')};\n`
+  const sql = `INSERT OR REPLACE INTO questions (id, hash, exam_code, lang, domain, domain_number, difficulty, type, stem, options, correct_answers, hint, explanation, why_others_wrong, trap, mnemonic, key_terms, tags, source_file, generated_by, reviewed, plain_explanation, option_analysis, references_json) VALUES\n${batches[i].join(',\n')};\n`
 
   const sqlFile = resolve(tmpDir, `seed-batch-${i}.sql`)
   writeFileSync(sqlFile, sql)

@@ -24,6 +24,9 @@ interface QuestionRow {
   source_file: string | null
   generated_by: string
   reviewed: number
+  plain_explanation: string | null
+  option_analysis: string | null
+  references_json: string | null
 }
 
 function rowToQuestion(row: QuestionRow): Question {
@@ -48,12 +51,12 @@ function rowToQuestion(row: QuestionRow): Question {
     correctAnswers: JSON.parse(row.correct_answers) as string[],
     hint: row.hint,
     explanation: row.explanation,
-    plainExplanation: null,
-    optionAnalysis: null,
+    plainExplanation: row.plain_explanation,
+    optionAnalysis: row.option_analysis ? JSON.parse(row.option_analysis) : null,
     whyOthersWrong: row.why_others_wrong,
     trap: row.trap,
     mnemonic: row.mnemonic,
-    references: null,
+    references: row.references_json ? JSON.parse(row.references_json) : null,
     relatedQuestionIds: [],
     sourceArticleUrl: null,
     sourceFile: row.source_file || '',
