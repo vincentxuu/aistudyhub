@@ -4,11 +4,13 @@ import type { Question } from '../../lib/question-types.ts'
 import { cn } from '../../lib/utils.ts'
 import { Badge } from '../ui/badge.tsx'
 import { OptionCard } from './OptionCard.tsx'
+import { OrderingQuestion } from './OrderingQuestion.tsx'
 
 export interface QuestionViewProps {
   question: Question
   selectedAnswers: string[]
   onSelectOption: (label: string) => void
+  onOrderChange?: (order: string[]) => void
   disabled?: boolean
   showResult?: boolean
   showTips?: boolean
@@ -20,6 +22,7 @@ export function QuestionView({
   question,
   selectedAnswers,
   onSelectOption,
+  onOrderChange,
   disabled = false,
   showResult = false,
   showTips = false,
@@ -28,6 +31,7 @@ export function QuestionView({
 }: QuestionViewProps) {
   const { t } = useI18n()
   const isMulti = question.type === 'multi'
+  const isOrdering = question.type === 'ordering'
   const isLongStem = question.stem.length > 100
 
   return (
@@ -58,35 +62,46 @@ export function QuestionView({
         {question.stem}
       </p>
 
-      {isMulti && !showResult && (
-        <p className="mb-3 text-xs font-semibold text-[var(--sea-ink-soft)]">Select all that apply</p>
+      {isOrdering ? (
+        <OrderingQuestion
+          options={question.options}
+          order={selectedAnswers}
+          onChange={onOrderChange ?? (() => {})}
+          disabled={disabled || showResult}
+          correctOrder={showResult ? question.correctAnswers : undefined}
+        />
+      ) : (
+        <>
+          {isMulti && !showResult && (
+            <p className="mb-3 text-xs font-semibold text-[var(--sea-ink-soft)]">Select all that apply</p>
+          )}
+          <div className="space-y-2.5">
+            {question.options.map((opt) => {
+              const selected = selectedAnswers.includes(opt.label)
+              const isCorrectOpt = question.correctAnswers.includes(opt.label)
+
+              let result: 'correct' | 'wrong' | null = null
+              if (showResult && selected && !isCorrectOpt) result = 'wrong'
+              if (showResult && selected && isCorrectOpt) result = 'correct'
+
+              return (
+                <OptionCard
+                  key={opt.label}
+                  label={opt.label}
+                  text={opt.text}
+                  feedback={opt.feedback}
+                  selected={selected}
+                  disabled={disabled || showResult}
+                  result={result}
+                  isCorrectAnswer={showResult ? isCorrectOpt : undefined}
+                  isMulti={isMulti}
+                  onSelect={() => onSelectOption(opt.label)}
+                />
+              )
+            })}
+          </div>
+        </>
       )}
-
-      <div className="space-y-2.5">
-        {question.options.map((opt) => {
-          const selected = selectedAnswers.includes(opt.label)
-          const isCorrectOpt = question.correctAnswers.includes(opt.label)
-
-          let result: 'correct' | 'wrong' | null = null
-          if (showResult && selected && !isCorrectOpt) result = 'wrong'
-          if (showResult && selected && isCorrectOpt) result = 'correct'
-
-          return (
-            <OptionCard
-              key={opt.label}
-              label={opt.label}
-              text={opt.text}
-              feedback={opt.feedback}
-              selected={selected}
-              disabled={disabled || showResult}
-              result={result}
-              isCorrectAnswer={showResult ? isCorrectOpt : undefined}
-              isMulti={isMulti}
-              onSelect={() => onSelectOption(opt.label)}
-            />
-          )
-        })}
-      </div>
     </div>
   )
 }
