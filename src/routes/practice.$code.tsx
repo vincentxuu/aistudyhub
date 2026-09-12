@@ -33,6 +33,7 @@ import {
   getDomains,
   getFilteredQuestions,
   getWrongAnswers,
+  isAnswerCorrect,
   saveWrongAnswer,
 } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
@@ -65,11 +66,7 @@ function PracticePage() {
   const [finished, setFinished] = useState(false)
 
   const correctCount = questions.filter(
-    (q) =>
-      revealed.has(q.id) &&
-      answers[q.id] &&
-      q.correctAnswers.every((a) => answers[q.id].includes(a)) &&
-      answers[q.id].length === q.correctAnswers.length,
+    (q) => revealed.has(q.id) && answers[q.id] && isAnswerCorrect(q, answers[q.id]),
   ).length
   const answeredCount = questions.filter((q) => revealed.has(q.id)).length
 
@@ -92,9 +89,10 @@ function PracticePage() {
   const isRevealed = currentQuestion ? revealed.has(currentQuestion.id) : false
   const currentAnswer = currentQuestion ? answers[currentQuestion.id] || [] : []
   const isMulti = currentQuestion?.type === 'multi'
+  const isOrdering = currentQuestion?.type === 'ordering'
 
   function selectOption(label: string) {
-    if (!currentQuestion || isRevealed) return
+    if (!currentQuestion || isRevealed || isOrdering) return
     setAnswers((prev) => {
       const current = prev[currentQuestion.id] || []
       if (isMulti) {
@@ -110,18 +108,21 @@ function PracticePage() {
     }
   }
 
+  function setOrder(order: string[]) {
+    if (!currentQuestion || isRevealed || currentQuestion.type !== 'ordering') return
+    setAnswers((prev) => ({ ...prev, [currentQuestion.id]: order }))
+  }
+
   function revealAnswer() {
     if (!currentQuestion) return
     setRevealed((prev) => new Set(prev).add(currentQuestion.id))
   }
 
-  // Auto-save wrong answers when revealed
   useEffect(() => {
     for (const q of questions) {
       if (!revealed.has(q.id)) continue
       const ans = answers[q.id] || []
-      const isCorrectAnswer = ans.length === q.correctAnswers.length && q.correctAnswers.every((a) => ans.includes(a))
-      if (!isCorrectAnswer && ans.length > 0) {
+      if (!isAnswerCorrect(q, ans) && ans.length > 0) {
         saveWrongAnswer({
           questionId: q.id,
           examCode,
@@ -146,11 +147,11 @@ function PracticePage() {
       const target = e.target as HTMLElement
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return
       const keyUpper = e.key.toUpperCase()
-      if (!isRevealed && ['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper)) {
+      if (!isRevealed && !isOrdering && ['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper)) {
         const opt = currentQuestion.options.find((o) => o.label === keyUpper)
         if (opt) selectOption(opt.label)
-      } else if (!isRevealed && e.key >= '1' && e.key <= '9') {
-        const idx = parseInt(e.key, 10) - 1
+      } else if (!isRevealed && !isOrdering && e.key >= '1' && e.key <= '9') {
+        const idx = Number.parseInt(e.key, 10) - 1
         if (idx < currentQuestion.options.length) selectOption(currentQuestion.options[idx].label)
       } else if (e.key === 'Enter') {
         if (!isRevealed && currentAnswer.length > 0) revealAnswer()
@@ -162,7 +163,6 @@ function PracticePage() {
     return () => window.removeEventListener('keydown', handleKey)
   })
 
-  // --- Setup screen ---
   if (!started) {
     return (
       <>
@@ -179,7 +179,6 @@ function PracticePage() {
             </h1>
           </div>
 
-          {/* Simulate Real Exam */}
           <Card className="rise-in" style={{ animationDelay: '80ms' }}>
             <CardContent>
               <button
@@ -201,21 +200,18 @@ function PracticePage() {
             </CardContent>
           </Card>
 
-          {/* Divider */}
           <div className="rise-in flex items-center gap-3 px-2 py-2" style={{ animationDelay: '120ms' }}>
             <div className="h-px flex-1 bg-[var(--line)]" />
             <span className="text-xs font-semibold text-[var(--sea-ink-soft)]">{t('practice.or')}</span>
             <div className="h-px flex-1 bg-[var(--line)]" />
           </div>
 
-          {/* Custom Practice */}
           <h2 className="rise-in mb-2 text-sm font-bold text-[var(--sea-ink-soft)]" style={{ animationDelay: '140ms' }}>
             {t('practice.customPractice')}
           </h2>
 
           <Card className="rise-in" style={{ animationDelay: '160ms' }}>
             <CardContent className="space-y-6">
-              {/* Domains */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.selectDomains')}</h3>
                 <div className="space-y-1">
@@ -266,7 +262,6 @@ function PracticePage() {
                 )}
               </div>
 
-              {/* Difficulty */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.selectDifficulty')}</h3>
                 <div className="flex gap-2">
@@ -292,7 +287,6 @@ function PracticePage() {
                 </div>
               </div>
 
-              {/* Count */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.questionCount')}</h3>
                 <div className="flex gap-2">
@@ -325,13 +319,9 @@ function PracticePage() {
     )
   }
 
-  // --- Finished screen ---
   if (finished) {
     const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0
-    const wrongInSession = questions.filter((q) => {
-      const ans = answers[q.id] || []
-      return !(q.correctAnswers.every((a) => ans.includes(a)) && ans.length === q.correctAnswers.length)
-    }).length
+    const wrongInSession = questions.filter((q) => !isAnswerCorrect(q, answers[q.id] || [])).length
     const totalWrongInJournal = getWrongAnswers(examCode).length
 
     return (
@@ -373,7 +363,6 @@ function PracticePage() {
             </Button>
           </div>
 
-          {/* Knowledge chains for practiced domains */}
           {(() => {
             const practicedDomains = [...new Set(questions.map((q) => q.domain))]
             const chains = getKnowledgeChains(examCode).filter((c) => practicedDomains.includes(c.domain))
@@ -400,8 +389,7 @@ function PracticePage() {
 
           <div className="mt-4 space-y-2">
             {questions.map((q) => {
-              const ans = answers[q.id] || []
-              const correct = q.correctAnswers.every((a) => ans.includes(a)) && ans.length === q.correctAnswers.length
+              const correct = isAnswerCorrect(q, answers[q.id] || [])
               return (
                 <Card key={q.id} className="p-3">
                   <div className="flex items-start gap-2">
@@ -427,11 +415,7 @@ function PracticePage() {
     )
   }
 
-  // --- In-practice view ---
-  const isCorrect =
-    currentAnswer.length > 0 &&
-    currentQuestion.correctAnswers.every((a) => currentAnswer.includes(a)) &&
-    currentAnswer.length === currentQuestion.correctAnswers.length
+  const isCorrect = currentAnswer.length > 0 && isAnswerCorrect(currentQuestion, currentAnswer)
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -461,7 +445,6 @@ function PracticePage() {
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-28 pt-6">
         <div key={currentQuestion.id}>
-          {/* Hint */}
           {!isRevealed && currentQuestion.hint && (
             <div className="mb-4">
               {showHint.has(currentQuestion.id) ? (
@@ -487,20 +470,19 @@ function PracticePage() {
             question={currentQuestion}
             selectedAnswers={currentAnswer}
             onSelectOption={selectOption}
+            onOrderChange={setOrder}
             disabled={isRevealed}
             showResult={isRevealed}
             showTips
             questionNumber={currentIndex + 1}
           />
 
-          {/* Multi-select confirm */}
-          {!isRevealed && isMulti && currentAnswer.length > 0 && (
+          {!isRevealed && (isMulti || isOrdering) && currentAnswer.length > 0 && (
             <Button variant="primary" className="mt-5 w-full" onClick={revealAnswer}>
               <Check className="h-4 w-4" /> Check Answer
             </Button>
           )}
 
-          {/* Explanation panel */}
           {isRevealed && (
             <div
               className={cn(
@@ -519,7 +501,10 @@ function PracticePage() {
                 ) : (
                   <>
                     <CircleX className="mr-1.5 inline h-4 w-4" />
-                    {t('practice.wrong')} — {t('results.correctAnswer')}: {currentQuestion.correctAnswers.join(', ')}
+                    {t('practice.wrong')} — {t('results.correctAnswer')}:{' '}
+                    {currentQuestion.type === 'ordering'
+                      ? currentQuestion.correctAnswers.join(' → ')
+                      : currentQuestion.correctAnswers.join(', ')}
                   </>
                 )}
               </p>
@@ -546,7 +531,6 @@ function PracticePage() {
         </div>
       </main>
 
-      {/* Bottom nav */}
       {isRevealed && (
         <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-xl">
           <div className="mx-auto flex max-w-3xl items-center justify-between py-2.5">
