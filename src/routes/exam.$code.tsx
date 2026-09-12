@@ -83,12 +83,12 @@ function ExamPage() {
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return
 
       const keyUpper = e.key.toUpperCase()
-      if (['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper)) {
+      if (currentQuestion?.type !== 'ordering' && ['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper)) {
         if (currentQuestion) {
           const opt = currentQuestion.options.find((o) => o.label === keyUpper)
           if (opt) selectOption(opt.label)
         }
-      } else if (e.key >= '1' && e.key <= '9') {
+      } else if (currentQuestion?.type !== 'ordering' && e.key >= '1' && e.key <= '9') {
         const idx = parseInt(e.key, 10) - 1
         if (currentQuestion && idx < currentQuestion.options.length) selectOption(currentQuestion.options[idx].label)
       } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -116,6 +116,11 @@ function ExamPage() {
       }
       return { ...prev, [currentQuestion.id]: [label] }
     })
+  }
+
+  function setOrder(order: string[]) {
+    if (!currentQuestion || submitted || currentQuestion.type !== 'ordering') return
+    setAnswers((prev) => ({ ...prev, [currentQuestion.id]: order }))
   }
 
   function toggleFlag() {
@@ -190,6 +195,7 @@ function ExamPage() {
             question={currentQuestion}
             selectedAnswers={selectedAnswers}
             onSelectOption={selectOption}
+            onOrderChange={setOrder}
             questionNumber={currentIndex + 1}
           />
 
