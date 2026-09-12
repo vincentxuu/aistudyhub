@@ -142,6 +142,14 @@ export async function getQuestionsByIds(ids: string[]): Promise<Question[]> {
   return []
 }
 
+export function isAnswerCorrect(question: Question, selected: string[]): boolean {
+  if (selected.length !== question.correctAnswers.length) return false
+  if (question.type === 'ordering') {
+    return selected.every((label, index) => label === question.correctAnswers[index])
+  }
+  return selected.every((label) => question.correctAnswers.includes(label))
+}
+
 // --- Non-async types and functions (localStorage-based, no D1 needed) ---
 
 export interface ExamSession {
@@ -195,7 +203,7 @@ export function computeResult(session: {
 }): ExamResult {
   const questionResults = session.questions.map((q) => {
     const selected = session.answers[q.id] || []
-    const isCorrect = selected.length === q.correctAnswers.length && selected.every((a) => q.correctAnswers.includes(a))
+    const isCorrect = isAnswerCorrect(q, selected)
     return {
       questionId: q.id,
       stem: q.stem,
@@ -263,8 +271,6 @@ export function loadResult(sessionId: string): ExamResult | null {
     return null
   }
 }
-
-// --- Wrong Answer Journal ---
 
 export interface WrongAnswer {
   questionId: string
