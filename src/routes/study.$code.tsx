@@ -132,7 +132,6 @@ function StudyPage() {
     return () => window.removeEventListener('keydown', handleKey)
   })
 
-  // --- Setup screen ---
   if (!started) {
     return (
       <>
@@ -153,7 +152,6 @@ function StudyPage() {
             <CardContent className="space-y-6 pt-6">
               <p className="text-sm text-[var(--sea-ink-soft)]">{t('study.subtitle')}</p>
 
-              {/* Domain selection */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.selectDomains')}</h3>
                 <div className="space-y-2">
@@ -199,7 +197,6 @@ function StudyPage() {
                 </button>
               </div>
 
-              {/* Rich metadata toggle */}
               <div>
                 <button
                   type="button"
@@ -220,7 +217,6 @@ function StudyPage() {
                 </button>
               </div>
 
-              {/* Question count */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.questionCount')}</h3>
                 <div className="flex gap-2">
@@ -242,7 +238,6 @@ function StudyPage() {
                 </div>
               </div>
 
-              {/* Start button */}
               <Button variant="primary" className="w-full" onClick={startStudy}>
                 <BookOpen className="h-4 w-4" /> {t('study.start')}
               </Button>
@@ -254,7 +249,6 @@ function StudyPage() {
     )
   }
 
-  // --- No questions ---
   if (questions.length === 0) {
     return (
       <>
@@ -272,10 +266,10 @@ function StudyPage() {
     )
   }
 
-  // --- Study screen ---
+  const optionByLabel = new Map(currentQuestion.options.map((option) => [option.label, option]))
+
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-2.5">
           <Button variant="ghost" size="sm" asChild>
@@ -292,10 +286,8 @@ function StudyPage() {
         </div>
       </header>
 
-      {/* Question content */}
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-28 pt-6">
         <div key={currentQuestion.id} className="rise-in space-y-4">
-          {/* Meta badges */}
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="default" className="font-mono text-xs">
               D{currentQuestion.domainNumber}
@@ -306,7 +298,6 @@ function StudyPage() {
             </Badge>
           </div>
 
-          {/* Key terms */}
           {currentQuestion.keyTerms.length > 0 && (
             <div className="flex flex-wrap items-center gap-1.5">
               <span className="text-xs font-semibold text-[var(--sea-ink-soft)]">{t('study.keyTerms')}</span>
@@ -318,12 +309,10 @@ function StudyPage() {
             </div>
           )}
 
-          {/* Question stem */}
           <p className="text-[clamp(0.95rem,2.2vw,1.15rem)] font-medium leading-[1.7] text-[var(--sea-ink)]">
             {currentQuestion.stem}
           </p>
 
-          {/* Options — static display, not clickable */}
           <div className="space-y-2">
             {currentQuestion.options.map((opt) => (
               <div key={opt.label} className="flex items-start gap-3 rounded-lg border border-[var(--line)] px-4 py-3">
@@ -335,7 +324,6 @@ function StudyPage() {
             ))}
           </div>
 
-          {/* Accordion sections */}
           <div className="space-y-2 pt-2">
             {currentQuestion.hint && (
               <AccordionSection
@@ -353,16 +341,38 @@ function StudyPage() {
               onToggle={() => toggleSection('answer')}
               variant="answer"
             >
-              <p className="font-bold text-[var(--correct)]">
-                {t('study.answer')}：{currentQuestion.correctAnswers.join(', ')}
-              </p>
-              {currentQuestion.options
-                .filter((o) => currentQuestion.correctAnswers.includes(o.label))
-                .map((o) => (
-                  <p key={o.label} className="mt-1 text-[var(--sea-ink)]">
-                    {o.label}. {o.text}
+              {currentQuestion.type === 'ordering' ? (
+                <>
+                  <p className="font-bold text-[var(--correct)]">
+                    {t('study.answer')}：{currentQuestion.correctAnswers.join(' → ')}
                   </p>
-                ))}
+                  <div className="mt-2 space-y-2">
+                    {currentQuestion.correctAnswers.map((label, index) => {
+                      const option = optionByLabel.get(label)
+                      if (!option) return null
+                      return (
+                        <div key={label} className="flex items-start gap-2 text-[var(--sea-ink)]">
+                          <span className="font-bold text-[var(--correct)]">{index + 1}.</span>
+                          <span>{option.text}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="font-bold text-[var(--correct)]">
+                    {t('study.answer')}：{currentQuestion.correctAnswers.join(', ')}
+                  </p>
+                  {currentQuestion.options
+                    .filter((o) => currentQuestion.correctAnswers.includes(o.label))
+                    .map((o) => (
+                      <p key={o.label} className="mt-1 text-[var(--sea-ink)]">
+                        {o.label}. {o.text}
+                      </p>
+                    ))}
+                </>
+              )}
             </AccordionSection>
 
             {currentQuestion.explanation && (
@@ -406,7 +416,6 @@ function StudyPage() {
         </div>
       </main>
 
-      {/* Bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-xl">
         <div className="mx-auto flex max-w-3xl items-center justify-between py-3">
           <Button variant="ghost" onClick={goPrev} disabled={currentIndex === 0}>
