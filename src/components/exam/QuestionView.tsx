@@ -62,11 +62,11 @@ export function QuestionView({
         {question.stem}
       </p>
 
-      {isOrdering ? (
+      {isOrdering && onOrderChange ? (
         <OrderingQuestion
           options={question.options}
           order={selectedAnswers}
-          onChange={onOrderChange ?? (() => {})}
+          onChange={onOrderChange}
           disabled={disabled || showResult}
           correctOrder={showResult ? question.correctAnswers : undefined}
         />
