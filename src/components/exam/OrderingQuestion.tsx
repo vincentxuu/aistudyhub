@@ -19,7 +19,9 @@ export function OrderingQuestion({ options, order, onChange, disabled = false, c
     const nextIndex = index + delta
     if (disabled || nextIndex < 0 || nextIndex >= labels.length) return
     const next = [...labels]
-    ;[next[index], next[nextIndex]] = [next[nextIndex], next[index]]
+    const moved = next[index]
+    next[index] = next[nextIndex]
+    next[nextIndex] = moved
     onChange(next)
   }
 
