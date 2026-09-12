@@ -13,6 +13,7 @@ interface OrderingQuestionProps {
 export function OrderingQuestion({ options, order, onChange, disabled = false, correctOrder }: OrderingQuestionProps) {
   const labels = order.length === options.length ? order : options.map((option) => option.label)
   const optionByLabel = new Map(options.map((option) => [option.label, option]))
+  const hasSavedOrder = order.length === options.length
 
   function move(index: number, delta: -1 | 1) {
     const nextIndex = index + delta
@@ -68,6 +69,15 @@ export function OrderingQuestion({ options, order, onChange, disabled = false, c
           </div>
         )
       })}
+      {!disabled && !hasSavedOrder && (
+        <button
+          type="button"
+          onClick={() => onChange(labels)}
+          className="w-full rounded-lg border border-[var(--line)] px-3 py-2 text-sm font-semibold text-[var(--sea-ink)] hover:bg-[var(--bg-subtle)]"
+        >
+          使用目前順序
+        </button>
+      )}
     </div>
   )
 }
