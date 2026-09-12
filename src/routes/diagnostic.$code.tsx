@@ -8,7 +8,9 @@ import { Badge } from '../components/ui/badge.tsx'
 import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
+import { QuestionSkeleton } from '../components/ui/skeleton.tsx'
 import { useI18n } from '../i18n/index.ts'
+import { getExamConfig } from '../lib/exam-registry.ts'
 import type { Question } from '../lib/question-types.ts'
 import { getDiagnosticSet } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
@@ -18,10 +20,20 @@ export const Route = createFileRoute('/diagnostic/$code')({ component: Diagnosti
 function DiagnosticPage() {
   const { code } = Route.useParams()
   const { t } = useI18n()
+  const examConfig = getExamConfig(code)
   const examCode = code.toUpperCase()
 
-  const [questions] = useState<Question[]>(() => getDiagnosticSet(examCode))
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [loading, setLoading] = useState(true)
   const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    setLoading(true)
+    getDiagnosticSet(examCode).then((qs) => {
+      setQuestions(qs)
+      setLoading(false)
+    })
+  }, [examCode])
   const [answers, setAnswers] = useState<Record<string, string[]>>({})
   const [revealed, setRevealed] = useState<Set<string>>(new Set())
   const [finished, setFinished] = useState(false)
@@ -71,7 +83,7 @@ function DiagnosticPage() {
         const opt = currentQuestion.options.find((o) => o.label === keyUpper)
         if (opt) selectOption(opt.label)
       } else if (e.key >= '1' && e.key <= '9' && currentQuestion) {
-        const idx = Number.parseInt(e.key) - 1
+        const idx = Number.parseInt(e.key, 10) - 1
         if (idx < currentQuestion.options.length) selectOption(currentQuestion.options[idx].label)
       } else if (e.key === 'Enter') {
         if (currentRevealed) goNext()
@@ -96,6 +108,18 @@ function DiagnosticPage() {
       return () => clearTimeout(timer)
     }
   }, [currentQuestion, currentAnswered, currentRevealed])
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <main className="mx-auto max-w-3xl px-4 pt-16">
+          <QuestionSkeleton />
+        </main>
+        <Footer />
+      </>
+    )
+  }
 
   if (questions.length === 0) {
     return (
@@ -261,7 +285,7 @@ function DiagnosticPage() {
               )}
               <Button asChild variant="secondary" className="flex-1">
                 <a
-                  href="https://quidproquo.cc/posts/ai/2026-08-18-aws-aif-c01-prep-guide/"
+                  href={examConfig?.prepGuideUrl ?? '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2"

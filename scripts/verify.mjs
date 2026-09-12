@@ -13,6 +13,7 @@ const execAsync = promisify(exec)
 const steps = [
   { name: 'biome check', command: 'npx @biomejs/biome check src/' },
   { name: 'lint:ui', command: 'bash scripts/lint-ui.sh' },
+  { name: 'lint:questions', command: 'node scripts/lint-questions.mjs' },
   { name: 'build', command: 'npx vite build' },
 ]
 

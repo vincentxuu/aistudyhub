@@ -1,11 +1,14 @@
-import { Brain, Settings } from '@sketchyicons/react'
+import { BarChart3, Brain, Settings } from '@sketchyicons/react'
 import { Link } from '@tanstack/react-router'
 import { useI18n } from '../i18n/index.ts'
+import { useSyncStatus } from '../lib/sync-context.tsx'
+import { SyncIndicator } from './SyncIndicator.tsx'
 import ThemeToggle from './ThemeToggle.tsx'
 import { Button } from './ui/button.tsx'
 
 export default function Header() {
   const { locale, setLocale, t } = useI18n()
+  const syncStatus = useSyncStatus()
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-xl">
@@ -21,6 +24,7 @@ export default function Header() {
         </Link>
 
         <div className="ml-auto flex items-center gap-1.5">
+          <SyncIndicator status={syncStatus} />
           <Button
             variant="ghost"
             size="icon"
@@ -31,6 +35,11 @@ export default function Header() {
             <span className="text-xs font-bold">{locale === 'zh-TW' ? 'EN' : '中'}</span>
           </Button>
           <ThemeToggle />
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/stats" aria-label={t('stats.title')} title={t('stats.title')}>
+              <BarChart3 className="h-4 w-4" />
+            </Link>
+          </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link to="/settings" aria-label={t('settings.title')} title={t('settings.title')}>
               <Settings className="h-4 w-4" />

@@ -1,6 +1,12 @@
 export interface QuestionOption {
   label: string
   text: string
+  feedback?: string | null
+}
+
+export interface Reference {
+  title: string
+  url: string
 }
 
 export interface Question {
@@ -27,9 +33,12 @@ export interface Question {
   correctAnswers: string[]
   hint: string | null
   explanation: string | null
+  plainExplanation: string | null
+  optionAnalysis: Record<string, string> | null
   whyOthersWrong: string | null
   trap: string | null
   mnemonic: string | null
+  references: Reference[] | null
 
   relatedQuestionIds: string[]
   sourceArticleUrl: string | null

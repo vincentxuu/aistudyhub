@@ -1,0 +1,1822 @@
+[
+  {
+    "stem": "A company wants to quickly build and train a machine learning model without writing code. Which AWS service is best suited for this task?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS SageMaker Canvas"
+      },
+      {
+        "label": "B",
+        "text": "AWS Lambda"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "label": "D",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon SageMaker Canvas provides a visual point-and-click interface that allows business analysts to generate accurate ML predictions without writing any code.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS service provides API access to foundation models (FMs) from Amazon and third-party AI companies without managing infrastructure?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon SageMaker Studio"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Lex"
+      },
+      {
+        "label": "D",
+        "text": "AWS HealthLake"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Amazon Bedrock is a fully managed service that offers choice of high-performing foundation models via a single API.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A business wants to restrict its Generative AI application from generating toxic content or answering off-topic queries. Which feature in Amazon Bedrock fulfills this requirement?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Bedrock Guardrails"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Bedrock Knowledge Bases"
+      },
+      {
+        "label": "C",
+        "text": "AWS WAF"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Macie"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Bedrock Guardrails allows users to implement customized safeguards based on use cases and responsible AI policies.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which Machine Learning concept refers to fine-tuning a model on a domain-specific dataset by retrieving relevant documents from a knowledge store during inference?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Prompt Engineering"
+      },
+      {
+        "label": "B",
+        "text": "Retrieval-Augmented Generation (RAG)"
+      },
+      {
+        "label": "C",
+        "text": "Reinforcement Learning with Human Feedback (RLHF)"
+      },
+      {
+        "label": "D",
+        "text": "Supervised Fine-Tuning"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "RAG combines foundation models with internal data repositories to deliver contextualized, accurate answers.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "An AI practitioner needs to analyze the potential bias in a dataset before training a model in SageMaker. Which feature should they use?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon SageMaker Clarify"
+      },
+      {
+        "label": "B",
+        "text": "Amazon SageMaker Model Monitor"
+      },
+      {
+        "label": "C",
+        "text": "Amazon SageMaker Neo"
+      },
+      {
+        "label": "D",
+        "text": "Amazon SageMaker Feature Store"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon SageMaker Clarify provides developers with visibility into training data and models so they can identify bias and explain predictions.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which metric evaluates how closely a machine translation model's output matches a human reference translation?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "ROUGE"
+      },
+      {
+        "label": "B",
+        "text": "BLEU"
+      },
+      {
+        "label": "C",
+        "text": "F1 Score"
+      },
+      {
+        "label": "D",
+        "text": "RMSE"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the quality of text translated from one natural language to another.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A developer wants an AI coding assistant integrated directly into their IDE to generate code suggestions. Which AWS service should they use?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Q Developer"
+      },
+      {
+        "label": "B",
+        "text": "Amazon CodeGuru"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Kendra"
+      },
+      {
+        "label": "D",
+        "text": "AWS Cloud9"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Q Developer (formerly Amazon CodeWhisperer) assists developers by suggesting code snippets and entire functions in real-time within the IDE.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which of the following is a key consideration of Responsible AI according to AWS principles?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Maximizing GPU utilization"
+      },
+      {
+        "label": "B",
+        "text": "Transparency, Fairness, and Governance"
+      },
+      {
+        "label": "C",
+        "text": "Reducing network latency"
+      },
+      {
+        "label": "D",
+        "text": "Eliminating all validation losses"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Responsible AI focuses on safety, security, fairness, transparency, explainability, and governance.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the primary function of Amazon Bedrock Knowledge Bases?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Fine-tuning foundational models with labeled images"
+      },
+      {
+        "label": "B",
+        "text": "Connecting foundation models to company data sources for RAG workflows"
+      },
+      {
+        "label": "C",
+        "text": "Monitoring infrastructure performance metrics"
+      },
+      {
+        "label": "D",
+        "text": "Deploying endpoints on edge devices"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Amazon Bedrock Knowledge Bases automates the RAG process by connecting FMs to data sources like S3.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which metric measures the balance between Precision and Recall in binary classification tasks?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Accuracy"
+      },
+      {
+        "label": "B",
+        "text": "F1 Score"
+      },
+      {
+        "label": "C",
+        "text": "Mean Absolute Error (MAE)"
+      },
+      {
+        "label": "D",
+        "text": "Perplexity"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "F1 Score is the harmonic mean of Precision and Recall.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A media company needs to extract text from scanned PDFs and tables automatically. Which service is best suited?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Textract"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Amazon Textract automatically extracts printed text, handwriting, and layout data from documents.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A call center wants to analyze customer sentiments from recorded phone calls. Which combination of AWS services should be used?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Transcribe + Amazon Comprehend"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Polly + Amazon Rekognition"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Textract + Amazon Kendra"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Lex + Amazon Kendra"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Transcribe converts audio to text, and Amazon Comprehend analyzes the sentiment of the transcribed text.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What phenomenon occurs when a Large Language Model generates plausible-sounding but factually incorrect information?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Overfitting"
+      },
+      {
+        "label": "B",
+        "text": "Hallucination"
+      },
+      {
+        "label": "C",
+        "text": "Data Drift"
+      },
+      {
+        "label": "D",
+        "text": "Vanishing Gradient"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Hallucination occurs when an AI model outputs information that seems confident and real but is ungrounded or incorrect.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which technique adjusts a small subset of parameters in a Foundation Model to adapt it to a specialized task while saving computing resources?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Pre-training from scratch"
+      },
+      {
+        "label": "B",
+        "text": "Parameter-Efficient Fine-Tuning (PEFT)"
+      },
+      {
+        "label": "C",
+        "text": "Batch Normalization"
+      },
+      {
+        "label": "D",
+        "text": "Grid Search"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "PEFT techniques (like LoRA) fine-tune a small set of extra model parameters without updating all base model weights.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A retail company wants to forecast daily product demand using historical time-series data. Which managed service should they use?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Forecast"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Personalize"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Lex"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Forecast is a managed service that uses ML to deliver highly accurate time-series forecasts.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which metric evaluates the fluency and content overlap of summarized text against human-written summaries?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "ROUGE"
+      },
+      {
+        "label": "B",
+        "text": "RMSE"
+      },
+      {
+        "label": "C",
+        "text": "Log Loss"
+      },
+      {
+        "label": "D",
+        "text": "Precision"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is commonly used to evaluate automatic summarization tasks.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "In Prompt Engineering, providing a model with a few examples of input-output pairs before asking the target question is called:",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Zero-shot prompting"
+      },
+      {
+        "label": "B",
+        "text": "Few-shot prompting"
+      },
+      {
+        "label": "C",
+        "text": "Chain-of-thought prompting"
+      },
+      {
+        "label": "D",
+        "text": "System prompting"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Few-shot prompting provides a few demonstrations to guide the model towards the desired behavior.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which prompt technique encourages LLMs to solve complex reasoning tasks by breaking them down into intermediate step-by-step reasoning?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Zero-shot prompting"
+      },
+      {
+        "label": "B",
+        "text": "Chain-of-Thought (CoT) prompting"
+      },
+      {
+        "label": "C",
+        "text": "Negative prompting"
+      },
+      {
+        "label": "D",
+        "text": "Instruction tuning"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Chain-of-Thought prompting prompts the model to articulate intermediate reasoning steps before arriving at a final answer.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "An enterprise wants to deploy an AI search engine across its internal Confluence, SharePoint, and S3 buckets. Which AWS service is purpose-built for enterprise intelligence search?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Kendra"
+      },
+      {
+        "label": "B",
+        "text": "Amazon OpenSearch Service"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Athena"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Neptune"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Kendra is an intelligent enterprise search service powered by machine learning.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the primary purpose of Amazon SageMaker Model Monitor?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "To track cost expenditures of EC2 instances"
+      },
+      {
+        "label": "B",
+        "text": "To detect data drift and model quality degradation in production"
+      },
+      {
+        "label": "C",
+        "text": "To perform hyperparameter tuning automatically"
+      },
+      {
+        "label": "D",
+        "text": "To convert model formats for edge devices"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "SageMaker Model Monitor continuously monitors the quality of AWS Machine Learning models in production.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "According to the AWS Shared Responsibility Model for Generative AI on Amazon Bedrock, who is responsible for securing customer data ingested into Knowledge Bases?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS only"
+      },
+      {
+        "label": "B",
+        "text": "The Customer"
+      },
+      {
+        "label": "C",
+        "text": "Third-party model providers"
+      },
+      {
+        "label": "D",
+        "text": "Anthropic or Meta"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Under the AWS Shared Responsibility Model, customers are responsible for data classification, encryption settings, and access control.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which Amazon Bedrock feature allows execution of multistep business workflows, such as booking flights or querying databases autonomously?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Bedrock Agents"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Bedrock Guardrails"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Bedrock Provisioned Throughput"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Bedrock Model Customization"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Agents for Amazon Bedrock execute multistep tasks across company systems and data sources autonomously.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A developer needs to convert speech/audio streams into written text real-time in multiple languages. Which service should they choose?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Polly"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Transcribe"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Lex"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Rekognition"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Amazon Transcribe uses advanced deep learning technologies to convert spoken audio into text.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A healthcare system wants to build conversational voice chatbots for patient scheduling. Which service powers interactive conversational bots?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Lex"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Polly"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Translate"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Lex is a service for building conversational interfaces into any application using voice and text.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which type of machine learning model architecture forms the core foundation of modern Large Language Models (LLMs)?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Convolutional Neural Networks (CNNs)"
+      },
+      {
+        "label": "B",
+        "text": "Recurrent Neural Networks (RNNs)"
+      },
+      {
+        "label": "C",
+        "text": "Transformers"
+      },
+      {
+        "label": "D",
+        "text": "Decision Trees"
+      }
+    ],
+    "correctAnswers": [
+      "C"
+    ],
+    "explanation": "Transformer architecture, based on self-attention mechanisms, powers modern generative LLMs.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which metric measures how well a language model predicts a sample of text (where lower values indicate better prediction performance)?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Perplexity"
+      },
+      {
+        "label": "B",
+        "text": "Accuracy"
+      },
+      {
+        "label": "C",
+        "text": "Recall"
+      },
+      {
+        "label": "D",
+        "text": "Cosine Similarity"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Perplexity measures how well a probability distribution or probability model predicts a sample. Lower perplexity indicates the model is better at predicting.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is 'Temperature' in the context of LLM inference configuration?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "A hardware metric monitoring GPU thermal levels"
+      },
+      {
+        "label": "B",
+        "text": "A hyperparameter that controls the randomness/creativity of model outputs"
+      },
+      {
+        "label": "C",
+        "text": "The speed at which token outputs are streamed back"
+      },
+      {
+        "label": "D",
+        "text": "The total context window limit of the model"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Higher temperature leads to more creative/random outputs, while lower temperature makes the response more deterministic.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What does Top-P (Nucleus Sampling) control in generative language generation?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "It limits text generation to tokens whose cumulative probability exceeds threshold P"
+      },
+      {
+        "label": "B",
+        "text": "It selects only the top P highest frequency training documents"
+      },
+      {
+        "label": "C",
+        "text": "It sets the maximum token length of the output"
+      },
+      {
+        "label": "D",
+        "text": "It calculates the exact precision score"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Top-P sampling selects tokens from the smallest subset of options whose combined probability reaches P.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which term describes a model performing poorly on new, unseen data because it learned training data noise too closely?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Underfitting"
+      },
+      {
+        "label": "B",
+        "text": "Overfitting"
+      },
+      {
+        "label": "C",
+        "text": "Quantization"
+      },
+      {
+        "label": "D",
+        "text": "Tokenization"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Overfitting occurs when a machine learning model fits exact training data too closely and struggles with general validation sets.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the process of breaking text strings down into smaller units (such as words or subwords) before feeding them into an LLM?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Embedding"
+      },
+      {
+        "label": "B",
+        "text": "Tokenization"
+      },
+      {
+        "label": "C",
+        "text": "Fine-tuning"
+      },
+      {
+        "label": "D",
+        "text": "Distillation"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Tokenization breaks input text into tokens (words or sub-words) suitable for computational processing.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which vector database capability allows Amazon OpenSearch Service and Amazon Bedrock Knowledge Bases to search documents by semantic meaning?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Exact String Matching"
+      },
+      {
+        "label": "B",
+        "text": "Vector Embeddings and k-NN Search"
+      },
+      {
+        "label": "C",
+        "text": "Relational Table Joins"
+      },
+      {
+        "label": "D",
+        "text": "CSV File Parsing"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Vector embeddings represent semantic meanings, enabling k-Nearest Neighbor (k-NN) similarity searches.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A financial firm wants to prevent Personally Identifiable Information (PII) like SSNs from leaking through model responses. Which Bedrock feature provides automatic PII redaction?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Bedrock Guardrails"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Bedrock Agents"
+      },
+      {
+        "label": "C",
+        "text": "Amazon SageMaker Data Wrangler"
+      },
+      {
+        "label": "D",
+        "text": "AWS KMS"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Bedrock Guardrails includes sensitive information filters to detect and redact PII.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS service converts written text into lifelike speech using deep learning?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Transcribe"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Polly"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Lex"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Rekognition"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Amazon Polly turns text into lifelike speech.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the primary benefit of Model Quantization for Large Language Models?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "It increases the total number of weights in the network"
+      },
+      {
+        "label": "B",
+        "text": "It reduces model size and memory footprint by reducing parameter precision (e.g., FP32 to INT8)"
+      },
+      {
+        "label": "C",
+        "text": "It prevents hallucinations entirely"
+      },
+      {
+        "label": "D",
+        "text": "It expands the context length of prompt tokens"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "explanation": "Quantization reduces precision of weights, dramatically saving memory and speeding up inference with minimal loss in accuracy.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS framework/card provides standardized information about AWS AI models' safety, performance, and operational bounds?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS AI Service Cards"
+      },
+      {
+        "label": "B",
+        "text": "AWS Security Bulletins"
+      },
+      {
+        "label": "C",
+        "text": "AWS Artifact Reports"
+      },
+      {
+        "label": "D",
+        "text": "AWS Well-Architected Review"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "AWS AI Service Cards are transparent documentation resources that outline intended use cases, limitations, and ethical considerations.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A organization needs to automatically label millions of images with custom bounding boxes. Which AWS SageMaker solution provides human-in-the-loop data labeling?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon SageMaker Ground Truth"
+      },
+      {
+        "label": "B",
+        "text": "Amazon SageMaker Studio"
+      },
+      {
+        "label": "C",
+        "text": "Amazon SageMaker Pipelines"
+      },
+      {
+        "label": "D",
+        "text": "Amazon SageMaker Debugger"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon SageMaker Ground Truth helps build accurate training datasets using machine learning and human annotators.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which technique leverages feedback from human evaluators to align foundation model outputs with human preferences and safety guidelines?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "RLHF (Reinforcement Learning from Human Feedback)"
+      },
+      {
+        "label": "B",
+        "text": "Unsupervised Clustering"
+      },
+      {
+        "label": "C",
+        "text": "Principal Component Analysis (PCA)"
+      },
+      {
+        "label": "D",
+        "text": "Cross-Validation"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "RLHF uses human preferences to optimize model fine-tuning toward desired ethical and conversational behaviors.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the purpose of a System Prompt in Generative AI interactions?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "To set baseline rules, role instructions, and behavioral boundaries for the LLM session"
+      },
+      {
+        "label": "B",
+        "text": "To measure GPU RAM utilization"
+      },
+      {
+        "label": "C",
+        "text": "To execute SQL queries on relational databases"
+      },
+      {
+        "label": "D",
+        "text": "To handle VPC peering connections"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "System prompts define the persona, constraints, and overarching tone for how the LLM should respond.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS managed service provides personalized product recommendations based on user interaction histories?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Personalize"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Forecast"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Kendra"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Personalize enables developers to build applications with real-time personalized recommendations.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "When training an ML model, what is the term for data held back from training to evaluate model generalization performance during training rounds?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Validation Set"
+      },
+      {
+        "label": "B",
+        "text": "Synthetic Set"
+      },
+      {
+        "label": "C",
+        "text": "Prompt Set"
+      },
+      {
+        "label": "D",
+        "text": "Production Set"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "The validation dataset provides an unbiased evaluation of a model fit while tuning hyperparameters.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which computer vision service offers automated video and image analysis, such as detecting facial attributes and unsafe content?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Textract"
+      },
+      {
+        "label": "C",
+        "text": "Amazon QuickSight"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Rekognition makes it easy to add image and video analysis to your applications.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "In classification tasks, what metric calculates the proportion of true positive predictions among all positive predictions made by the model?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Precision"
+      },
+      {
+        "label": "B",
+        "text": "Recall"
+      },
+      {
+        "label": "C",
+        "text": "Mean Squared Error"
+      },
+      {
+        "label": "D",
+        "text": "Perplexity"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Precision = True Positives / (True Positives + False Positives).",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What security strategy ensures that Bedrock foundation models do NOT train on customer proprietary data?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "AWS Bedrock default policy guarantees customer data is encrypted and not used for model improvement"
+      },
+      {
+        "label": "B",
+        "text": "Opening a support ticket manually after every inference call"
+      },
+      {
+        "label": "C",
+        "text": "Exporting all data to CSV files"
+      },
+      {
+        "label": "D",
+        "text": "Running models exclusively on local laptops"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Bedrock ensures customer data remains private; inputs and outputs are not used to train base models or shared with third parties.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS service acts as a generative AI assistant for software development, helping write, test, and debug code inside AWS console and IDEs?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Q Developer"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Q Business"
+      },
+      {
+        "label": "C",
+        "text": "AWS CodePipeline"
+      },
+      {
+        "label": "D",
+        "text": "AWS X-Ray"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Q Developer is tailor-made to assist developers with coding, debugging, and cloud optimization tasks.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS generative AI solution can answer business questions based on corporate data connectors (e.g., Salesforce, Slack, Gmail)?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Q Business"
+      },
+      {
+        "label": "B",
+        "text": "Amazon SageMaker Neo"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Transcribe Medical"
+      },
+      {
+        "label": "D",
+        "text": "Amazon EventBridge"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Q Business is a fully managed generative AI assistant configured to answer questions based on internal company enterprise data.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which metric evaluates continuous numerical predictions by averaging the squared differences between predicted values and actual values?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Mean Squared Error (MSE)"
+      },
+      {
+        "label": "B",
+        "text": "F1 Score"
+      },
+      {
+        "label": "C",
+        "text": "BLEU Score"
+      },
+      {
+        "label": "D",
+        "text": "Accuracy"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "MSE is a standard evaluation metric for regression problems measuring average squared residuals.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is 'Model Drift'?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "The decrease in model accuracy over time due to changes in real-world data patterns"
+      },
+      {
+        "label": "B",
+        "text": "The physical movement of servers in AWS data centers"
+      },
+      {
+        "label": "C",
+        "text": "The loss of network connectivity during model deployment"
+      },
+      {
+        "label": "D",
+        "text": "The expansion of context window token length"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Model drift occurs when changes in target variables or statistical properties of inputs lower model accuracy over time.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS service handles end-to-end data preparation, cleaning, and visual feature engineering for machine learning pipelines?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon SageMaker Data Wrangler"
+      },
+      {
+        "label": "B",
+        "text": "Amazon SageMaker Edge Manager"
+      },
+      {
+        "label": "C",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "label": "D",
+        "text": "Amazon CloudWatch"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "SageMaker Data Wrangler simplifies and accelerates the process of data preparation and feature engineering.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the primary trade-off when increasing the Context Window size in Large Language Models?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Higher computational memory requirements and potential latency increases during processing"
+      },
+      {
+        "label": "B",
+        "text": "Complete removal of security risks"
+      },
+      {
+        "label": "C",
+        "text": "Automatic improvement in translation metrics without limits"
+      },
+      {
+        "label": "D",
+        "text": "Inability to process text in multiple languages"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Larger context windows allow processing longer inputs but demand significantly more GPU memory and compute processing.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which technique involves distilling knowledge from a large model into a smaller, faster model to reduce deployment costs?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Model Distillation"
+      },
+      {
+        "label": "B",
+        "text": "Retrieval-Augmented Generation"
+      },
+      {
+        "label": "C",
+        "text": "Reinforcement Learning"
+      },
+      {
+        "label": "D",
+        "text": "Prompt Injection"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Model Distillation trains a smaller 'student' model to reproduce the performance of a large 'teacher' model.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What attack vector occurs when an attacker crafts input text designed to bypass system safety controls or manipulate LLM output instructions?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Prompt Injection"
+      },
+      {
+        "label": "B",
+        "text": "SQL Injection"
+      },
+      {
+        "label": "C",
+        "text": "Cross-Site Scripting (XSS)"
+      },
+      {
+        "label": "D",
+        "text": "DDoS Attack"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Prompt injection involves designing malicious inputs to trick an LLM into ignoring system guardrails or executing untrusted code.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS feature provides dedicated throughput capacity for Amazon Bedrock models to guarantee consistent response times during peak traffic?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Provisioned Throughput"
+      },
+      {
+        "label": "B",
+        "text": "On-Demand Pricing"
+      },
+      {
+        "label": "C",
+        "text": "SageMaker Serverless Inference"
+      },
+      {
+        "label": "D",
+        "text": "AWS Auto Scaling Groups"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Provisioned Throughput guarantees dedicated processing capacity for high-volume or critical workloads on Bedrock.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS ML service automatically creates, trains, and tunes the best machine learning models based on tabular raw data?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon SageMaker Autopilot"
+      },
+      {
+        "label": "B",
+        "text": "Amazon SageMaker Ground Truth"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "SageMaker Autopilot automates AutoML tasks like feature engineering, algorithm selection, and hyperparameter optimization.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is an 'Embedding' in Machine Learning?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "A low-dimensional vector representation of high-dimensional concepts (words, images) capturing semantic relationships"
+      },
+      {
+        "label": "B",
+        "text": "A physical chip placed on an AI server motherboard"
+      },
+      {
+        "label": "C",
+        "text": "A method for backing up S3 buckets to Glacier"
+      },
+      {
+        "label": "D",
+        "text": "A standard database table index key"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Embeddings represent numerical vector representations of complex inputs where similar concepts sit closer together in vector space.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which security measure ensures data sent between client applications and Amazon Bedrock models is protected in transit?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "TLS 1.2 / TLS 1.3 Encryption"
+      },
+      {
+        "label": "B",
+        "text": "S3 Bucket Versioning"
+      },
+      {
+        "label": "C",
+        "text": "IAM Access Analyzer"
+      },
+      {
+        "label": "D",
+        "text": "AWS Shield Advanced"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Data in transit to and from Amazon Bedrock endpoints is always encrypted using Transport Layer Security (TLS).",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What type of generative AI model is primarily used for creating realistic synthetic images and digital media from text descriptions?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Diffusion Models"
+      },
+      {
+        "label": "B",
+        "text": "Logistic Regression"
+      },
+      {
+        "label": "C",
+        "text": "Recurrent Neural Networks"
+      },
+      {
+        "label": "D",
+        "text": "K-Means Clustering"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Diffusion models (e.g., Stable Diffusion) excel at converting text prompts into high-quality images.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which cost-optimization pricing option for Amazon EC2 offers up to 90% discount for fault-tolerant batch ML training jobs?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Spot Instances"
+      },
+      {
+        "label": "B",
+        "text": "On-Demand Instances"
+      },
+      {
+        "label": "C",
+        "text": "Dedicated Hosts"
+      },
+      {
+        "label": "D",
+        "text": "Reserved Instances"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "EC2 Spot Instances take advantage of unused EC2 capacity with steep discounts, ideal for fault-tolerant ML workloads.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which metric calculates the total proportion of correct predictions (both true positives and true negatives) out of all total test predictions?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Accuracy"
+      },
+      {
+        "label": "B",
+        "text": "Recall"
+      },
+      {
+        "label": "C",
+        "text": "MAE"
+      },
+      {
+        "label": "D",
+        "text": "Perplexity"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Accuracy measures total correct predictions divided by total predictions made.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is 'Hallucination Mitigation' in Generative AI architectures?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Techniques such as RAG, Guardrails, and low temperature settings to ground responses in factual data"
+      },
+      {
+        "label": "B",
+        "text": "Increasing model parameter counts infinitely"
+      },
+      {
+        "label": "C",
+        "text": "Converting model outputs into audio files"
+      },
+      {
+        "label": "D",
+        "text": "Using unsupervised clustering on text inputs"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Combining RAG (verifiable context), guardrails, and deterministic parameters helps reduce ungrounded outputs.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS service provides an enterprise translation service delivering fast, high-quality, and customizable language translation?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon Translate"
+      },
+      {
+        "label": "B",
+        "text": "Amazon Transcribe"
+      },
+      {
+        "label": "C",
+        "text": "Amazon Polly"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Lex"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon Translate is a neural machine translation service that delivers fast and high-quality translation.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "A business wants to ensure their generative AI applications do not violate copyright laws. Which Amazon Bedrock feature offers customer protection against copyright claims for foundation model outputs?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Generative AI Indemnification / Copyright Protection Policy"
+      },
+      {
+        "label": "B",
+        "text": "AWS IAM Roles"
+      },
+      {
+        "label": "C",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "label": "D",
+        "text": "AWS CloudTrail"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "AWS provides copyright indemnification coverage for customers using standard Bedrock foundation models.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the function of 'Stop Sequences' in LLM generation configurations?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "A specified string/pattern that instructs the model to stop generating further tokens immediately"
+      },
+      {
+        "label": "B",
+        "text": "A command to terminate the EC2 compute instance"
+      },
+      {
+        "label": "C",
+        "text": "A security rule blocking malicious IP addresses"
+      },
+      {
+        "label": "D",
+        "text": "A parameter that halts dataset ingestion during training"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Stop sequences tell the model to cease generating text as soon as the specified character or string is encountered.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "Which AWS capability allows central management and governance of feature datasets used across multiple machine learning models?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Amazon SageMaker Feature Store"
+      },
+      {
+        "label": "B",
+        "text": "Amazon S3 Glacier"
+      },
+      {
+        "label": "C",
+        "text": "AWS Glue Data Catalog"
+      },
+      {
+        "label": "D",
+        "text": "Amazon Redshift"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Amazon SageMaker Feature Store is a fully managed repository to store, update, search, and share ML features.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "What is the core purpose of Model Explainability tools like SageMaker Clarify?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "To understand which feature inputs contributed most significantly to a model's prediction output"
+      },
+      {
+        "label": "B",
+        "text": "To automatically write API documentation code"
+      },
+      {
+        "label": "C",
+        "text": "To compress deep learning models for iOS devices"
+      },
+      {
+        "label": "D",
+        "text": "To translate English output to Spanish automatically"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "Explainability identifies feature importance values (e.g., via SHAP values) behind model decisions.",
+    "difficulty": 1,
+    "tags": []
+  },
+  {
+    "stem": "In the context of generative AI evaluation, what does Human-in-the-Loop (HITL) refer to?",
+    "type": "single",
+    "options": [
+      {
+        "label": "A",
+        "text": "Integrating human review and evaluation alongside automated pipelines to ensure quality and safety"
+      },
+      {
+        "label": "B",
+        "text": "Replacing all AI models with human manual workers"
+      },
+      {
+        "label": "C",
+        "text": "Using GPUs with human-designed physical architectures"
+      },
+      {
+        "label": "D",
+        "text": "Enforcing password logins for end users"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "explanation": "HITL ensures human expertise is incorporated into dataset creation, evaluation, model oversight, and validation cycles.",
+    "difficulty": 1,
+    "tags": []
+  }
+]

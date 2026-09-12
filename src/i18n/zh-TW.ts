@@ -107,6 +107,25 @@ export default {
   'wrongAnswers.viewJournal': '查看錯題本',
   'wrongAnswers.empty': '太棒了！沒有錯題',
   'wrongAnswers.reviewed_label': '已複習',
+  'wrongAnswers.dueToday': '{count} 題待複習',
+  'wrongAnswers.startReview': '開始複習',
+  'wrongAnswers.again': '重來',
+  'wrongAnswers.hard': '困難',
+  'wrongAnswers.good': '記住了',
+  'wrongAnswers.easy': '簡單',
+  'wrongAnswers.nextReview': '下次複習：{date}',
+  'wrongAnswers.dueNow': '現在',
+  'wrongAnswers.reviewComplete': '今日複習完成！',
+
+  // Explanation sections
+  'explanation.title': '詳解',
+  'explanation.plain': '白話文解釋',
+  'explanation.optionAnalysis': '選項分析',
+  'explanation.references': '參考資料',
+  'explanation.nextQuestion': '下一題 →',
+
+  // Passing threshold
+  'practice.passingThreshold': '通過門檻 ≥ {required}/{total}（{percent}%）',
 
   // Knowledge Chain
   'knowledgeChain.title': '知識鏈',
@@ -135,6 +154,9 @@ export default {
   'study.answer': '答案',
   'study.prev': '上一題',
   'study.next': '下一題',
+  'study.checkAnswer': '確認答案',
+  'study.correct': '答對了！',
+  'study.wrong': '答錯了',
 
   // Settings
   'settings.title': '設定',
@@ -150,6 +172,26 @@ export default {
   'settings.stats': '{exams} 次模擬考 · {wrong} 題錯題',
   'settings.bestScore': '最高 {score}%',
   'settings.noData': '尚無學習紀錄',
+
+  // Stats
+  'stats.title': '學習統計',
+  'stats.empty': '還沒有考試紀錄，去做一次模擬考吧！',
+  'stats.startExam': '開始模擬考',
+  'stats.exams': '模擬考次數',
+  'stats.avgScore': '平均分數',
+  'stats.questions': '作答題數',
+  'stats.studyTime': '學習時長',
+  'stats.accuracy': '整體正確率',
+  'stats.scoreTrend': '分數趨勢',
+  'stats.weakDomains': '需加強 Domain',
+  'stats.domainStrength': '各 Domain 正確率',
+  'stats.recentActivity': '最近考試紀錄',
+
+  // Sync
+  'sync.synced': '已同步',
+  'sync.syncing': '同步中...',
+  'sync.offline': '離線模式',
+  'sync.error': '同步失敗',
 
   // Common
   'common.loading': '載入中...',

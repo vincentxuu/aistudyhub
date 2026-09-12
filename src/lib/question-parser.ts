@@ -11,8 +11,8 @@ function normalize(text: string): string {
     .trim()
 }
 
-function questionHash(stem: string, correctAnswers: string[]): string {
-  const input = `${normalize(stem)}|${correctAnswers.sort().join(',')}`
+function questionHash(stem: string, correctAnswers: string[], lang = ''): string {
+  const input = `${lang}|${normalize(stem)}|${correctAnswers.sort().join(',')}`
   return createHash('sha256').update(input).digest('hex').slice(0, 16)
 }
 
@@ -99,7 +99,13 @@ function guessDomain(text: string): { domain: string; domainNumber: number } {
     text.match(/Domain\s+(\d)/i)
   if (m) {
     const num = parseInt(m[1], 10)
-    return { domain: DOMAIN_MAP[num] || m[2]?.trim() || `Domain ${num}`, domainNumber: num }
+    return { domain: m[2]?.trim() || DOMAIN_MAP[num] || `Domain ${num}`, domainNumber: num }
+  }
+  const trimmed = text.trim()
+  for (const [num, name] of Object.entries(DOMAIN_MAP)) {
+    if (trimmed === name || trimmed.toLowerCase() === name.toLowerCase()) {
+      return { domain: name, domainNumber: parseInt(num, 10) }
+    }
   }
   return { domain: 'Unknown', domainNumber: 0 }
 }
@@ -371,6 +377,8 @@ function parseFormatD(
     const typeMatch = block.match(/^Type:\s*(.+)/m)
     const diffMatch = block.match(/^Difficulty:\s*(\d)/m)
     const tagsMatch = block.match(/^Tags:\s*(.+)/m)
+    const domainLineMatch = block.match(/^Domain:\s*(.+)/m)
+    const domainNumLineMatch = block.match(/^DomainNumber:\s*(\d+)/m)
 
     // Extract stem: text between metadata lines and first option
     const metaEnd = block.search(/\n[A-Z]\.\s/)
@@ -381,7 +389,7 @@ function parseFormatD(
     const stemLines: string[] = []
     let pastMeta = false
     for (const line of lines) {
-      if (/^(Type|Difficulty|Tags|Concepts):/i.test(line.trim())) {
+      if (/^(Type|Difficulty|Tags|Concepts|Domain|DomainNumber):/i.test(line.trim())) {
         pastMeta = true
         continue
       }
@@ -428,13 +436,21 @@ function parseFormatD(
 
     const type = typeMatch ? typeMatch[1].trim().toLowerCase() : 'single'
 
+    const qDomain = domainLineMatch
+      ? guessDomain(domainLineMatch[1])
+      : {
+          domain: domainInfo.domainNumber > 0 ? domainInfo.domain : domainFromMeta,
+          domainNumber: domainInfo.domainNumber,
+        }
+    const qDomainNumber = domainNumLineMatch ? parseInt(domainNumLineMatch[1], 10) : qDomain.domainNumber
+
     questions.push({
       stem,
       options,
       correctAnswers,
       type: type as 'single' | 'multi' | 'ordering' | 'matching',
-      domain: domainInfo.domainNumber > 0 ? domainInfo.domain : domainFromMeta,
-      domainNumber: domainInfo.domainNumber || 3,
+      domain: qDomain.domain || domainFromMeta,
+      domainNumber: qDomainNumber || 3,
       difficulty: diffMatch ? (parseInt(diffMatch[1], 10) as 1 | 2 | 3) : 1,
       hint: hintMatch ? hintMatch[1].trim() : null,
       explanation: explMatch ? explMatch[1].trim() : null,
@@ -590,6 +606,55 @@ function parseFormatI(content: string, filename: string): Partial<Question>[] {
   return questions
 }
 
+// --- Format F parser (JSON array with stem/options/correctAnswers) ---
+function parseFormatF(content: string, filename: string): Partial<Question>[] {
+  const data = JSON.parse(content)
+  const items: unknown[] = Array.isArray(data) ? data : data.questions || []
+
+  return items
+    .map((raw: unknown) => {
+      const item = raw as Record<string, unknown>
+      const stem = (item.stem || item.question || '') as string
+      let options: QuestionOption[] = []
+      const labels = ['A', 'B', 'C', 'D', 'E', 'F']
+
+      if (Array.isArray(item.options)) {
+        options = (item.options as unknown[]).map((o, i) => {
+          if (typeof o === 'string') return { label: labels[i], text: o }
+          const obj = o as Record<string, string>
+          return { label: obj.label || labels[i], text: obj.text || '' }
+        })
+      }
+
+      let correctAnswers: string[] = []
+      if (Array.isArray(item.correctAnswers)) {
+        correctAnswers = item.correctAnswers as string[]
+      } else if (typeof item.answer === 'string') {
+        const match = options.find((o) => o.text === item.answer)
+        correctAnswers = match ? [match.label] : extractCorrectAnswers(item.answer as string)
+      }
+
+      return {
+        stem,
+        options,
+        correctAnswers,
+        type: ((item.type as string) || 'single') as 'single' | 'multi',
+        difficulty: (item.difficulty as number as 1 | 2 | 3) || 1,
+        explanation: (item.explanation as string) || null,
+        hint: (item.hint as string) || null,
+        whyOthersWrong: (item.whyOthersWrong as string) || null,
+        trap: (item.trap as string) || null,
+        mnemonic: (item.mnemonic as string) || null,
+        tags: Array.isArray(item.tags) ? (item.tags as string[]) : [],
+        keyTerms: Array.isArray(item.keyTerms) ? (item.keyTerms as string[]) : [],
+        domain: (item.domain as string) || 'Unknown',
+        domainNumber: (item.domainNumber as number) || 0,
+        sourceFile: filename,
+      }
+    })
+    .filter((q) => q.stem && q.options.length > 0 && q.correctAnswers.length > 0)
+}
+
 function detectSubFormat(content: string): 'B-full' | 'B-hints' {
   if (/^## Question \d/m.test(content) && content.includes('⭐')) return 'B-full'
   return 'B-hints'
@@ -635,6 +700,8 @@ export function parseQuestions(
     rawQuestions = parseFormatG(content, filename)
   } else if (format === 'I') {
     rawQuestions = parseFormatI(content, filename)
+  } else if (format === 'F') {
+    rawQuestions = parseFormatF(content, filename)
   } else {
     throw new Error(`Parser for format ${format} not yet implemented`)
   }
@@ -644,7 +711,7 @@ export function parseQuestions(
 
   return rawQuestions.map((q) => {
     const correctAnswers = q.correctAnswers || []
-    const hash = questionHash(q.stem || '', correctAnswers)
+    const hash = questionHash(q.stem || '', correctAnswers, lang)
 
     return {
       id: nanoid(12),
@@ -667,9 +734,12 @@ export function parseQuestions(
       correctAnswers,
       hint: q.hint || null,
       explanation: q.explanation || null,
+      plainExplanation: q.plainExplanation || null,
+      optionAnalysis: q.optionAnalysis || null,
       whyOthersWrong: q.whyOthersWrong || null,
       trap: q.trap || null,
       mnemonic: q.mnemonic || null,
+      references: q.references || null,
       relatedQuestionIds: [],
       sourceArticleUrl: null,
       sourceFile: q.sourceFile || filename,

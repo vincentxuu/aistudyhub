@@ -1,25 +1,183 @@
-import { ArrowLeft, BookOpen, Check, ChevronDown, CircleCheck, CircleX, Dumbbell, Trash2 } from '@sketchyicons/react'
+import { ArrowLeft, BookOpen, Check, ChevronDown, CircleX, Dumbbell, RotateCcw, Trash2 } from '@sketchyicons/react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { OptionCard } from '../components/exam/OptionCard.tsx'
 import Footer from '../components/Footer.tsx'
 import Header from '../components/Header.tsx'
 import { Badge } from '../components/ui/badge.tsx'
 import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
+import { WrongAnswersSkeleton } from '../components/ui/skeleton.tsx'
 import { useI18n } from '../i18n/index.ts'
 import type { Question } from '../lib/question-types.ts'
 import {
   clearWrongAnswers,
+  getDueForReview,
   getQuestionsByIds,
   getWrongAnswers,
   markReviewed,
   updateReflection,
+  updateSR,
   type WrongAnswer,
 } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
 export const Route = createFileRoute('/wrong-answers/$code')({ component: WrongAnswersPage })
+
+function ReviewSession({
+  dueItems,
+  questionMap,
+  onComplete,
+  t,
+}: {
+  dueItems: WrongAnswer[]
+  questionMap: Map<string, Question>
+  examCode: string
+  onComplete: () => void
+  t: (key: string, vars?: Record<string, string | number>) => string
+}) {
+  const [index, setIndex] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState<string[]>([])
+  const [submitted, setSubmitted] = useState(false)
+
+  const current = dueItems[index]
+  const question = current ? questionMap.get(current.questionId) : null
+
+  if (!current || !question) {
+    return (
+      <Card className="rise-in border-[var(--correct-border)]">
+        <CardContent className="flex flex-col items-center gap-4 py-8 text-center">
+          <Check className="h-10 w-10 text-[var(--correct)]" />
+          <p className="text-lg font-bold text-[var(--sea-ink)]">{t('wrongAnswers.reviewComplete')}</p>
+          <Button variant="primary" onClick={onComplete}>
+            <ArrowLeft className="h-4 w-4" /> {t('practice.backToHome')}
+          </Button>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  function handleSelect(label: string) {
+    if (submitted) return
+    setSelectedAnswer([label])
+  }
+
+  function handleSubmit() {
+    if (selectedAnswer.length === 0) return
+    setSubmitted(true)
+  }
+
+  function handleRate(quality: 0 | 1 | 2 | 3 | 4 | 5) {
+    updateSR(current.questionId, quality)
+    setSelectedAnswer([])
+    setSubmitted(false)
+    if (index < dueItems.length - 1) {
+      setIndex((i) => i + 1)
+    } else {
+      onComplete()
+    }
+  }
+
+  const isCorrect =
+    submitted &&
+    selectedAnswer.length === question.correctAnswers.length &&
+    selectedAnswer.every((a) => question.correctAnswers.includes(a))
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <Badge variant="default" className="font-mono text-xs">
+          {index + 1} / {dueItems.length}
+        </Badge>
+        <Badge variant="outline" className="text-xs">
+          {question.domain}
+        </Badge>
+      </div>
+
+      <p className="text-[clamp(0.95rem,2.2vw,1.15rem)] font-medium leading-[1.7] text-[var(--sea-ink)]">
+        {question.stem}
+      </p>
+
+      <div className="space-y-2">
+        {question.options.map((opt) => {
+          const isSelected = selectedAnswer.includes(opt.label)
+          const isCorrectOpt = question.correctAnswers.includes(opt.label)
+          let result: 'correct' | 'wrong' | null = null
+          if (submitted) {
+            if (isSelected && isCorrectOpt) result = 'correct'
+            else if (isSelected && !isCorrectOpt) result = 'wrong'
+          }
+          return (
+            <OptionCard
+              key={opt.label}
+              label={opt.label}
+              text={opt.text}
+              selected={isSelected}
+              disabled={submitted}
+              result={result}
+              isCorrectAnswer={submitted ? isCorrectOpt : false}
+              onSelect={() => handleSelect(opt.label)}
+            />
+          )
+        })}
+      </div>
+
+      {!submitted && (
+        <Button variant="primary" className="w-full" disabled={selectedAnswer.length === 0} onClick={handleSubmit}>
+          {t('study.checkAnswer')}
+        </Button>
+      )}
+
+      {submitted && (
+        <div className="space-y-3">
+          <div
+            className={cn(
+              'rounded-xl border-[1.5px] px-4 py-3 text-sm font-semibold',
+              isCorrect
+                ? 'border-[var(--correct-border)] bg-[var(--correct-bg)] text-[var(--correct)]'
+                : 'border-[var(--wrong-border)] bg-[var(--wrong-bg)] text-[var(--wrong)]',
+            )}
+          >
+            {isCorrect
+              ? `✓ ${t('study.correct')}`
+              : `✗ ${t('study.wrong')} — ${t('study.answer')}：${question.correctAnswers.join(', ')}`}
+          </div>
+
+          {question.explanation && (
+            <div className="rounded-xl border border-[var(--line)] bg-[var(--bg-subtle)] px-4 py-3 text-sm leading-relaxed text-[var(--sea-ink-soft)]">
+              {question.explanation}
+            </div>
+          )}
+
+          <p className="text-center text-xs font-semibold text-[var(--sea-ink-soft)]">{t('wrongAnswers.reflection')}</p>
+          <div className="flex justify-center gap-2">
+            <Button variant="destructive" size="sm" onClick={() => handleRate(1)}>
+              <RotateCcw className="h-3.5 w-3.5" /> {t('wrongAnswers.again')}
+            </Button>
+            <Button variant="secondary" size="sm" onClick={() => handleRate(3)}>
+              {t('wrongAnswers.hard')}
+            </Button>
+            <Button variant="default" size="sm" onClick={() => handleRate(4)}>
+              {t('wrongAnswers.good')}
+            </Button>
+            <Button variant="primary" size="sm" onClick={() => handleRate(5)}>
+              {t('wrongAnswers.easy')}
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function formatNextReview(dateStr: string | null, t: (key: string) => string): string {
+  if (!dateStr) return ''
+  const next = new Date(dateStr)
+  const now = new Date()
+  const diffDays = Math.ceil((next.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+  if (diffDays <= 0) return t('wrongAnswers.dueNow')
+  return `${diffDays}d`
+}
 
 function WrongAnswersPage() {
   const { code } = Route.useParams()
@@ -38,11 +196,19 @@ function WrongAnswersPage() {
     return map
   })
   const [showClearConfirm, setShowClearConfirm] = useState(false)
+  const [reviewing, setReviewing] = useState(false)
 
-  const questionIds = wrongAnswers.map((wa) => wa.questionId)
-  const questions = getQuestionsByIds(questionIds)
-  const questionMap = new Map<string, Question>(questions.map((q) => [q.id, q]))
+  const [questionMap, setQuestionMap] = useState<Map<string, Question>>(new Map())
 
+  useEffect(() => {
+    const ids = wrongAnswers.map((wa) => wa.questionId)
+    if (ids.length === 0) return
+    getQuestionsByIds(ids).then((questions) => {
+      setQuestionMap(new Map(questions.map((q) => [q.id, q])))
+    })
+  }, [wrongAnswers])
+
+  const dueItems = getDueForReview(examCode)
   const reviewedCount = wrongAnswers.filter((wa) => wa.reviewedAt).length
 
   const filtered = wrongAnswers.filter((wa) => {
@@ -80,6 +246,11 @@ function WrongAnswersPage() {
     navigate({ to: '/practice/$code', params: { code }, search: { wrongOnly: true } as never })
   }
 
+  function handleReviewComplete() {
+    setReviewing(false)
+    setWrongAnswers(getWrongAnswers(examCode))
+  }
+
   if (wrongAnswers.length === 0) {
     return (
       <>
@@ -96,6 +267,27 @@ function WrongAnswersPage() {
             <BookOpen className="mb-4 h-12 w-12 text-[var(--sea-ink-soft)]" />
             <p className="text-lg font-bold text-[var(--sea-ink)]">{t('wrongAnswers.empty')}</p>
           </section>
+        </main>
+        <Footer />
+      </>
+    )
+  }
+
+  if (reviewing) {
+    return (
+      <>
+        <Header />
+        <main className="mx-auto max-w-3xl px-4 pb-16 pt-8">
+          <Button variant="ghost" size="sm" className="mb-4" onClick={() => setReviewing(false)}>
+            <ArrowLeft className="h-4 w-4" /> {t('wrongAnswers.title')}
+          </Button>
+          <ReviewSession
+            dueItems={dueItems}
+            questionMap={questionMap}
+            examCode={examCode}
+            onComplete={handleReviewComplete}
+            t={t}
+          />
         </main>
         <Footer />
       </>
@@ -121,6 +313,22 @@ function WrongAnswersPage() {
             <span>{t('wrongAnswers.reviewed', { count: reviewedCount })}</span>
           </div>
         </div>
+
+        {/* Due for review banner */}
+        {dueItems.length > 0 && (
+          <Card className="rise-in mb-6 border-[var(--flagged-border)] bg-[var(--flagged-bg)]">
+            <CardContent className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm font-bold text-[var(--sea-ink)]">
+                  {t('wrongAnswers.dueToday', { count: dueItems.length })}
+                </p>
+              </div>
+              <Button variant="primary" size="sm" onClick={() => setReviewing(true)}>
+                {t('wrongAnswers.startReview')}
+              </Button>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Actions */}
         <div className="rise-in mb-6 flex flex-wrap gap-2" style={{ animationDelay: '80ms' }}>
@@ -173,12 +381,14 @@ function WrongAnswersPage() {
         </div>
 
         {/* Wrong answer cards */}
+        {wrongAnswers.length > 0 && questionMap.size === 0 && <WrongAnswersSkeleton />}
         <div className="space-y-2.5">
           {filtered.map((wa) => {
             const question = questionMap.get(wa.questionId)
             if (!question) return null
             const expanded = expandedIds.has(wa.questionId)
             const reflection = reflections[wa.questionId] || ''
+            const nextReviewLabel = formatNextReview(wa.nextReviewAt, t)
 
             return (
               <Card key={wa.questionId} className="overflow-hidden">
@@ -189,13 +399,21 @@ function WrongAnswersPage() {
                 >
                   <CircleX className="mt-0.5 h-5 w-5 shrink-0 text-[var(--wrong)]" />
                   <div className="min-w-0 flex-1">
-                    <div className="mb-1 flex items-center gap-2">
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
                       <Badge variant="outline" className="text-[10px]">
                         {question.domain}
                       </Badge>
                       {wa.reviewedAt && (
                         <Badge variant="success" className="text-[10px]">
                           <Check className="h-2.5 w-2.5" /> {t('wrongAnswers.reviewed_label')}
+                        </Badge>
+                      )}
+                      {nextReviewLabel && (
+                        <Badge
+                          variant={nextReviewLabel === t('wrongAnswers.dueNow') ? 'warning' : 'default'}
+                          className="text-[10px]"
+                        >
+                          {t('wrongAnswers.nextReview', { date: nextReviewLabel })}
                         </Badge>
                       )}
                     </div>

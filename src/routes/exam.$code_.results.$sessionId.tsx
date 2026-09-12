@@ -20,6 +20,7 @@ import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import { useI18n } from '../i18n/index.ts'
+import { getExamConfig } from '../lib/exam-registry.ts'
 import { getChainForDomain } from '../lib/knowledge-chains.ts'
 import { loadResult, saveWrongAnswersFromResult } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
@@ -62,17 +63,19 @@ function ScoreCircle({ score, passed }: { score: number; passed: boolean }) {
 function ResultsPage() {
   const { code_, sessionId } = Route.useParams()
   const { t } = useI18n()
-  const result = loadResult(sessionId)
+  const [result, setResult] = useState<ReturnType<typeof loadResult>>(null)
   const [filter, setFilter] = useState<'all' | 'wrong'>('wrong')
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
   const [wrongCount, setWrongCount] = useState(0)
 
   useEffect(() => {
-    if (result) {
-      const count = saveWrongAnswersFromResult(result)
+    const loaded = loadResult(sessionId)
+    setResult(loaded)
+    if (loaded) {
+      const count = saveWrongAnswersFromResult(loaded)
       setWrongCount(count)
     }
-  }, [result])
+  }, [sessionId])
 
   if (!result) {
     return (
@@ -189,7 +192,7 @@ function ResultsPage() {
         {/* Prep guide link */}
         <div className="rise-in mt-3" style={{ animationDelay: '180ms' }}>
           <a
-            href="https://quidproquo.cc/posts/ai/2026-08-18-aws-aif-c01-prep-guide/"
+            href={getExamConfig(code_)?.prepGuideUrl ?? '#'}
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--line)] bg-[var(--bg-subtle)] px-4 py-2.5 text-sm font-semibold text-[var(--sea-ink)] transition-all hover:bg-[var(--surface)]"
@@ -270,6 +273,7 @@ function ResultsPage() {
                               key={opt.label}
                               label={opt.label}
                               text={opt.text}
+                              feedback={opt.feedback}
                               selected={wasSelected}
                               disabled
                               result={result_}

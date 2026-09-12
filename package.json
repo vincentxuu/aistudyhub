@@ -13,6 +13,7 @@
     "lint": "biome check src/",
     "lint:fix": "biome check --write src/",
     "lint:ui": "bash scripts/lint-ui.sh",
+    "lint:questions": "node scripts/lint-questions.mjs",
     "format": "biome format --write src/",
     "verify": "node scripts/verify.mjs",
     "session:start": "node scripts/session-start.mjs",

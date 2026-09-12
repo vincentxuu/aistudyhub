@@ -76,6 +76,7 @@ export function QuestionView({
               key={opt.label}
               label={opt.label}
               text={opt.text}
+              feedback={opt.feedback}
               selected={selected}
               disabled={disabled || showResult}
               result={result}

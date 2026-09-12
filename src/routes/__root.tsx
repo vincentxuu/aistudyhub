@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router'
 import { useCallback, useState } from 'react'
 import { getStoredLocale, getTranslator, I18nContext, type Locale, storeLocale } from '../i18n/index.ts'
+import { SyncProvider } from '../lib/sync-context.tsx'
 
 import appCss from '../styles.css?url'
 
@@ -48,7 +49,9 @@ function RootComponent() {
 
   return (
     <I18nContext.Provider value={{ locale, setLocale, t }}>
-      <Outlet />
+      <SyncProvider>
+        <Outlet />
+      </SyncProvider>
     </I18nContext.Provider>
   )
 }

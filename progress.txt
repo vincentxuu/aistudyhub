@@ -1,27 +1,54 @@
-Last updated: 2026-09-11
+Last updated: 2026-09-12
 
 ## Current Status
 - Live at: https://aistudyhub.vincent-xu-work.workers.dev
 - GitHub: https://github.com/vincentxuu/aistudyhub
-- 500 AIF-C01 questions (8 source files, 7 parser formats, all enriched with hint/trap/mnemonic)
-- 5 modes: Mock Exam, Practice, Study (progressive reveal), Diagnostic, Wrong Answer Journal
-- Settings page with export/import JSON
+- 2,360 questions across 4 certifications, bilingual (zh-TW + en)
+  - AIF-C01: 1,020 zh-TW + 950 en (100% metadata: hint/trap/mnemonic)
+  - CCAO-F (Claude Certified Associate): 65 zh-TW + 65 en
+  - NCA-GENL (NVIDIA): 65 zh-TW + 65 en
+  - AI-103 (Microsoft): 65 zh-TW + 65 en
+- 5 modes: Mock Exam, Practice, Study (answer-first + progressive reveal), Diagnostic, Wrong Answer Journal
+- Settings page with export/import JSON, language toggle, theme toggle
 - Happy Hues Palette 2 (cyan buttons light / yellow buttons dark)
-- i18n: zh-TW default, English
+- i18n: zh-TW default, English — questions auto-filter by UI language
 - @sketchyicons/react hand-drawn icons
 - Biome + lint:ui (8 checks) + pre-commit hook (simple-git-hooks)
 - CI (GitHub Actions) + Deploy (Cloudflare Workers)
 - CLAUDE.md with component/color/icon rules
+- D1 anonymous session persistence (Phase 2: dual-write localStorage + D1)
+  - D1 database: aistudyhub-db (120ebd38-059a-43bd-815c-23dc60781889)
+  - Tables: sessions, exam_results, wrong_answers, question_stats, domain_mastery
+  - Server functions: session, results, wrong-answers, sync
+  - SyncIndicator component in header
+  - Graceful degradation: works without D1 (localStorage fallback)
+- Format F (JSON) parser implemented
+- Import script merges with existing questions (no overwrite)
+- Exam registry: centralized exam config (dynamic homepage, domain weights)
+- SSR hydration fix: shuffle moved to client-side useEffect
+
+## Completed (this session)
+- [x] UI polish — 14 screenshots, COLOR-SPEC compliant, 1 mobile fix
+- [x] D1 session persistence — database, dual-write, SyncIndicator
+- [x] Hydration fix — exam, diagnostic, results pages
+- [x] D1 E2E test — 2 bugs found and fixed (results crash, sync false positive)
+- [x] 3 new cert question banks (Claude, NVIDIA, Microsoft) — 195 questions
+- [x] 5 external question files imported — 322 questions
+- [x] AIF-C01 metadata enrichment — 425 questions enriched, 200 new generated
+- [x] Format F parser + import merge mode
+- [x] Bilingual support — all questions filtered by UI language
+- [x] Study mode redesign — answer-first + progressive reveal
 
 ## Known Issues
-- UI needs polish pass (colors, icon sizing, contrast on some pages)
-- questions.json bundled client-side (778KB) — should move to D1
+- questions.json bundled client-side (4.3MB) — should move to D1 or code-split
+- AIF-C01 has 70 more en than zh-TW (950 vs 1020) — some translations are duplicated pairs
 
 ## Next (prioritized)
-- P0: UI polish — visually check every page, fix remaining issues
-- P1: D1 anonymous session (spec at docs/D1-SESSION-SPEC.md)
 - P1: GitHub OAuth login + cross-device sync
-- P2: More cert question banks (Claude, NVIDIA, Microsoft, Google)
+- P1: Move questions to D1 (currently 4.3MB client bundle)
+- P2: More cert question banks (Google Cloud ML, AWS ML Specialty, Claude Developer/Architect)
 - P2: Course quiz generation from quidproquo 229 lecture articles
+- P2: Spaced repetition algorithm for wrong answers
 - P3: Custom domain
 - P3: SEO (sitemap, OG images, structured data)
+- P3: Admin review UI for AI-generated questions

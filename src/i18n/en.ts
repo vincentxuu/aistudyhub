@@ -107,6 +107,25 @@ export default {
   'wrongAnswers.viewJournal': 'View Journal',
   'wrongAnswers.empty': 'Great! No wrong answers',
   'wrongAnswers.reviewed_label': 'Reviewed',
+  'wrongAnswers.dueToday': '{count} due for review',
+  'wrongAnswers.startReview': 'Start Review',
+  'wrongAnswers.again': 'Again',
+  'wrongAnswers.hard': 'Hard',
+  'wrongAnswers.good': 'Good',
+  'wrongAnswers.easy': 'Easy',
+  'wrongAnswers.nextReview': 'Next review: {date}',
+  'wrongAnswers.dueNow': 'Now',
+  'wrongAnswers.reviewComplete': 'All reviews done for today!',
+
+  // Explanation sections
+  'explanation.title': 'Explanation',
+  'explanation.plain': 'In Plain Words',
+  'explanation.optionAnalysis': 'Option Analysis',
+  'explanation.references': 'References',
+  'explanation.nextQuestion': 'Next →',
+
+  // Passing threshold
+  'practice.passingThreshold': 'Pass ≥ {required}/{total} ({percent}%)',
 
   // Knowledge Chain
   'knowledgeChain.title': 'Knowledge Chain',
@@ -136,6 +155,9 @@ export default {
   'study.answer': 'Answer',
   'study.prev': 'Previous',
   'study.next': 'Next',
+  'study.checkAnswer': 'Check Answer',
+  'study.correct': 'Correct!',
+  'study.wrong': 'Incorrect',
 
   // Settings
   'settings.title': 'Settings',
@@ -151,6 +173,26 @@ export default {
   'settings.stats': '{exams} exams · {wrong} wrong answers',
   'settings.bestScore': 'Best {score}%',
   'settings.noData': 'No learning data yet',
+
+  // Stats
+  'stats.title': 'Study Stats',
+  'stats.empty': 'No exam records yet. Take a mock exam to get started!',
+  'stats.startExam': 'Start an Exam',
+  'stats.exams': 'Exams Taken',
+  'stats.avgScore': 'Avg Score',
+  'stats.questions': 'Questions',
+  'stats.studyTime': 'Study Time',
+  'stats.accuracy': 'Overall Accuracy',
+  'stats.scoreTrend': 'Score Trend',
+  'stats.weakDomains': 'Weak Domains',
+  'stats.domainStrength': 'Domain Accuracy',
+  'stats.recentActivity': 'Recent Activity',
+
+  // Sync
+  'sync.synced': 'Synced',
+  'sync.syncing': 'Syncing...',
+  'sync.offline': 'Offline',
+  'sync.error': 'Sync failed',
 
   // Common
   'common.loading': 'Loading...',

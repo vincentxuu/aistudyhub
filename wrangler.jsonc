@@ -3,5 +3,12 @@
   "name": "aistudyhub",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry"
+  "main": "@tanstack/react-start/server-entry",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "aistudyhub-db",
+      "database_id": "120ebd38-059a-43bd-815c-23dc60781889"
+    }
+  ]
 }

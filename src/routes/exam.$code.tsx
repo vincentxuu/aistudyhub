@@ -9,26 +9,28 @@ import { Badge } from '../components/ui/badge.tsx'
 import { Button } from '../components/ui/button.tsx'
 import { Card } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
+import { QuestionSkeleton } from '../components/ui/skeleton.tsx'
 import { useI18n } from '../i18n/index.ts'
+import { getExamConfig } from '../lib/exam-registry.ts'
 import type { Question } from '../lib/question-types.ts'
 import { computeResult, getRealisticExamSet, saveResult } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
 export const Route = createFileRoute('/exam/$code')({ component: ExamPage })
 
-const EXAM_CONFIG: Record<string, { name: string; questionCount: number; timeLimitMin: number }> = {
-  'aif-c01': { name: 'AWS AIF-C01', questionCount: 65, timeLimitMin: 90 },
-}
-
 function ExamPage() {
   const { code } = Route.useParams()
   const navigate = useNavigate()
   const { t } = useI18n()
-  const config = EXAM_CONFIG[code] || { name: code.toUpperCase(), questionCount: 65, timeLimitMin: 90 }
+  const examConfig = getExamConfig(code)
+  const config = examConfig
+    ? { name: examConfig.name, questionCount: examConfig.questionCount, timeLimitMin: examConfig.timeLimitMin }
+    : { name: code.toUpperCase(), questionCount: 65, timeLimitMin: 90 }
 
   const [sessionId] = useState(() => nanoid(10))
   const examCode = code.toUpperCase()
-  const [questions] = useState<Question[]>(() => getRealisticExamSet(examCode))
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [loading, setLoading] = useState(true)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string[]>>({})
   const [flagged, setFlagged] = useState<Set<string>>(new Set())
@@ -38,6 +40,14 @@ function ExamPage() {
   const [showGrid, setShowGrid] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const startedAt = useRef(Date.now())
+
+  useEffect(() => {
+    setLoading(true)
+    getRealisticExamSet(examCode).then((qs) => {
+      setQuestions(qs)
+      setLoading(false)
+    })
+  }, [examCode])
 
   const currentQuestion = questions[currentIndex]
   const answeredCount = Object.keys(answers).length
@@ -126,6 +136,14 @@ function ExamPage() {
       else next.add(currentQuestion.id)
       return next
     })
+  }
+
+  if (loading) {
+    return (
+      <main className="mx-auto max-w-3xl px-4 pt-16">
+        <QuestionSkeleton />
+      </main>
+    )
   }
 
   if (questions.length === 0) {

@@ -1,12 +1,14 @@
 import { ArrowLeft, BookOpen, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Home } from '@sketchyicons/react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
+import { OptionCard } from '../components/exam/OptionCard.tsx'
 import Footer from '../components/Footer.tsx'
 import Header from '../components/Header.tsx'
 import { Badge } from '../components/ui/badge.tsx'
 import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
+import { DomainListSkeleton } from '../components/ui/skeleton.tsx'
 import type { TranslationKey } from '../i18n/index.ts'
 import { useI18n } from '../i18n/index.ts'
 import type { Question } from '../lib/question-types.ts'
@@ -64,8 +66,15 @@ function StudyPage() {
   const { code } = Route.useParams()
   const { t } = useI18n()
   const examCode = code.toUpperCase()
-  const domains = getDomains(examCode)
-  const domainCounts = getDomainCounts(examCode)
+  const [domains, setDomains] = useState<string[]>([])
+  const [domainCounts, setDomainCounts] = useState<Record<string, number>>({})
+
+  useEffect(() => {
+    Promise.all([getDomains(examCode), getDomainCounts(examCode)]).then(([d, c]) => {
+      setDomains(d)
+      setDomainCounts(c)
+    })
+  }, [examCode])
 
   const [selectedDomains, setSelectedDomains] = useState<string[]>([])
   const [richOnly, setRichOnly] = useState(true)
@@ -74,19 +83,24 @@ function StudyPage() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [openSections, setOpenSections] = useState<Set<string>>(new Set())
+  const [selectedAnswer, setSelectedAnswer] = useState<string[]>([])
+  const [submitted, setSubmitted] = useState(false)
 
   function startStudy() {
-    let qs = getFilteredQuestions(examCode, {
+    getFilteredQuestions(examCode, {
       domains: selectedDomains.length > 0 ? selectedDomains : undefined,
       count: questionCount === 'all' ? undefined : questionCount,
+    }).then((qs) => {
+      if (richOnly) {
+        qs = qs.filter((q) => q.hint || q.explanation)
+      }
+      setQuestions(qs)
+      setStarted(true)
+      setCurrentIndex(0)
+      setOpenSections(new Set())
+      setSelectedAnswer([])
+      setSubmitted(false)
     })
-    if (richOnly) {
-      qs = qs.filter((q) => q.hint || q.explanation)
-    }
-    setQuestions(qs)
-    setStarted(true)
-    setCurrentIndex(0)
-    setOpenSections(new Set())
   }
 
   const currentQuestion = questions[currentIndex]
@@ -100,10 +114,26 @@ function StudyPage() {
     })
   }
 
+  function handleSelect(label: string) {
+    if (submitted) return
+    if (currentQuestion.type === 'multi') {
+      setSelectedAnswer((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]))
+    } else {
+      setSelectedAnswer([label])
+    }
+  }
+
+  function handleSubmit() {
+    if (selectedAnswer.length === 0) return
+    setSubmitted(true)
+  }
+
   function goNext() {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((i) => i + 1)
       setOpenSections(new Set())
+      setSelectedAnswer([])
+      setSubmitted(false)
     }
   }
 
@@ -111,6 +141,8 @@ function StudyPage() {
     if (currentIndex > 0) {
       setCurrentIndex((i) => i - 1)
       setOpenSections(new Set())
+      setSelectedAnswer([])
+      setSubmitted(false)
     }
   }
 
@@ -122,11 +154,11 @@ function StudyPage() {
 
       if (e.key === 'ArrowRight') goNext()
       else if (e.key === 'ArrowLeft') goPrev()
+      else if (e.key === 'Enter' && !submitted && selectedAnswer.length > 0) handleSubmit()
       else if (e.key === '1') toggleSection('hint')
-      else if (e.key === '2') toggleSection('answer')
-      else if (e.key === '3') toggleSection('explanation')
-      else if (e.key === '4') toggleSection('trap')
-      else if (e.key === '5') toggleSection('mnemonic')
+      else if (e.key === '2' && submitted) toggleSection('explanation')
+      else if (e.key === '3' && submitted) toggleSection('trap')
+      else if (e.key === '4' && submitted) toggleSection('mnemonic')
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
@@ -156,6 +188,7 @@ function StudyPage() {
               {/* Domain selection */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.selectDomains')}</h3>
+                {domains.length === 0 && <DomainListSkeleton />}
                 <div className="space-y-2">
                   {domains.map((domain) => (
                     <button
@@ -323,86 +356,160 @@ function StudyPage() {
             {currentQuestion.stem}
           </p>
 
-          {/* Options — static display, not clickable */}
-          <div className="space-y-2">
-            {currentQuestion.options.map((opt) => (
-              <div key={opt.label} className="flex items-start gap-3 rounded-lg border border-[var(--line)] px-4 py-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-xs font-bold text-[var(--sea-ink-soft)] border border-[var(--line)]">
-                  {opt.label}
-                </span>
-                <span className="text-sm leading-relaxed text-[var(--sea-ink)]">{opt.text}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Accordion sections */}
-          <div className="space-y-2 pt-2">
-            {currentQuestion.hint && (
-              <AccordionSection
-                label={t('study.showHint')}
-                open={openSections.has('hint')}
-                onToggle={() => toggleSection('hint')}
-              >
-                {currentQuestion.hint}
-              </AccordionSection>
-            )}
-
+          {/* Hint — available before answering */}
+          {!submitted && currentQuestion.hint && (
             <AccordionSection
-              label={t('study.showAnswer')}
-              open={openSections.has('answer')}
-              onToggle={() => toggleSection('answer')}
-              variant="answer"
+              label={t('study.showHint')}
+              open={openSections.has('hint')}
+              onToggle={() => toggleSection('hint')}
             >
-              <p className="font-bold text-[var(--correct)]">
-                {t('study.answer')}：{currentQuestion.correctAnswers.join(', ')}
-              </p>
-              {currentQuestion.options
-                .filter((o) => currentQuestion.correctAnswers.includes(o.label))
-                .map((o) => (
-                  <p key={o.label} className="mt-1 text-[var(--sea-ink)]">
-                    {o.label}. {o.text}
-                  </p>
-                ))}
+              {currentQuestion.hint}
             </AccordionSection>
+          )}
 
-            {currentQuestion.explanation && (
-              <AccordionSection
-                label={t('study.showExplanation')}
-                open={openSections.has('explanation')}
-                onToggle={() => toggleSection('explanation')}
-              >
-                <p>{currentQuestion.explanation}</p>
-                {currentQuestion.whyOthersWrong && (
-                  <div className="mt-3 border-t border-[var(--line)] pt-3">
-                    <p className="mb-1 text-xs font-bold text-[var(--sea-ink)]">{t('study.showWhyWrong')}</p>
-                    <p>{currentQuestion.whyOthersWrong}</p>
-                  </div>
-                )}
-              </AccordionSection>
-            )}
-
-            {currentQuestion.trap && (
-              <AccordionSection
-                label={t('study.showTrap')}
-                open={openSections.has('trap')}
-                onToggle={() => toggleSection('trap')}
-                variant="trap"
-              >
-                {currentQuestion.trap}
-              </AccordionSection>
-            )}
-
-            {currentQuestion.mnemonic && (
-              <AccordionSection
-                label={t('study.showMnemonic')}
-                open={openSections.has('mnemonic')}
-                onToggle={() => toggleSection('mnemonic')}
-                variant="mnemonic"
-              >
-                {currentQuestion.mnemonic}
-              </AccordionSection>
-            )}
+          {/* Interactive options */}
+          <div className="space-y-2">
+            {currentQuestion.options.map((opt) => {
+              const isSelected = selectedAnswer.includes(opt.label)
+              const isCorrect = currentQuestion.correctAnswers.includes(opt.label)
+              let result: 'correct' | 'wrong' | null = null
+              if (submitted) {
+                if (isSelected && isCorrect) result = 'correct'
+                else if (isSelected && !isCorrect) result = 'wrong'
+              }
+              return (
+                <OptionCard
+                  key={opt.label}
+                  label={opt.label}
+                  text={opt.text}
+                  feedback={opt.feedback}
+                  selected={isSelected}
+                  disabled={submitted}
+                  result={result}
+                  isCorrectAnswer={submitted ? isCorrect : false}
+                  onSelect={() => handleSelect(opt.label)}
+                />
+              )
+            })}
           </div>
+
+          {/* Submit button — before answering */}
+          {!submitted && (
+            <Button variant="primary" className="w-full" disabled={selectedAnswer.length === 0} onClick={handleSubmit}>
+              {t('study.checkAnswer')}
+            </Button>
+          )}
+
+          {/* Result + progressive reveal — after answering */}
+          {submitted && (
+            <div className="space-y-2 pt-2">
+              {/* Correct/wrong feedback */}
+              <div
+                className={cn(
+                  'rounded-xl border-[1.5px] px-4 py-3 text-sm font-semibold',
+                  selectedAnswer.every((a) => currentQuestion.correctAnswers.includes(a)) &&
+                    selectedAnswer.length === currentQuestion.correctAnswers.length
+                    ? 'border-[var(--correct-border)] bg-[var(--correct-bg)] text-[var(--correct)]'
+                    : 'border-[var(--wrong-border)] bg-[var(--wrong-bg)] text-[var(--wrong)]',
+                )}
+              >
+                {selectedAnswer.every((a) => currentQuestion.correctAnswers.includes(a)) &&
+                selectedAnswer.length === currentQuestion.correctAnswers.length
+                  ? `✓ ${t('study.correct')}`
+                  : `✗ ${t('study.wrong')} — ${t('study.answer')}：${currentQuestion.correctAnswers.join(', ')}`}
+              </div>
+
+              {currentQuestion.explanation && (
+                <AccordionSection
+                  label={t('study.showExplanation')}
+                  open={openSections.has('explanation')}
+                  onToggle={() => toggleSection('explanation')}
+                >
+                  <p>{currentQuestion.explanation}</p>
+                  {currentQuestion.whyOthersWrong && (
+                    <div className="mt-3 border-t border-[var(--line)] pt-3">
+                      <p className="mb-1 text-xs font-bold text-[var(--sea-ink)]">{t('study.showWhyWrong')}</p>
+                      <p>{currentQuestion.whyOthersWrong}</p>
+                    </div>
+                  )}
+                </AccordionSection>
+              )}
+
+              {currentQuestion.plainExplanation && (
+                <AccordionSection
+                  label={t('explanation.plain')}
+                  open={openSections.has('plain')}
+                  onToggle={() => toggleSection('plain')}
+                >
+                  {currentQuestion.plainExplanation}
+                </AccordionSection>
+              )}
+
+              {currentQuestion.optionAnalysis && Object.keys(currentQuestion.optionAnalysis).length > 0 && (
+                <AccordionSection
+                  label={t('explanation.optionAnalysis')}
+                  open={openSections.has('optionAnalysis')}
+                  onToggle={() => toggleSection('optionAnalysis')}
+                  variant="answer"
+                >
+                  <ul className="space-y-1.5">
+                    {Object.entries(currentQuestion.optionAnalysis).map(([label, analysis]) => (
+                      <li key={label}>
+                        <strong
+                          className={currentQuestion.correctAnswers.includes(label) ? 'text-[var(--correct)]' : ''}
+                        >
+                          {label}
+                        </strong>
+                        ：{analysis}
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionSection>
+              )}
+
+              {currentQuestion.trap && (
+                <AccordionSection
+                  label={t('study.showTrap')}
+                  open={openSections.has('trap')}
+                  onToggle={() => toggleSection('trap')}
+                  variant="trap"
+                >
+                  {currentQuestion.trap}
+                </AccordionSection>
+              )}
+
+              {currentQuestion.mnemonic && (
+                <AccordionSection
+                  label={t('study.showMnemonic')}
+                  open={openSections.has('mnemonic')}
+                  onToggle={() => toggleSection('mnemonic')}
+                  variant="mnemonic"
+                >
+                  {currentQuestion.mnemonic}
+                </AccordionSection>
+              )}
+
+              {currentQuestion.references && currentQuestion.references.length > 0 && (
+                <div className="rounded-lg border border-[var(--line)] px-4 py-3">
+                  <p className="mb-2 text-xs font-bold text-[var(--sea-ink)]">{t('explanation.references')}</p>
+                  <ul className="space-y-1">
+                    {currentQuestion.references.map((ref) => (
+                      <li key={ref.url}>
+                        <a
+                          href={ref.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-[var(--lagoon)] hover:underline"
+                        >
+                          {ref.title} ↗
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </main>
 

@@ -4,6 +4,7 @@ import { cn } from '../../lib/utils.ts'
 export interface OptionCardProps {
   label: string
   text: string
+  feedback?: string | null
   selected: boolean
   disabled: boolean
   result?: 'correct' | 'wrong' | null
@@ -51,6 +52,7 @@ function CheckboxIndicator({ checked }: { checked: boolean }) {
 export function OptionCard({
   label,
   text,
+  feedback,
   selected,
   disabled,
   result,
@@ -108,14 +110,19 @@ export function OptionCard({
         {label}
       </span>
 
-      <span
-        className={cn(
-          'text-sm leading-relaxed transition-colors duration-200 text-[var(--sea-ink)]',
-          selected && !showResult && 'font-semibold',
+      <div className="min-w-0 flex-1">
+        <span
+          className={cn(
+            'text-sm leading-relaxed transition-colors duration-200 text-[var(--sea-ink)]',
+            selected && !showResult && 'font-semibold',
+          )}
+        >
+          {text}
+        </span>
+        {showResult && feedback && (
+          <p className="mt-1.5 text-xs leading-relaxed text-[var(--sea-ink-soft)]">{feedback}</p>
         )}
-      >
-        {text}
-      </span>
+      </div>
     </button>
   )
 }

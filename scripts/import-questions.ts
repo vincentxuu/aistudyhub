@@ -120,6 +120,15 @@ if (dryRun) {
   console.log(`\n[DRY RUN] No changes written.`)
 } else if (validationErrors.length === 0) {
   const outPath = resolve(process.cwd(), 'data/questions.json')
-  writeFileSync(outPath, JSON.stringify(unique, null, 2))
-  console.log(`\nWritten ${unique.length} questions to ${outPath}`)
+  let existing: Question[] = []
+  try {
+    existing = JSON.parse(readFileSync(outPath, 'utf-8'))
+    console.log(`\nLoaded ${existing.length} existing questions from ${outPath}`)
+  } catch {
+    console.log(`\nNo existing questions.json found, creating new`)
+  }
+  const { unique: merged, merged: mergedCount } = dedup([...existing, ...unique])
+  console.log(`Merged with existing: ${mergedCount} duplicates resolved`)
+  writeFileSync(outPath, JSON.stringify(merged, null, 2))
+  console.log(`Written ${merged.length} total questions to ${outPath}`)
 }
