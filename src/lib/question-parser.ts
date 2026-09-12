@@ -37,18 +37,32 @@ function extractDetails(block: string, label: string): string | null {
   return null
 }
 
+function cleanInlineMarkdown(text: string): string {
+  return text
+    .replace(/^\s*\*\*/, '')
+    .replace(/\*\*\s*$/, '')
+    .trim()
+}
+
 function parseOptions(text: string): { options: QuestionOption[]; type: 'single' | 'multi' } {
   const options: QuestionOption[] = []
+  const seenLabels = new Set<string>()
   // Match: "- A.", "* A.", "  A.", or bare "A." at start of line
   const optionRegex = /^[\s*-]*([A-F])[.)]\s+(.+)$/gm
   let m
   while ((m = optionRegex.exec(text)) !== null) {
-    options.push({ label: m[1], text: m[2].trim() })
+    const label = m[1]
+    if (seenLabels.has(label)) continue
+    seenLabels.add(label)
+    options.push({ label, text: cleanInlineMarkdown(m[2]) })
   }
   if (options.length === 0) {
     const altRegex = /^([A-F])\.\s+(.+)$/gm
     while ((m = altRegex.exec(text)) !== null) {
-      options.push({ label: m[1], text: m[2].trim() })
+      const label = m[1]
+      if (seenLabels.has(label)) continue
+      seenLabels.add(label)
+      options.push({ label, text: cleanInlineMarkdown(m[2]) })
     }
   }
   return { options, type: 'single' }
@@ -124,7 +138,8 @@ function parseFormatA(content: string, filename: string): Partial<Question>[] {
     if (!stemMatch) continue
     const stem = stemMatch[1].trim()
 
-    const { options } = parseOptions(block)
+    const optionSection = block.split(/<details>/i)[0]
+    const { options } = parseOptions(optionSection)
     if (options.length === 0) continue
 
     const answerRaw = extractDetails(block, '答案')
@@ -171,7 +186,8 @@ function parseFormatB(content: string, filename: string): Partial<Question>[] {
       .replace(/^\*\*Domain\*\*\s*\n[^\n]+\n\n?/m, '')
       .trim()
 
-    const { options } = parseOptions(block)
+    const optionSection = block.split(/<details>/i)[0]
+    const { options } = parseOptions(optionSection)
     if (options.length === 0) continue
 
     const answerRaw = extractDetails(block, '答案')
@@ -290,7 +306,8 @@ function parseFormatBHints(content: string, filename: string): Partial<Question>
     const stem = stemMatch[1].trim()
     if (stem.length < 10) continue
 
-    const { options } = parseOptions(block)
+    const optionSection = block.split(/<details>/i)[0]
+    const { options } = parseOptions(optionSection)
     if (options.length === 0) continue
 
     const answerRaw = extractDetails(block, '答案')
@@ -378,13 +395,18 @@ function parseFormatD(
     const stem = stemLines.join('\n').trim()
     if (!stem) continue
 
-    // Parse options
-    const optionSection = block.slice(metaEnd)
+    // Parse options only up to the Answer field so explanation metadata cannot become options.
+    const answerIndex = block.search(/^Answer:/m)
+    const optionSection = answerIndex >= 0 ? block.slice(metaEnd, answerIndex) : block.slice(metaEnd)
     const options: { label: string; text: string }[] = []
+    const seenLabels = new Set<string>()
     const optRegex = /^([A-F])\.\s+(.+)/gm
     let m
     while ((m = optRegex.exec(optionSection)) !== null) {
-      options.push({ label: m[1], text: m[2].trim() })
+      const label = m[1]
+      if (seenLabels.has(label)) continue
+      seenLabels.add(label)
+      options.push({ label, text: cleanInlineMarkdown(m[2]) })
     }
     if (options.length === 0) continue
 
@@ -474,7 +496,8 @@ function parseFormatG(content: string, filename: string): Partial<Question>[] {
     const stem = block.slice(0, optionStart).replace(/^\s+/, '').trim()
     if (stem.length < 10) continue
 
-    const { options } = parseOptions(block)
+    const optionSection = block.split(/\*\*正確答案\*\*/i)[0]
+    const { options } = parseOptions(optionSection)
     if (options.length === 0) continue
 
     // Extract answer from **正確答案**：X
