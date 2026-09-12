@@ -89,7 +89,7 @@ function ExamPage() {
           if (opt) selectOption(opt.label)
         }
       } else if (currentQuestion?.type !== 'ordering' && e.key >= '1' && e.key <= '9') {
-        const idx = parseInt(e.key, 10) - 1
+        const idx = Number.parseInt(e.key, 10) - 1
         if (currentQuestion && idx < currentQuestion.options.length) selectOption(currentQuestion.options[idx].label)
       } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
         if (currentIndex < questions.length - 1) setCurrentIndex((i) => i + 1)
@@ -150,7 +150,6 @@ function ExamPage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Mobile sticky header */}
       <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] backdrop-blur-xl md:hidden">
         <div className="flex items-center gap-2 px-4 py-2.5">
           <Button variant="ghost" size="sm" asChild>
@@ -188,7 +187,6 @@ function ExamPage() {
         </div>
       </header>
 
-      {/* Main content */}
       <div className="mx-auto flex w-full max-w-5xl flex-1 gap-6 px-4 pb-24 pt-6 md:pb-8 md:pt-8">
         <main className="min-w-0 flex-1" key={currentQuestion.id}>
           <QuestionView
@@ -199,7 +197,6 @@ function ExamPage() {
             questionNumber={currentIndex + 1}
           />
 
-          {/* Desktop nav */}
           <div className="mt-8 hidden items-center justify-between md:flex">
             <Button
               variant="ghost"
@@ -230,7 +227,6 @@ function ExamPage() {
           </div>
         </main>
 
-        {/* Desktop sidebar */}
         <aside className="hidden w-60 shrink-0 md:block">
           <div className="sticky top-6 space-y-5">
             <Button variant="ghost" size="sm" asChild className="w-full justify-start">
@@ -270,7 +266,6 @@ function ExamPage() {
         </aside>
       </div>
 
-      {/* Mobile bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-xl md:hidden">
         <div className="flex items-center justify-between py-2.5">
           <Button
@@ -303,7 +298,6 @@ function ExamPage() {
         </div>
       </div>
 
-      {/* Submit confirmation */}
       {showConfirm && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 backdrop-blur-sm"
@@ -326,7 +320,6 @@ function ExamPage() {
         </div>
       )}
 
-      {/* Mobile question grid */}
       {showGrid && (
         <div
           className="fixed inset-0 z-[55] flex items-end justify-center md:hidden"
