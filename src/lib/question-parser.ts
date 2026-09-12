@@ -74,15 +74,14 @@ function extractCorrectAnswers(answerBlock: string): string[] {
     .replace(/\*\*/g, '')
     .replace(/[（(].*?[)）]/g, '')
     .trim()
-
-  const multiMatch = cleaned.match(/([A-F])[,、\s]+(?:和|and|&)?\s*([A-F])/i)
-  if (multiMatch) {
-    const all = cleaned.match(/[A-F]/g)
-    return all ? [...new Set(all)] : []
-  }
-
-  const single = cleaned.match(/^([A-F])\b/m) || cleaned.match(/([A-F])/)
-  return single ? [single[1]] : []
+  const firstLine =
+    cleaned
+      .split('\n')
+      .find((line) => line.trim())
+      ?.trim() || ''
+  const answerPrefix = firstLine.match(/^([A-F](?:\s*(?:[,、/&]|和|and)\s*[A-F])*)\b/i)
+  if (!answerPrefix) return []
+  return [...new Set(answerPrefix[1].toUpperCase().match(/\b[A-F]\b/g) || [])]
 }
 
 const DOMAIN_MAP = Object.fromEntries(

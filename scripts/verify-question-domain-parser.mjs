@@ -35,6 +35,17 @@ writeFileSync(
 try {
   const { parseQuestions } = await import(`${compiledFile}?test=${Date.now()}`)
 
+  function assertCleanOptions(questions, sourceFile) {
+    for (const question of questions) {
+      const labels = question.options.map((option) => option.label)
+      assert.equal(new Set(labels).size, labels.length, `${sourceFile} must not contain duplicate option labels`)
+      assert.ok(
+        question.options.every((option) => !/^\s*\*\*|\*\*\s*$/.test(option.text)),
+        `${sourceFile} must strip Markdown markers from option text`,
+      )
+    }
+  }
+
   const richMarkdown = `# Domain 1 — Fundamentals of AI and ML
 
 ## Question 1
@@ -58,6 +69,41 @@ D. Reinforcement learning
   })
   assert.equal(richQuestion.domainNumber, 1)
   assert.equal(richQuestion.domain, 'AI 與 ML 基礎')
+  assertCleanOptions([richQuestion], 'single-hash-domain.md')
+
+  for (const answer of ['A and C', 'A、C', 'A & C']) {
+    const multiMarkdown = `# Domain 1 — Fundamentals of AI and ML
+
+### Q1（複選）
+Which two metrics are classification metrics?
+
+- A. Precision
+- B. RMSE
+- C. Recall
+- D. MAE
+
+<details><summary>答案</summary>
+**${answer}**
+</details>
+`
+    const [multiQuestion] = parseQuestions(multiMarkdown, 'multi-answer.md', {
+      examCode: 'AIF-C01',
+      lang: 'en',
+    })
+    assert.deepEqual(multiQuestion.correctAnswers, ['A', 'C'])
+  }
+
+  const formatAFile = 'aif-c01-set-a.md'
+  const formatAQuestions = parseQuestions(readFileSync(resolve('data/raw-questions', formatAFile), 'utf8'), formatAFile, {
+    examCode: 'AIF-C01',
+    lang: 'zh-TW',
+  })
+  assert.ok(formatAQuestions.length > 0)
+  assertCleanOptions(formatAQuestions, formatAFile)
+  const vectorStoreQuestion = formatAQuestions.find((question) =>
+    question.stem.includes('哪個 AWS 服務可以作為 RAG 的向量儲存'),
+  )
+  assert.deepEqual(vectorStoreQuestion?.correctAnswers, ['B'])
 
   for (const rawFile of ['aif-c01-set-g-scenario.md', 'aif-c01-set-i-learning.md']) {
     const parsed = parseQuestions(readFileSync(resolve('data/raw-questions', rawFile), 'utf8'), rawFile, {
@@ -66,6 +112,7 @@ D. Reinforcement learning
     })
     assert.equal(parsed.length, 65, `${rawFile} should contain 65 parsed questions`)
     assert.ok(parsed.every((question) => question.domainNumber >= 1 && question.domainNumber <= 5))
+    assertCleanOptions(parsed, rawFile)
   }
 
   const classifiedJsonFile = 'aif-c01-set-j-gemini.json'
@@ -199,6 +246,11 @@ Answer: A
         lang: 'en',
         domain: 'Unknown',
         domainNumber: 0,
+        options: [
+          { label: 'A', text: 'First option' },
+          { label: 'A', text: 'Duplicate option**' },
+        ],
+        correctAnswers: ['B'],
       },
       {
         ...lintQuestion,
@@ -215,6 +267,7 @@ Answer: A
   })
   assert.equal(invalidLint.status, 1)
   assert.match(invalidLint.stderr, /2 AIF-C01 domain ERRORS/)
+  assert.match(invalidLint.stderr, /3 option structure ERRORS/)
 
   console.log('✅ AIF-C01 domain parser regression checks passed')
 } finally {

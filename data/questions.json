@@ -36,11 +36,6 @@
         "label": "D",
         "text": "F1 Score",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "C",
-        "text": "Recall**",
-        "feedback": "Recall 衡量的是「實際為正的樣本中，有多少被正確…"
       }
     ],
     "correctAnswers": [
@@ -108,11 +103,6 @@
         "label": "D",
         "text": "制定公司的年度預算策略",
         "feedback": "需要人類策略判斷"
-      },
-      {
-        "label": "B",
-        "text": "每天處理上萬封客戶郵件並自動分類到正確部門**",
-        "feedback": "AI 適合大規模、重複性、模式化的任務"
       }
     ],
     "correctAnswers": [
@@ -180,11 +170,6 @@
         "label": "D",
         "text": "生成式 AI（Generative AI）",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "迴歸（Regression）**",
-        "feedback": "預測連續數值（庫存量）屬於迴歸問題"
       }
     ],
     "correctAnswers": [
@@ -252,11 +237,6 @@
         "label": "D",
         "text": "知識圖譜（Knowledge Graph）",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "電腦視覺（Computer Vision）**",
-        "feedback": "醫療影像辨識屬於 CV 領域"
       }
     ],
     "correctAnswers": [
@@ -328,11 +308,6 @@
         "label": "D",
         "text": "Amazon Translate",
         "feedback": "Polly 是文字轉語音、Comprehend 做自然…"
-      },
-      {
-        "label": "C",
-        "text": "Amazon Transcribe**",
-        "feedback": "Transcribe 做語音轉文字（Speech-to…"
       }
     ],
     "correctAnswers": [
@@ -408,11 +383,6 @@
         "label": "D",
         "text": "使用深度學習神經網路，因為準確率最高",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "使用傳統 ML 模型（如決策樹），因為可解釋性高**",
-        "feedback": "當法規要求完整解釋決策邏輯時，傳統 ML（決策樹、邏輯…"
       }
     ],
     "correctAnswers": [
@@ -488,11 +458,6 @@
         "label": "D",
         "text": "推論和訓練使用相同的資料集",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "A",
-        "text": "訓練是用新資料更新模型權重；推論是用訓練好的模型對新資料做預測**",
-        "feedback": "訓練是學習過程，推論是應用過程"
       }
     ],
     "correctAnswers": [
@@ -564,11 +529,6 @@
         "label": "D",
         "text": "Accuracy",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "ROUGE**",
-        "feedback": "ROUGE（Recall-Oriented Under…"
       }
     ],
     "correctAnswers": [
@@ -640,11 +600,6 @@
         "label": "D",
         "text": "Amazon Rekognition",
         "feedback": "Polly 是語音合成、Comprehend 是文字分…"
-      },
-      {
-        "label": "A",
-        "text": "Amazon Lex**",
-        "feedback": "Lex 是 AWS 的對話式 AI 服務，用於建立聊天…"
       }
     ],
     "correctAnswers": [
@@ -720,11 +675,6 @@
         "label": "D",
         "text": "所有資料都必須是結構化的才能用於 ML",
         "feedback": "非結構化資料（文字、影像）也可用於 ML"
-      },
-      {
-        "label": "B",
-        "text": "資料品質直接影響模型效能，垃圾進垃圾出（Garbage In, Garbage Out）**",
-        "feedback": "資料品質是模型效能的基礎"
       }
     ],
     "correctAnswers": [
@@ -792,11 +742,6 @@
         "label": "D",
         "text": "語音助理的即時語音辨識",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "每晚處理當天所有信用卡交易的詐欺偵測**",
-        "feedback": "批次推論適合對延遲不敏感、可以累積一批資料再一次處理的…"
       }
     ],
     "correctAnswers": [
@@ -864,11 +809,6 @@
         "label": "D",
         "text": "確保模型只在雲端運行",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "將 ML 模型的開發、部署與維運標準化和自動化**",
-        "feedback": "MLOps 結合 ML 與 DevOps 的實踐，目標…"
       }
     ],
     "correctAnswers": [
@@ -940,11 +880,6 @@
         "label": "D",
         "text": "Recall",
         "feedback": "F1、Precision、Recall 都是模型效能指標"
-      },
-      {
-        "label": "B",
-        "text": "每位使用者的服務成本（Cost per User）**",
-        "feedback": "F1、Precision、Recall 都是模型效能指標"
       }
     ],
     "correctAnswers": [
@@ -1012,11 +947,6 @@
         "label": "D",
         "text": "向量資料庫中的一筆記錄",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "模型處理文字的最小單位，可以是一個字、一個子詞或一個字元**",
-        "feedback": "Token 是 LLM 處理輸入和輸出的基本單位，to…"
       }
     ],
     "correctAnswers": [
@@ -1092,11 +1022,6 @@
         "label": "D",
         "text": "改用更大的模型以提高準確率",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "壓縮 prompt 長度、減少不必要的上下文 token**",
-        "feedback": "Token 計價模型下，輸入和輸出的 token 數直…"
       }
     ],
     "correctAnswers": [
@@ -1172,11 +1097,6 @@
         "label": "D",
         "text": "設定模型的超參數",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "系統性地組織和管理提供給模型的所有上下文資訊，以優化輸出品質**",
-        "feedback": "Context Engineering 是 v1"
       }
     ],
     "correctAnswers": [
@@ -1244,11 +1164,6 @@
         "label": "D",
         "text": "管理模型的版本控制",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "提供標準化的方式讓 AI 模型連接和互動外部系統與工具**",
-        "feedback": "MCP 是 v1"
       }
     ],
     "correctAnswers": [
@@ -1316,11 +1231,6 @@
         "label": "D",
         "text": "將多個模型合併成一個模型的方法",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "將資料（文字、影像等）轉換成高維度向量的數值表示**",
-        "feedback": "Embedding 將離散資料映射到連續向量空間，語意…"
       }
     ],
     "correctAnswers": [
@@ -1392,11 +1302,6 @@
         "label": "D",
         "text": "幻覺只出現在文字生成，不會出現在影像生成",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "模型產出看似合理但實際上不正確或虛構的內容**",
-        "feedback": "幻覺是 LLM 的固有限制，無法完全消除，任何 pro…"
       }
     ],
     "correctAnswers": [
@@ -1468,11 +1373,6 @@
         "label": "D",
         "text": "模型的成本與定價結構",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "模型開發團隊的辦公室地點**",
-        "feedback": "模型選擇的關鍵因素包括：成本、延遲、模態支援、多語言能…"
       }
     ],
     "correctAnswers": [
@@ -1540,11 +1440,6 @@
         "label": "D",
         "text": "Amazon S3",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Bedrock**",
-        "feedback": "Bedrock 是 AWS 的全託管基礎模型服務，提供…"
       }
     ],
     "correctAnswers": [
@@ -1616,11 +1511,6 @@
         "label": "D",
         "text": "Agent 之間只能透過人類中介溝通",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "一個 orchestrator agent 協調多個 specialist agent 分工合作**",
-        "feedback": "多 agent 模式中，常見的有 orchestrat…"
       }
     ],
     "correctAnswers": [
@@ -1692,11 +1582,6 @@
         "label": "D",
         "text": "馬可夫鏈（Markov Chain）",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "自注意力機制（Self-Attention）**",
-        "feedback": "Transformer 的核心是 Self-Atten…"
       }
     ],
     "correctAnswers": [
@@ -1764,11 +1649,6 @@
         "label": "D",
         "text": "結構化資料的異常偵測",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "C",
-        "text": "從文字描述生成影像**",
-        "feedback": "擴散模型（如 Stable Diffusion）是目前…"
       }
     ],
     "correctAnswers": [
@@ -1836,11 +1716,6 @@
         "label": "D",
         "text": "AWS Lambda",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Q**",
-        "feedback": "Amazon Q 是 AWS 的企業級 AI 助理，可…"
       }
     ],
     "correctAnswers": [
@@ -1916,11 +1791,6 @@
         "label": "D",
         "text": "評估 → 訓練 → 部署 → 微調",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "資料選擇 → 模型選擇 → 預訓練 → 微調 → 評估 → 部署 → 回饋**",
-        "feedback": "FM 生命週期依序為：資料選擇、模型選擇、預訓練、微調…"
       }
     ],
     "correctAnswers": [
@@ -1988,11 +1858,6 @@
         "label": "D",
         "text": "AWS CloudFormation",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "Strands Agents**",
-        "feedback": "Strands Agents 是 v1"
       }
     ],
     "correctAnswers": [
@@ -2060,11 +1925,6 @@
         "label": "D",
         "text": "網路安全監控服務",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "AI 驅動的開發工具，協助建立 AI 應用**",
-        "feedback": "Kiro 是 v1"
       }
     ],
     "correctAnswers": [
@@ -2212,15 +2072,9 @@
         "label": "D",
         "text": "使用 in-context learning 在每次 prompt 中附上所有法規",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "使用 RAG 搭配 Bedrock Knowledge Bases**",
-        "feedback": "資料頻繁更新且需要引用來源 → RAG 最合適"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": null,
@@ -2293,11 +2147,6 @@
         "label": "D",
         "text": "對模型做持續預訓練",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "使用 AI agent 搭配工具呼叫，讓 agent 查詢訂單 API**",
-        "feedback": "即時訂單資料不斷變化，不可能訓練進模型"
       }
     ],
     "correctAnswers": [
@@ -2373,11 +2222,6 @@
         "label": "D",
         "text": "減少 token 消耗",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "增加輸出的隨機性和創意性**",
-        "feedback": "Temperature 越高，模型生成越隨機多元；越低…"
       }
     ],
     "correctAnswers": [
@@ -2453,19 +2297,10 @@
         "label": "D",
         "text": "Amazon ElastiCache",
         "feedback": "官方考綱列出的向量儲存服務包括：OpenSearch …"
-      },
-      {
-        "label": "B",
-        "text": "Amazon OpenSearch Service**",
-        "feedback": "官方考綱列出的向量儲存服務包括：OpenSearch …"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E"
+      "B"
     ],
     "hint": null,
     "explanation": "官方考綱列出的向量儲存服務包括：OpenSearch Service、Aurora、Neptune、RDS for PostgreSQL。DynamoDB、Redshift、ElastiCache 不在向量儲存清單中。",
@@ -2537,11 +2372,6 @@
         "label": "D",
         "text": "在 prompt 中加入溫度設定來控制輸出",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "惡意使用者在輸入中嵌入指令，試圖讓模型忽略原始指示或洩漏系統 prompt**",
-        "feedback": "Prompt injection 是一種安全攻擊，攻擊…"
       }
     ],
     "correctAnswers": [
@@ -2613,11 +2443,6 @@
         "label": "D",
         "text": "加密 prompt 以防止洩漏",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "對 prompt 做版本管理，追蹤修改歷史**",
-        "feedback": "Bedrock Prompt Management 是…"
       }
     ],
     "correctAnswers": [
@@ -2689,11 +2514,6 @@
         "label": "D",
         "text": "模板式 prompting",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "Chain-of-thought prompting**",
-        "feedback": "Chain-of-thought 引導模型展示中間推理…"
       }
     ],
     "correctAnswers": [
@@ -2765,11 +2585,6 @@
         "label": "D",
         "text": "模型蒸餾",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "RAG**",
-        "feedback": "RAG 讓模型在不修改權重的情況下存取外部知識"
       }
     ],
     "correctAnswers": [
@@ -2845,11 +2660,6 @@
         "label": "D",
         "text": "只支援英文內容",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "可以對任何模型端點呼叫，不限於 Bedrock 模型**",
-        "feedback": "ApplyGuardrail API 可以對任何模型端…"
       }
     ],
     "correctAnswers": [
@@ -2921,11 +2731,6 @@
         "label": "D",
         "text": "用 Zero-shot prompting",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "A",
-        "text": "用醫療文獻做持續預訓練以學習領域知識**",
-        "feedback": "持續預訓練（Domain Adaptation）讓模型…"
       }
     ],
     "correctAnswers": [
@@ -2997,11 +2802,6 @@
         "label": "D",
         "text": "讓多個模型互相評分以提升效能",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "用人類的偏好回饋來訓練獎勵模型，再用獎勵模型引導 LLM 的行為**",
-        "feedback": "RLHF 是讓 LLM 更好地對齊人類偏好的訓練方法，…"
       }
     ],
     "correctAnswers": [
@@ -3077,11 +2877,6 @@
         "label": "D",
         "text": "加密儲存的 prompt 以防止洩漏",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "減少重複計算相同 prompt 前綴的成本和延遲**",
-        "feedback": "Prompt caching 讓系統快取常用的 pro…"
       }
     ],
     "correctAnswers": [
@@ -3149,11 +2944,6 @@
         "label": "D",
         "text": "F1 Score",
         "feedback": "BLEU、Perplexity、F1 都是模型/技術指標"
-      },
-      {
-        "label": "B",
-        "text": "任務完成率（Task Completion Rate）**",
-        "feedback": "正確"
       }
     ],
     "correctAnswers": [
@@ -3225,11 +3015,6 @@
         "label": "D",
         "text": "用來加速模型的訓練過程",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "結合人類判斷與自動化指標，特別在自動指標無法捕捉的品質維度上補充評估**",
-        "feedback": "Human-in-the-loop 不是取代自動化，而…"
       }
     ],
     "correctAnswers": [
@@ -3300,11 +3085,6 @@
       {
         "label": "D",
         "text": "用 Bedrock Knowledge Bases 建立 RAG 應用",
-        "feedback": "考試偏好 Bedrock（快速整合、不需自己管模型），…"
-      },
-      {
-        "label": "B",
-        "text": "用企業自有的標注資料從頭訓練一個自訂的 ML 模型**",
         "feedback": "考試偏好 Bedrock（快速整合、不需自己管模型），…"
       }
     ],
@@ -3381,11 +3161,6 @@
         "label": "D",
         "text": "將模型的權重轉換為低精度格式",
         "feedback": "是量化（quantization）"
-      },
-      {
-        "label": "B",
-        "text": "用大型教師模型的輸出來訓練一個更小、更快的學生模型**",
-        "feedback": "模型蒸餾是 v1"
       }
     ],
     "correctAnswers": [
@@ -3461,11 +3236,6 @@
         "label": "D",
         "text": "Amazon Inspector",
         "feedback": "Guardrails 用於過濾有害內容，CloudTr…"
-      },
-      {
-        "label": "B",
-        "text": "SageMaker Clarify**",
-        "feedback": "偏誤偵測問題的答案幾乎總是 SageMaker Cla…"
       }
     ],
     "correctAnswers": [
@@ -3541,11 +3311,6 @@
         "label": "D",
         "text": "AI 生成的圖片解析度不夠高",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "AI 貸款審核系統對不同種族群體的核貸率有顯著差異**",
-        "feedback": "公平性指 AI 系統不應對受保護群體產生歧視性結果"
       }
     ],
     "correctAnswers": [
@@ -3613,11 +3378,6 @@
         "label": "D",
         "text": "Amazon GuardDuty",
         "feedback": "Macie 偵測敏感資料、WAF 是 Web 防火牆、…"
-      },
-      {
-        "label": "B",
-        "text": "Bedrock Guardrails**",
-        "feedback": "有害內容過濾幾乎總是 Bedrock Guardrai…"
       }
     ],
     "correctAnswers": [
@@ -3689,11 +3449,6 @@
         "label": "D",
         "text": "模型需要太多計算資源",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "模型在訓練資料上表現很好，但在新資料上表現差**",
-        "feedback": "過擬合 = 模型「記住」了訓練資料的特定細節（包含噪音…"
       }
     ],
     "correctAnswers": [
@@ -3761,11 +3516,6 @@
         "label": "D",
         "text": "壓縮模型大小",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "提供模型的文件化記錄，包括用途、限制、效能指標和倫理考量**",
-        "feedback": "Model Cards 是透明度和可解釋性的工具，記錄…"
       }
     ],
     "correctAnswers": [
@@ -3833,11 +3583,6 @@
         "label": "D",
         "text": "只讓技術人員能存取 AI 系統",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "提供使用者回饋機制，讓使用者能報告 AI 決策的問題，並確保 AI 決策過程透明**",
-        "feedback": "以人為本設計強調使用者回饋機制和 AI 決策透明度，確…"
       }
     ],
     "correctAnswers": [
@@ -3909,11 +3654,6 @@
         "label": "D",
         "text": "所有高效能模型都具有高可解釋性",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "可解釋性和效能之間通常存在取捨**",
-        "feedback": "簡單模型（如線性迴歸、決策樹）容易解釋但效能有限；複雜…"
       }
     ],
     "correctAnswers": [
@@ -3985,11 +3725,6 @@
         "label": "D",
         "text": "使用更大的資料集",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "人工稽核和子群分析**",
-        "feedback": "偵測標注品質問題需要人工審查標注的一致性，並對不同子群…"
       }
     ],
     "correctAnswers": [
@@ -4061,11 +3796,6 @@
         "label": "D",
         "text": "維護 AWS 全球網路骨幹的可用性",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "管理 IAM 使用者的存取權限和加密金鑰**",
-        "feedback": "在共擔責任模型中，AWS 負責「雲的安全」（基礎設施）…"
       }
     ],
     "correctAnswers": [
@@ -4133,11 +3863,6 @@
         "label": "D",
         "text": "壓縮模型的儲存空間",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "確保模型的輸出有事實依據，降低虛假資訊的風險**",
-        "feedback": "正確"
       }
     ],
     "correctAnswers": [
@@ -4213,11 +3938,6 @@
         "label": "D",
         "text": "Amazon Inspector",
         "feedback": "GuardDuty 偵測安全威脅、Shield 防 D…"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Macie**",
-        "feedback": "Macie 使用 ML 自動發現、分類和保護存放在 S…"
       }
     ],
     "correctAnswers": [
@@ -4289,11 +4009,6 @@
         "label": "D",
         "text": "AWS Lambda",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "AWS CloudTrail**",
-        "feedback": "CloudTrail 記錄 AWS 帳戶中的所有 AP…"
       }
     ],
     "correctAnswers": [
@@ -4369,17 +4084,10 @@
         "label": "D",
         "text": "壓縮 API 請求的大小",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "讓 AI 服務的流量走私有網路，不經過公共網際網路**",
-        "feedback": "PrivateLink 提供 VPC 和 AWS 服務…"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B",
-      "C"
+      "B"
     ],
     "hint": null,
     "explanation": "PrivateLink 提供 VPC 和 AWS 服務之間的私有連接，確保資料傳輸不經過公共網路。",
@@ -4443,15 +4151,9 @@
         "label": "D",
         "text": "管理 AI 模型的版本",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "提供框架來評估和分類生成式 AI 應用的安全風險等級**",
-        "feedback": "Generative AI Security Scop…"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": null,
@@ -4516,11 +4218,6 @@
         "label": "D",
         "text": "提供模型壓縮功能",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "提供 AI agent 的身份驗證（Identity）與存取政策（Policy）管理**",
-        "feedback": "Bedrock AgentCore 是 v1"
       }
     ],
     "correctAnswers": [
@@ -4668,11 +4365,6 @@
         "label": "D",
         "text": "Amazon Lex",
         "feedback": "不符合題目所問的條件"
-      },
-      {
-        "label": "B",
-        "text": "AWS Artifact**",
-        "feedback": "AWS Artifact 提供 AWS 安全和合規報告…"
       }
     ],
     "correctAnswers": [
@@ -56397,11 +56089,6 @@
         "label": "D",
         "text": "Clustering",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Regression**",
-        "feedback": "輸出是連續數值，因此 regression 最適合"
       }
     ],
     "correctAnswers": [
@@ -56488,11 +56175,6 @@
         "label": "D",
         "text": "Precision",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Recall**",
-        "feedback": "False Negative 成本高時，優先提高…"
       }
     ],
     "correctAnswers": [
@@ -56585,11 +56267,6 @@
         "label": "D",
         "text": "Clustering",
         "feedback": "沒有標籤又要分群，是 unsupervised …"
-      },
-      {
-        "label": "D",
-        "text": "Clustering**",
-        "feedback": "沒有標籤又要分群，是 unsupervised …"
       }
     ],
     "correctAnswers": [
@@ -56677,11 +56354,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "增加代表性資料並使用 regularization**",
-        "feedback": "Train 好、Test 差是典型 overfi…"
       }
     ],
     "correctAnswers": [
@@ -56757,11 +56429,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Textract**",
-        "feedback": "Textract 適合文件文字、表格與表單結構擷取"
       }
     ],
     "correctAnswers": [
@@ -56856,11 +56523,6 @@
         "label": "D",
         "text": "Amazon Translate",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Amazon Transcribe**",
-        "feedback": "Transcribe 是 speech-to-t…"
       }
     ],
     "correctAnswers": [
@@ -56961,11 +56623,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "Comprehend 提供 fully mana…"
-      },
-      {
-        "label": "D",
-        "text": "Amazon Comprehend**",
-        "feedback": "Comprehend 提供 fully mana…"
       }
     ],
     "correctAnswers": [
@@ -57041,11 +56698,6 @@
         "label": "D",
         "text": "R-squared",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Recall**",
-        "feedback": "不平衡分類且關心少數正例被抓到多少，Recall…"
       }
     ],
     "correctAnswers": [
@@ -57117,11 +56769,6 @@
         "label": "D",
         "text": "Training set",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Test set**",
-        "feedback": "Test set 應保留到最後做 unbiase…"
       }
     ],
     "correctAnswers": [
@@ -57208,11 +56855,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Amazon Rekognition**",
-        "feedback": "Rekognition 提供受管影像與影片分析"
       }
     ],
     "correctAnswers": [
@@ -57313,11 +56955,6 @@
         "label": "D",
         "text": "Underfitting / high bias",
         "feedback": "連 training 都學不好，通常是 unde…"
-      },
-      {
-        "label": "D",
-        "text": "Underfitting / high bias**",
-        "feedback": "連 training 都學不好，通常是 unde…"
       }
     ],
     "correctAnswers": [
@@ -57393,11 +57030,6 @@
         "label": "D",
         "text": "Amazon Translate",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Amazon SageMaker AI**",
-        "feedback": "SageMaker AI 適合完整 custom…"
       }
     ],
     "correctAnswers": [
@@ -57473,11 +57105,6 @@
         "label": "D",
         "text": "Clustering",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Data leakage**",
-        "feedback": "訓練偷看到推論時不存在的資訊會造成 leakage"
       }
     ],
     "correctAnswers": [
@@ -57549,11 +57176,6 @@
         "label": "D",
         "text": "Fine-tuning",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "平均 input/output token 數與各自單價**",
-        "feedback": "成本取決於 token 使用量與對應價格"
       }
     ],
     "correctAnswers": [
@@ -57628,11 +57250,6 @@
       {
         "label": "D",
         "text": "只檢索並傳入必要片段",
-        "feedback": "精簡 context 可降低成本與雜訊"
-      },
-      {
-        "label": "D",
-        "text": "只檢索並傳入必要片段**",
         "feedback": "精簡 context 可降低成本與雜訊"
       }
     ],
@@ -57721,11 +57338,6 @@
         "label": "D",
         "text": "AWS Artifact",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "提高 temperature**",
-        "feedback": "較高 temperature 通常提高輸出多樣性"
       }
     ],
     "correctAnswers": [
@@ -57804,11 +57416,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "降低 temperature**",
-        "feedback": "較低 temperature 通常使輸出更穩定"
       }
     ],
     "correctAnswers": [
@@ -57899,11 +57506,6 @@
         "label": "D",
         "text": "Keyword exact match only",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Embeddings + vector similarity**",
-        "feedback": "Embedding 可表示語意並進行相似度搜尋"
       }
     ],
     "correctAnswers": [
@@ -58000,11 +57602,6 @@
         "label": "D",
         "text": "縮小並依語意邊界重新 chunk",
         "feedback": "過大的 chunk 會帶入無關內容並浪費 con…"
-      },
-      {
-        "label": "D",
-        "text": "縮小並依語意邊界重新 chunk**",
-        "feedback": "過大的 chunk 會帶入無關內容並浪費 con…"
       }
     ],
     "correctAnswers": [
@@ -58084,11 +57681,6 @@
         "label": "D",
         "text": "Amazon Rekognition",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Zero-shot prompting**",
-        "feedback": "Zero-shot 不提供 examples"
       }
     ],
     "correctAnswers": [
@@ -58167,11 +57759,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Few-shot prompting**",
-        "feedback": "Few-shot 是 in-context ex…"
       }
     ],
     "correctAnswers": [
@@ -58243,11 +57830,6 @@
         "label": "D",
         "text": "Fine-tuning",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Multimodal foundation model**",
-        "feedback": "Multimodal model 能處理多種資料…"
       }
     ],
     "correctAnswers": [
@@ -58344,11 +57926,6 @@
         "label": "D",
         "text": "Hallucination",
         "feedback": "看似合理但無事實依據的生成內容是 halluci…"
-      },
-      {
-        "label": "D",
-        "text": "Hallucination**",
-        "feedback": "看似合理但無事實依據的生成內容是 halluci…"
       }
     ],
     "correctAnswers": [
@@ -58440,11 +58017,6 @@
         "label": "D",
         "text": "Mean squared error",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Model Context Protocol (MCP)**",
-        "feedback": "MCP 標準化 AI 應用與工具/資料的連接方式"
       }
     ],
     "correctAnswers": [
@@ -58520,15 +58092,9 @@
         "label": "D",
         "text": "Batch OCR",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Agentic AI**",
-        "feedback": "規劃、工具使用與多步執行是 agentic AI…"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": "先辨識核心考點：**Agentic AI**。不要只看服務名稱，找出題目最重要的限制。",
@@ -58601,11 +58167,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Orchestration / coordination**",
-        "feedback": "多 agent 需要協調、共享狀態與任務分配"
       }
     ],
     "correctAnswers": [
@@ -58676,11 +58237,6 @@
       {
         "label": "D",
         "text": "Context engineering",
-        "feedback": "它管理模型執行任務時可見的完整資訊環境"
-      },
-      {
-        "label": "D",
-        "text": "Context engineering**",
         "feedback": "它管理模型執行任務時可見的完整資訊環境"
       }
     ],
@@ -58769,11 +58325,6 @@
         "label": "D",
         "text": "Amazon Rekognition",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Prompt caching**",
-        "feedback": "快取重複前綴可降低重複處理成本與 latency"
       }
     ],
     "correctAnswers": [
@@ -58845,11 +58396,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Few-shot prompting + 明確格式指令**",
-        "feedback": "先用低成本 prompting，必要時才進一步訓練"
       }
     ],
     "correctAnswers": [
@@ -58921,11 +58467,6 @@
         "label": "D",
         "text": "Fine-tuning every update",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "RAG**",
-        "feedback": "RAG 可在推論時取得最新外部知識，無需頻繁重訓"
       }
     ],
     "correctAnswers": [
@@ -59000,11 +58541,6 @@
       {
         "label": "D",
         "text": "要求僅依 retrieved evidence 回答，無證據時說不知道",
-        "feedback": "Grounded prompting 可降低無依…"
-      },
-      {
-        "label": "D",
-        "text": "要求僅依 retrieved evidence 回答，無證據時說不知道**",
         "feedback": "Grounded prompting 可降低無依…"
       }
     ],
@@ -59081,11 +58617,6 @@
         "label": "D",
         "text": "IAM policy",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Continued pre-training**",
-        "feedback": "適合進一步學習大量 domain corpus"
       }
     ],
     "correctAnswers": [
@@ -59160,11 +58691,6 @@
         "label": "D",
         "text": "Prompt caching",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Fine-tuning**",
-        "feedback": "Fine-tuning 適合調整穩定行為、風格與…"
       }
     ],
     "correctAnswers": [
@@ -59255,11 +58781,6 @@
         "label": "D",
         "text": "每天從零訓練 foundation model",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "選擇較便宜且已達門檻的模型**",
-        "feedback": "模型選型要平衡品質、成本與 latency"
       }
     ],
     "correctAnswers": [
@@ -59352,11 +58873,6 @@
         "label": "D",
         "text": "使用較小模型、精簡 context 或 caching",
         "feedback": "在品質已達標時應優化 inference eff…"
-      },
-      {
-        "label": "D",
-        "text": "使用較小模型、精簡 context 或 caching**",
-        "feedback": "在品質已達標時應優化 inference eff…"
       }
     ],
     "correctAnswers": [
@@ -59428,16 +58944,10 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Knowledge Bases for Amazon Bedrock**",
-        "feedback": "Bedrock Knowledge Bases …"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B"
+      "A"
     ],
     "hint": "先辨識核心考點：**Bedrock Knowledge Bases**。不要只看服務名稱，找出題目最重要的限制。",
     "explanation": "Bedrock Knowledge Bases 支援 RAG 的 ingestion 與 retrieval。\n\n題目使用 **MOST appropriate** 時，不代表其他選項在所有情境都完全錯，而是要選最直接滿足目前需求與限制的方案。",
@@ -59509,11 +59019,6 @@
         "label": "D",
         "text": "AWS Config",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Bedrock Prompt Management**",
-        "feedback": "Prompt Management 支援 pro…"
       }
     ],
     "correctAnswers": [
@@ -59585,11 +59090,6 @@
         "label": "D",
         "text": "每天從零訓練 foundation model",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "支援 vector search 的資料庫或搜尋服務**",
-        "feedback": "RAG retrieval 需要能儲存/搜尋向量…"
       }
     ],
     "correctAnswers": [
@@ -59665,11 +59165,6 @@
         "label": "D",
         "text": "在付款前加入人工核准",
         "feedback": "高風險、不可逆操作適合 human approv…"
-      },
-      {
-        "label": "D",
-        "text": "在付款前加入人工核准**",
-        "feedback": "高風險、不可逆操作適合 human approv…"
       }
     ],
     "correctAnswers": [
@@ -59737,11 +59232,6 @@
         "label": "D",
         "text": "AWS Artifact",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "顯示來源引用與相關片段**",
-        "feedback": "Source attribution 提升可追溯…"
       }
     ],
     "correctAnswers": [
@@ -59820,11 +59310,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "檢查 embedding、chunking、metadata filter 與 top-k**",
-        "feedback": "問題在 retrieval pipeline 時…"
       }
     ],
     "correctAnswers": [
@@ -59900,11 +59385,6 @@
         "label": "D",
         "text": "Fine-tuning every update",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "RAG**",
-        "feedback": "外部化知識可避免每次資料更新都重訓"
       }
     ],
     "correctAnswers": [
@@ -60001,11 +59481,6 @@
         "label": "D",
         "text": "Prompt injection",
         "feedback": "惡意輸入企圖操控模型指令層級"
-      },
-      {
-        "label": "D",
-        "text": "Prompt injection**",
-        "feedback": "惡意輸入企圖操控模型指令層級"
       }
     ],
     "correctAnswers": [
@@ -60073,11 +59548,6 @@
         "label": "D",
         "text": "Encryption",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Indirect prompt injection**",
-        "feedback": "攻擊指令來自外部內容而非直接 user prom…"
       }
     ],
     "correctAnswers": [
@@ -60153,11 +59623,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "最小權限、內容隔離與高風險操作確認**",
-        "feedback": "外部資料應視為不可信，工具使用需 least p…"
       }
     ],
     "correctAnswers": [
@@ -60225,11 +59690,6 @@
         "label": "D",
         "text": "RAG",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "Model distillation**",
-        "feedback": "Teacher-student 方法可降低推論成…"
       }
     ],
     "correctAnswers": [
@@ -60330,11 +59790,6 @@
         "label": "D",
         "text": "同時評估任務完成率、使用者滿意度與每次互動成本",
         "feedback": "GenAI 評估不應只看模型技術指標，也要對齊 …"
-      },
-      {
-        "label": "D",
-        "text": "同時評估任務完成率、使用者滿意度與每次互動成本**",
-        "feedback": "GenAI 評估不應只看模型技術指標，也要對齊 …"
       }
     ],
     "correctAnswers": [
@@ -60402,11 +59857,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Fairness / bias investigation**",
-        "feedback": "子群錯誤率差異是公平性警訊"
       }
     ],
     "correctAnswers": [
@@ -60482,11 +59932,6 @@
         "label": "D",
         "text": "隱藏模型限制",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "提供主要影響因素與可理解的理由**",
-        "feedback": "Explainability 關注模型為何做出結果"
       }
     ],
     "correctAnswers": [
@@ -60573,11 +60018,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "SageMaker Clarify**",
-        "feedback": "Clarify 支援 bias detectio…"
       }
     ],
     "correctAnswers": [
@@ -60652,11 +60092,6 @@
       {
         "label": "D",
         "text": "SageMaker Model Cards",
-        "feedback": "Model Cards 支援模型治理文件化"
-      },
-      {
-        "label": "D",
-        "text": "SageMaker Model Cards**",
         "feedback": "Model Cards 支援模型治理文件化"
       }
     ],
@@ -60749,11 +60184,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "清楚揭露 AI 使用與限制**",
-        "feedback": "Transparency 強調揭露系統性質與限制"
       }
     ],
     "correctAnswers": [
@@ -60821,11 +60251,6 @@
         "label": "D",
         "text": "隱藏模型限制",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "保留專業人員審核與介入**",
-        "feedback": "高影響場景需要適當的人類監督"
       }
     ],
     "correctAnswers": [
@@ -60893,11 +60318,6 @@
         "label": "D",
         "text": "只提高模型參數量",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "補足代表性樣本並做子群評估**",
-        "feedback": "改善資料代表性可降低 dataset bias"
       }
     ],
     "correctAnswers": [
@@ -60994,11 +60414,6 @@
         "label": "D",
         "text": "測試並改善模型在不同條件下的穩定性",
         "feedback": "Robustness 關注擾動、分佈變化下的可靠性"
-      },
-      {
-        "label": "D",
-        "text": "測試並改善模型在不同條件下的穩定性**",
-        "feedback": "Robustness 關注擾動、分佈變化下的可靠性"
       }
     ],
     "correctAnswers": [
@@ -61082,11 +60497,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "選擇更有效率且滿足需求的模型**",
-        "feedback": "Sustainability 考量訓練與推論的資…"
       }
     ],
     "correctAnswers": [
@@ -61158,11 +60568,6 @@
         "label": "D",
         "text": "提高 temperature",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "IAM 最小權限 policy**",
-        "feedback": "Least privilege 只授予完成工作所…"
       }
     ],
     "correctAnswers": [
@@ -61234,11 +60639,6 @@
         "label": "D",
         "text": "Amazon Macie",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "AWS CloudTrail**",
-        "feedback": "CloudTrail 記錄 AWS API ac…"
       }
     ],
     "correctAnswers": [
@@ -61313,11 +60713,6 @@
       {
         "label": "D",
         "text": "Amazon Macie",
-        "feedback": "Macie 用於發現與分類 S3 敏感資料"
-      },
-      {
-        "label": "D",
-        "text": "Amazon Macie**",
         "feedback": "Macie 用於發現與分類 S3 敏感資料"
       }
     ],
@@ -61394,11 +60789,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Amazon Inspector**",
-        "feedback": "Inspector 提供自動化 vulnerab…"
       }
     ],
     "correctAnswers": [
@@ -61470,11 +60860,6 @@
         "label": "D",
         "text": "Amazon Macie",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "AWS Artifact**",
-        "feedback": "Artifact 提供 AWS complian…"
       }
     ],
     "correctAnswers": [
@@ -61550,11 +60935,6 @@
         "label": "D",
         "text": "AWS Artifact",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "AWS Config**",
-        "feedback": "Config 追蹤並評估 resource co…"
       }
     ],
     "correctAnswers": [
@@ -61630,11 +61010,6 @@
         "label": "D",
         "text": "Encryption at rest and in transit",
         "feedback": "資料保護應涵蓋 at rest 與 in tra…"
-      },
-      {
-        "label": "D",
-        "text": "Encryption at rest and in transit**",
-        "feedback": "資料保護應涵蓋 at rest 與 in tra…"
       }
     ],
     "correctAnswers": [
@@ -61706,11 +61081,6 @@
         "label": "D",
         "text": "Amazon Lex",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "資料隔離、存取控制、敏感資訊過濾與 retention 政策**",
-        "feedback": "Privacy 需要隔離、授權、過濾與資料生命週…"
       }
     ],
     "correctAnswers": [
@@ -61786,11 +61156,6 @@
         "label": "D",
         "text": "Amazon Route 53",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Bedrock Guardrails**",
-        "feedback": "Guardrails 可套用內容與主題安全控制"
       }
     ],
     "correctAnswers": [
@@ -61881,11 +61246,6 @@
         "label": "D",
         "text": "遷移學習（Transfer Learning）",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "非監督式學習（Unsupervised Learning）**",
-        "feedback": "沒有預先標注的類別、要從資料中自動發現群組 → …"
       }
     ],
     "correctAnswers": [
@@ -61953,11 +61313,6 @@
         "label": "D",
         "text": "混淆矩陣中的 True Negative",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Precision**",
-        "feedback": "Precision 衡量「被預測為正的樣本中，有…"
       }
     ],
     "correctAnswers": [
@@ -62025,11 +61380,6 @@
         "label": "D",
         "text": "從醫學影像中輔助醫師篩檢異常",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "依據公司章程第 14 條第 3 款做出法律裁定，且裁定必須有完整法律推理紀錄**",
-        "feedback": "需要完整法律推理紀錄且依據特定條款裁定 → 高可…"
       }
     ],
     "correctAnswers": [
@@ -62101,11 +61451,6 @@
         "label": "D",
         "text": "深度學習只能用於影像辨識",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "深度學習使用多層神經網路自動學習特徵，傳統 ML 通常需要手動做特徵工程**",
-        "feedback": "深度學習的核心優勢是自動特徵萃取，不需要人工設計…"
       }
     ],
     "correctAnswers": [
@@ -62177,11 +61522,6 @@
         "label": "D",
         "text": "標籤不平衡（Label Imbalance）",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "欠擬合（Underfitting）**",
-        "feedback": "訓練集和測試集上都表現差 → 模型太簡單、無法捕…"
       }
     ],
     "correctAnswers": [
@@ -62249,11 +61589,6 @@
         "label": "D",
         "text": "離線推論（Offline Inference）",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "即時推論（Real-time Inference）**",
-        "feedback": "低延遲、逐筆即時判斷 → 需要即時推論端點"
       }
     ],
     "correctAnswers": [
@@ -62321,11 +61656,6 @@
         "label": "D",
         "text": "需要極低延遲（<10ms）的高頻交易系統",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "流量不可預測、有時數小時無請求的開發測試環境**",
-        "feedback": "Serverless 推論在沒有請求時不收費，適…"
       }
     ],
     "correctAnswers": [
@@ -62397,16 +61727,10 @@
         "label": "D",
         "text": "模型一旦部署就不需要再更新",
         "feedback": "Data drift 和 concept dri…"
-      },
-      {
-        "label": "B",
-        "text": "輸入資料的分佈可能隨時間改變（data drift），導致模型效能下降**",
-        "feedback": "Data drift 和 concept dri…"
       }
     ],
     "correctAnswers": [
-      "B",
-      "D"
+      "B"
     ],
     "hint": null,
     "explanation": "Data drift 和 concept drift 會讓模型效能隨時間退化，持續監控能及早發現問題並觸發再訓練。",
@@ -62470,15 +61794,9 @@
         "label": "D",
         "text": "不需要基礎模型就能運作",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "能自主規劃任務、使用工具、並根據環境回饋調整行動的 AI 系統**",
-        "feedback": "Agentic AI 的核心特徵包括自主規劃、工…"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": null,
@@ -62547,11 +61865,6 @@
         "label": "D",
         "text": "Amazon Forecast",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "A",
-        "text": "Amazon Textract**",
-        "feedback": "Textract 專門從文件（包含手寫和印刷文字…"
       }
     ],
     "correctAnswers": [
@@ -62627,11 +61940,6 @@
         "label": "D",
         "text": "同時訓練多個不同的模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "利用在大型資料集上預訓練好的模型知識，套用到新的但相關的任務上**",
-        "feedback": "遷移學習讓我們能用較少的資料和計算資源在新任務上…"
       }
     ],
     "correctAnswers": [
@@ -62699,11 +62007,6 @@
         "label": "D",
         "text": "訓練損失和驗證損失的差值",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Precision 和 Recall 的調和平均**",
-        "feedback": "F1 = 2 × (Precision × Re…"
       }
     ],
     "correctAnswers": [
@@ -62771,11 +62074,6 @@
         "label": "D",
         "text": "選最貴的模型，品質一定最好",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Model B，因為輸入和輸出的 token 價格都更低**",
-        "feedback": "生成長篇報告 = 大量輸出 token"
       }
     ],
     "correctAnswers": [
@@ -62843,11 +62141,6 @@
         "label": "D",
         "text": "隨機選取過去的對話片段",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "依據任務需求，精選並結構化最相關的系統提示、使用者指令、檢索結果和對話歷史**",
-        "feedback": "Context engineering 的核心是…"
       }
     ],
     "correctAnswers": [
@@ -62915,11 +62208,6 @@
         "label": "D",
         "text": "如何刪除所有先前的對話",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "如何在多個 agent 和多輪互動之間有效地保留、共享和更新相關的上下文資訊**",
-        "feedback": "多 agent 的記憶管理涉及短期記憶（當前對話…"
       }
     ],
     "correctAnswers": [
@@ -62991,11 +62279,6 @@
         "label": "D",
         "text": "將 API 請求分批發送",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "將長文件切分成較小的段落，以便進行 embedding 和檢索**",
-        "feedback": "Chunking 決定了文件如何被切分和索引"
       }
     ],
     "correctAnswers": [
@@ -63067,11 +62350,6 @@
         "label": "D",
         "text": "在多個雲端區域部署的模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "能同時理解和生成多種資料格式（文字、影像、音訊等）的模型**",
-        "feedback": "多模態模型如 GPT-4V、Claude 3 可…"
       }
     ],
     "correctAnswers": [
@@ -63143,17 +62421,10 @@
         "label": "D",
         "text": "AWS Step Functions",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Bedrock AgentCore**",
-        "feedback": "Bedrock AgentCore 是 v1"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B",
-      "C"
+      "B"
     ],
     "hint": null,
     "explanation": "Bedrock AgentCore 是 v1.1 新增的 in-scope 服務，提供 agent 的執行環境、身份驗證、政策管理和生命週期管理。",
@@ -63225,11 +62496,6 @@
         "label": "D",
         "text": "雇用 ML 團隊開發專屬模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "用 Amazon Bedrock 直接呼叫現成的基礎模型**",
-        "feedback": "Bedrock 是最快的路徑：不需訓練、不需管基…"
       }
     ],
     "correctAnswers": [
@@ -63301,11 +62567,6 @@
         "label": "D",
         "text": "只支援 AWS 自家的 Titan 模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "提供預訓練模型、範例 notebook 和解決方案，讓使用者快速開始 ML 專案**",
-        "feedback": "JumpStart 是 SageMaker 的模…"
       }
     ],
     "correctAnswers": [
@@ -63373,11 +62634,6 @@
         "label": "D",
         "text": "向量只能表示數字，不能表示文字",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "向量是 embedding 的輸出形式，語意相近的資料在向量空間中距離也相近**",
-        "feedback": "Embedding 模型將文字、影像等資料轉換為…"
       }
     ],
     "correctAnswers": [
@@ -63453,11 +62709,6 @@
         "label": "D",
         "text": "模型微調 + 批次推論",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Embedding 模型 + 向量資料庫 + LLM**",
-        "feedback": "語意搜尋需要 embedding 做向量化、向量…"
       }
     ],
     "correctAnswers": [
@@ -63533,11 +62784,6 @@
         "label": "D",
         "text": "自動將客服對話摘要成重點",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "計算公司上季度的精確營收數字**",
-        "feedback": "精確數字計算是傳統軟體（資料庫查詢、試算表）的工…"
       }
     ],
     "correctAnswers": [
@@ -63677,11 +62923,6 @@
         "label": "D",
         "text": "取代 CRM 系統的功能",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "提供標準化的介面讓 agent 能以一致的方式連接和查詢 CRM 系統**",
-        "feedback": "MCP 是連接 AI 模型和外部系統的標準化協定"
       }
     ],
     "correctAnswers": [
@@ -63753,11 +62994,6 @@
         "label": "D",
         "text": "不確定性只發生在免費版模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "即使相同的 prompt 和相同的設定，模型也可能產生不同的輸出**",
-        "feedback": "LLM 的不確定性是固有特性，即使 temper…"
       }
     ],
     "correctAnswers": [
@@ -63829,11 +63065,6 @@
         "label": "D",
         "text": "需要使用自家研發的模型架構",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "C",
-        "text": "需要快速用現成的 Claude 或 Titan 模型建立文字摘要功能**",
-        "feedback": "Bedrock = 快速整合現有 FM、不需管模型"
       }
     ],
     "correctAnswers": [
@@ -63909,11 +63140,6 @@
         "label": "D",
         "text": "使用 RAG 檢索禮貌用語資料庫",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "使用 instruction tuning 微調回覆風格**",
-        "feedback": "Instruction tuning 改變模型的…"
       }
     ],
     "correctAnswers": [
@@ -63985,19 +63211,10 @@
         "label": "D",
         "text": "Amazon Redshift",
         "feedback": "Aurora 是 v1"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Aurora**",
-        "feedback": "Aurora 是 v1"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E"
+      "B"
     ],
     "hint": null,
     "explanation": "Aurora 是 v1.1 新增的 in-scope 向量儲存服務，支援 pgvector 擴充，可搭配 Bedrock Knowledge Bases 使用。DynamoDB 和 ElastiCache 不是向量儲存，Redshift 不在考綱的向量儲存清單中。",
@@ -64066,11 +63283,6 @@
         "label": "D",
         "text": "降低 API 的呼叫費用",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "在不修改模型權重的情況下，透過範例引導模型理解預期的輸出格式和行為**",
-        "feedback": "Few-shot 屬於 in-context l…"
       }
     ],
     "correctAnswers": [
@@ -64138,11 +63350,6 @@
         "label": "D",
         "text": "使用太多範例導致 token 超出限制",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "攻擊者在訓練資料或外部資料來源中植入惡意內容，使模型在特定條件下產生有害輸出**",
-        "feedback": "Prompt poisoning 是一種間接攻擊…"
       }
     ],
     "correctAnswers": [
@@ -64214,11 +63421,6 @@
         "label": "D",
         "text": "將大模型的權重複製到小模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "用大模型（教師模型）的輸出做為訓練資料，訓練小模型（學生模型）**",
-        "feedback": "模型蒸餾的核心：教師模型生成的 soft lab…"
       }
     ],
     "correctAnswers": [
@@ -64286,11 +63488,6 @@
         "label": "D",
         "text": "寫詩，希望用詞獨特且不落俗套",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "寫程式碼，希望輸出正確且一致**",
-        "feedback": "低 temperature → 輸出更確定、更一致"
       }
     ],
     "correctAnswers": [
@@ -64358,11 +63555,6 @@
         "label": "D",
         "text": "不需要任何設定就能使用",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "能自動化評估大量輸出，且可以評估語氣、相關性等主觀指標**",
-        "feedback": "LLM-as-a-judge 用另一個 LLM …"
       }
     ],
     "correctAnswers": [
@@ -64434,11 +63626,6 @@
         "label": "D",
         "text": "使用了太多 few-shot 範例",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "文件的 chunking 策略不當，導致檢索到的片段與問題不相關**",
-        "feedback": "RAG 品質很大程度取決於 chunking 策略"
       }
     ],
     "correctAnswers": [
@@ -64514,11 +63701,6 @@
         "label": "D",
         "text": "讓模型能處理更多 token",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "確保不同使用者和應用場景中 prompt 格式的一致性，便於維護和版本管理**",
-        "feedback": "Prompt 模板標準化 prompt 結構，減…"
       }
     ],
     "correctAnswers": [
@@ -64586,11 +63768,6 @@
         "label": "D",
         "text": "只看模型的 perplexity",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "評估檢索到的文件與問題的相關性（Context Relevance），以及回覆是否有被檢索到的內容支撐（Faithfulness）**",
-        "feedback": "RAG 評估需要分開看：檢索品質（取到對的文件嗎…"
       }
     ],
     "correctAnswers": [
@@ -64658,11 +63835,6 @@
         "label": "D",
         "text": "AI agent 必須由人類手動控制每一個步驟",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "AI agent 能自主完成多步驟的商業流程**",
-        "feedback": "AI agent 的商業價值在於自主串接多步驟的…"
       }
     ],
     "correctAnswers": [
@@ -64734,11 +63906,6 @@
         "label": "D",
         "text": "完全關閉 AI 客服功能",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "結合 Bedrock Guardrails + 輸出驗證 + 系統 prompt 防護，多層防禦**",
-        "feedback": "安全防禦需要多層方法：輸入過濾（Guardrai…"
       }
     ],
     "correctAnswers": [
@@ -64810,11 +63977,6 @@
         "label": "D",
         "text": "不使用系統提示的簡單問答",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "大量請求共用相同的長篇系統提示，只有使用者輸入不同**",
-        "feedback": "Prompt caching 快取重複的 pro…"
       }
     ],
     "correctAnswers": [
@@ -64882,11 +64044,6 @@
         "label": "D",
         "text": "F1 Score",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "每次互動後的使用者評分和 NPS**",
-        "feedback": "正確答案"
       }
     ],
     "correctAnswers": [
@@ -64958,11 +64115,6 @@
         "label": "D",
         "text": "RAG 只能處理文字，Fine-tuning 能處理所有模態",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "RAG 在推論時動態檢索外部知識，Fine-tuning 在訓練時將知識嵌入模型權重**",
-        "feedback": "核心區別：RAG 是推論時間的知識增強（不改模型…"
       }
     ],
     "correctAnswers": [
@@ -65034,11 +64186,6 @@
         "label": "D",
         "text": "只測試第一個 agent 的效能",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "評估整個工作流程的任務完成率、每個步驟的正確性、以及端到端延遲**",
-        "feedback": "正確答案"
       }
     ],
     "correctAnswers": [
@@ -65110,11 +64257,6 @@
         "label": "D",
         "text": "AUC",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "BLEU**",
-        "feedback": "BLEU（Bilingual Evaluatio…"
       }
     ],
     "correctAnswers": [
@@ -65186,11 +64328,6 @@
         "label": "D",
         "text": "使用更大的模型",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "按年齡層做子群分析，比較各群體的效能指標**",
-        "feedback": "子群分析能揭露整體指標掩蓋的群體差異"
       }
     ],
     "correctAnswers": [
@@ -65262,11 +64399,6 @@
         "label": "D",
         "text": "模型的回應時間低於 100 毫秒",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "確保模型的輸出有事實依據，減少幻覺和誤導性資訊**",
-        "feedback": "真實性要求 AI 輸出的內容要有根據、不虛構"
       }
     ],
     "correctAnswers": [
@@ -65338,11 +64470,6 @@
         "label": "D",
         "text": "手動調整每個預測結果",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "調查偏誤來源，修正後重新訓練和評估**",
-        "feedback": "發現偏誤後，應從根源修正：檢查訓練資料是否有不均…"
       }
     ],
     "correctAnswers": [
@@ -65410,11 +64537,6 @@
         "label": "D",
         "text": "只有在測試環境中才需要考慮穩健性",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "穩健的 AI 系統能在輸入有噪音、對抗性攻擊或分佈偏移時仍維持合理效能**",
-        "feedback": "穩健性指系統面對異常、干擾或攻擊時的韌性"
       }
     ],
     "correctAnswers": [
@@ -65486,11 +64608,6 @@
         "label": "D",
         "text": "模型佔用的儲存空間太大",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "模型可能生成侵犯智慧財產權的內容，或產出有偏見的內容導致歧視訴訟**",
-        "feedback": "考綱列出的 GenAI 法律風險包括：IP 侵權…"
       }
     ],
     "correctAnswers": [
@@ -65558,11 +64675,6 @@
         "label": "D",
         "text": "Amazon Inspector",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "Bedrock Guardrails**",
-        "feedback": "Guardrails 可以設定內容過濾規則，偵測…"
       }
     ],
     "correctAnswers": [
@@ -65634,11 +64746,6 @@
         "label": "D",
         "text": "只使用本地部署的 GPU",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "在效能滿足需求的前提下，選擇較小、更有效率的模型以減少能源消耗**",
-        "feedback": "考綱提到「模型選擇的環境與永續考量」"
       }
     ],
     "correctAnswers": [
@@ -65706,11 +64813,6 @@
         "label": "D",
         "text": "只用來比較模型的推論速度",
         "feedback": "非正確答案"
-      },
-      {
-        "label": "B",
-        "text": "提供標準化的方式來評估模型在公平性、毒性、準確性等維度上的表現**",
-        "feedback": "Bedrock Model Evaluation…"
       }
     ],
     "correctAnswers": [
@@ -65786,11 +64888,6 @@
         "label": "D",
         "text": "包容性只需在部署後再考慮",
         "feedback": "與題目需求不符"
-      },
-      {
-        "label": "B",
-        "text": "設計 AI 系統時考慮不同能力、語言、文化背景的使用者需求**",
-        "feedback": "包容性要求在設計階段就考慮多元使用者：身體能…"
       }
     ],
     "correctAnswers": [
@@ -65862,11 +64959,6 @@
         "label": "D",
         "text": "欄位層加密（Field-level Encryption）",
         "feedback": "與題目需求不符"
-      },
-      {
-        "label": "B",
-        "text": "傳輸加密（Encryption in Transit）**",
-        "feedback": "傳輸加密（如 TLS/SSL）保護資料在網路…"
       }
     ],
     "correctAnswers": [
@@ -65938,11 +65030,6 @@
         "label": "D",
         "text": "只使用最小的模型",
         "feedback": "範圍過於狹隘"
-      },
-      {
-        "label": "B",
-        "text": "使用 Bedrock Guardrails 設定 PII 過濾，並在輸出層做資料外洩防護**",
-        "feedback": "v1.1 強調「資料外洩防護」和「輸出過濾與驗證」"
       }
     ],
     "correctAnswers": [
@@ -66010,11 +65097,6 @@
         "label": "D",
         "text": "管理模型的版本",
         "feedback": "與題目需求不符"
-      },
-      {
-        "label": "B",
-        "text": "持續監控和記錄 AWS 資源的配置變更，確保符合合規要求**",
-        "feedback": "AWS Config 記錄資源配置的歷史變更"
       }
     ],
     "correctAnswers": [
@@ -66086,11 +65168,6 @@
         "label": "D",
         "text": "自動修復資料中的錯誤",
         "feedback": "與題目需求不符"
-      },
-      {
-        "label": "B",
-        "text": "追蹤資料從來源到最終使用的完整路徑，確保可稽核性和透明度**",
-        "feedback": "Data lineage 記錄資料的來源、轉…"
       }
     ],
     "correctAnswers": [
@@ -66162,11 +65239,6 @@
         "label": "D",
         "text": "自動翻譯模型的輸出",
         "feedback": "與題目需求不符"
-      },
-      {
-        "label": "B",
-        "text": "將模型的回覆錨定在檢索到的真實資料上，降低虛構內容的風險**",
-        "feedback": "RAG grounding 是 v1.1 目…"
       }
     ],
     "correctAnswers": [
@@ -66238,11 +65310,6 @@
         "label": "D",
         "text": "AWS Lambda + Amazon SQS",
         "feedback": "AWS Lambda + Am非最佳選擇"
-      },
-      {
-        "label": "B",
-        "text": "CloudTrail + CloudWatch Logs + Bedrock 使用紀錄**",
-        "feedback": "v1.1 強調「AI 互動的稽核軌跡與日誌」"
       }
     ],
     "correctAnswers": [
@@ -66318,11 +65385,6 @@
         "label": "D",
         "text": "Amazon Personalize",
         "feedback": "Personalize 功能不符"
-      },
-      {
-        "label": "B",
-        "text": "Amazon Inspector**",
-        "feedback": "Inspector 自動掃描 AWS 資源（…"
       }
     ],
     "correctAnswers": [
@@ -66398,15 +65460,9 @@
         "label": "D",
         "text": "管理 IAM 使用者",
         "feedback": "與題目需求不符"
-      },
-      {
-        "label": "B",
-        "text": "提供成本優化、安全、效能、容錯和服務限制等方面的最佳實踐建議**",
-        "feedback": "Trusted Advisor 自動檢查帳戶配置"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": null,
@@ -105656,11 +104712,6 @@
         "label": "D",
         "text": "Developing the company's annual budget strategy",
         "feedback": "✗ requires human strategic judgment."
-      },
-      {
-        "label": "B",
-        "text": "Processing tens of thousands of customer emails daily and automatically routing them to the correct department**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -105732,11 +104783,6 @@
         "label": "D",
         "text": "Generative AI",
         "feedback": "✗ produces new content, not predictions."
-      },
-      {
-        "label": "B",
-        "text": "Regression**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -105812,11 +104858,6 @@
         "label": "D",
         "text": "Knowledge Graph",
         "feedback": "✗ structured knowledge representation."
-      },
-      {
-        "label": "B",
-        "text": "Computer Vision**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -105893,11 +104934,6 @@
         "label": "D",
         "text": "Amazon Translate",
         "feedback": "✗ translation, not transcription."
-      },
-      {
-        "label": "C",
-        "text": "Amazon Transcribe**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -105977,11 +105013,6 @@
         "label": "D",
         "text": "Use a deep learning neural network because it has the highest accuracy",
         "feedback": "✗ black-box model, low explainability."
-      },
-      {
-        "label": "B",
-        "text": "Use a traditional ML model (such as a decision tree) because of its high explainability**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106059,11 +105090,6 @@
         "label": "D",
         "text": "Inference and training use the same dataset",
         "feedback": "✗ they use different data."
-      },
-      {
-        "label": "A",
-        "text": "Training updates model weights with new data; inference uses the trained model to make predictions on new data**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106140,11 +105166,6 @@
         "label": "D",
         "text": "Accuracy",
         "feedback": "✗ for overall classification correctness."
-      },
-      {
-        "label": "B",
-        "text": "ROUGE**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106221,11 +105242,6 @@
         "label": "D",
         "text": "Amazon Rekognition",
         "feedback": "✗ image recognition."
-      },
-      {
-        "label": "A",
-        "text": "Amazon Lex**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106304,11 +105320,6 @@
         "label": "D",
         "text": "All data must be structured to be used in ML",
         "feedback": "✗ unstructured data works too."
-      },
-      {
-        "label": "B",
-        "text": "Data quality directly affects model performance — Garbage In, Garbage Out**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106379,11 +105390,6 @@
         "label": "D",
         "text": "Real-time speech recognition for voice assistants",
         "feedback": "✗ requires real-time inference."
-      },
-      {
-        "label": "B",
-        "text": "Processing all credit card transactions from the day for fraud detection every night**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106454,11 +105460,6 @@
         "label": "D",
         "text": "To ensure models only run in the cloud",
         "feedback": "✗ models can run anywhere."
-      },
-      {
-        "label": "B",
-        "text": "To standardize and automate the development, deployment, and operations of ML models**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106534,11 +105535,6 @@
         "label": "D",
         "text": "Recall",
         "feedback": "✗ model performance metric."
-      },
-      {
-        "label": "B",
-        "text": "Cost per User**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106610,11 +105606,6 @@
         "label": "D",
         "text": "A record in a vector database",
         "feedback": "✗ different concept entirely."
-      },
-      {
-        "label": "B",
-        "text": "The smallest unit of text processed by the model — can be a word, subword, or character**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106694,11 +105685,6 @@
         "label": "D",
         "text": "Switch to a larger model to improve accuracy",
         "feedback": "✗ increases costs."
-      },
-      {
-        "label": "B",
-        "text": "Compress prompt length and remove unnecessary context tokens**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106777,11 +105763,6 @@
         "label": "D",
         "text": "Setting the model's hyperparameters",
         "feedback": "✗ configuration, not context management."
-      },
-      {
-        "label": "B",
-        "text": "Systematically organizing and managing all contextual information provided to the model to optimize output quality**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106855,11 +105836,6 @@
         "label": "D",
         "text": "Managing model version control",
         "feedback": "✗ not MCP's function."
-      },
-      {
-        "label": "B",
-        "text": "Providing a standardized way for AI models to connect and interact with external systems and tools**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -106929,11 +105905,6 @@
         "label": "D",
         "text": "A method for merging multiple models into one",
         "feedback": "✗ that's model ensembling."
-      },
-      {
-        "label": "B",
-        "text": "Converting data (text, images, etc.) into high-dimensional vector numerical representations**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107007,11 +105978,6 @@
         "label": "D",
         "text": "Hallucinations only appear in text generation, not in image generation",
         "feedback": "✗ also occurs in image generation."
-      },
-      {
-        "label": "B",
-        "text": "The model produces content that seems plausible but is actually incorrect or fabricated**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107085,11 +106051,6 @@
         "label": "D",
         "text": "Model cost and pricing structure",
         "feedback": "✗ critical for budget planning."
-      },
-      {
-        "label": "B",
-        "text": "The office location of the model development team**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107161,11 +106122,6 @@
         "label": "D",
         "text": "Amazon S3",
         "feedback": "✗ object storage."
-      },
-      {
-        "label": "B",
-        "text": "Amazon Bedrock**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107241,11 +106197,6 @@
         "label": "D",
         "text": "Agents can only communicate through human intermediaries",
         "feedback": "✗ agents communicate directly."
-      },
-      {
-        "label": "B",
-        "text": "One orchestrator agent coordinates multiple specialist agents to divide and conquer**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107321,11 +106272,6 @@
         "label": "D",
         "text": "Markov Chain",
         "feedback": "✗ a probabilistic model, not a neural..."
-      },
-      {
-        "label": "B",
-        "text": "Self-Attention**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107395,11 +106341,6 @@
         "label": "D",
         "text": "Anomaly detection in structured data",
         "feedback": "✗ traditional ML task."
-      },
-      {
-        "label": "C",
-        "text": "Generating images from text descriptions**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107472,11 +106413,6 @@
         "label": "D",
         "text": "AWS Lambda",
         "feedback": "✗ serverless compute, not an AI assistant."
-      },
-      {
-        "label": "B",
-        "text": "Amazon Q**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107555,11 +106491,6 @@
         "label": "D",
         "text": "Evaluate → Train → Deploy → Fine-tune",
         "feedback": "✗ evaluation comes after training."
-      },
-      {
-        "label": "B",
-        "text": "Data Selection → Model Selection → Pre-training → Fine-tuning → Evaluation → Deployment → Feedback**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107631,11 +106562,6 @@
         "label": "D",
         "text": "AWS CloudFormation",
         "feedback": "✗ infrastructure as code."
-      },
-      {
-        "label": "B",
-        "text": "Strands Agents**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107707,11 +106633,6 @@
         "label": "D",
         "text": "A cybersecurity monitoring service",
         "feedback": "✗ not Kiro's purpose."
-      },
-      {
-        "label": "B",
-        "text": "An AI-powered development tool that helps build AI applications**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -107863,15 +106784,9 @@
         "label": "D",
         "text": "Use in-context learning by including all regulations in every prompt",
         "feedback": "✗ token length limits prevent including all..."
-      },
-      {
-        "label": "B",
-        "text": "Use RAG with Bedrock Knowledge Bases**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": "Think about which AWS service to use",
@@ -107949,11 +106864,6 @@
         "label": "D",
         "text": "Perform continued pre-training on the model",
         "feedback": "✗ does not provide real-time data access."
-      },
-      {
-        "label": "B",
-        "text": "Use an AI agent with tool use, having the agent query the order API**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108033,11 +106943,6 @@
         "label": "D",
         "text": "Reduces token consumption",
         "feedback": "✗ temperature doesn't change token count."
-      },
-      {
-        "label": "B",
-        "text": "Increases output randomness and creativity**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108118,19 +107023,10 @@
         "label": "D",
         "text": "Amazon ElastiCache",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "B",
-        "text": "Amazon OpenSearch Service**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E"
+      "B"
     ],
     "hint": "Think about which AWS service to use",
     "explanation": "The official exam guide lists vector store services including: OpenSearch Service, Aurora, Neptune, and RDS for PostgreSQL. DynamoDB, Redshift, and ElastiCache are not on the vector store list.",
@@ -108205,11 +107101,6 @@
         "label": "D",
         "text": "Adding temperature settings in the prompt to control output",
         "feedback": "✗ configuration, not an attack."
-      },
-      {
-        "label": "B",
-        "text": "A malicious user embeds instructions in input attempting to make the model ignore original instructions or leak the system prompt**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108289,11 +107180,6 @@
         "label": "D",
         "text": "Encrypt prompts to prevent leakage",
         "feedback": "✗ not its primary function."
-      },
-      {
-        "label": "B",
-        "text": "Version control for prompts, tracking modification history**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108367,11 +107253,6 @@
         "label": "D",
         "text": "Template prompting",
         "feedback": "✗ rigid structure, not reasoning-focused."
-      },
-      {
-        "label": "B",
-        "text": "Chain-of-thought prompting**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108444,11 +107325,6 @@
         "label": "D",
         "text": "Model distillation",
         "feedback": "✗ for creating smaller models."
-      },
-      {
-        "label": "B",
-        "text": "RAG**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108526,11 +107402,6 @@
         "label": "D",
         "text": "Only supports English content",
         "feedback": "✗ supports multiple languages."
-      },
-      {
-        "label": "B",
-        "text": "Can be called against any model endpoint, not limited to Bedrock models**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108610,11 +107481,6 @@
         "label": "D",
         "text": "Zero-shot prompting",
         "feedback": "✗ cannot add domain knowledge."
-      },
-      {
-        "label": "A",
-        "text": "Continued pre-training with medical literature to learn domain knowledge**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108688,11 +107554,6 @@
         "label": "D",
         "text": "Having multiple models score each other to improve performance",
         "feedback": "✗ that's a different technique."
-      },
-      {
-        "label": "B",
-        "text": "Using human preference feedback to train a reward model, then using the reward model to guide LLM behavior**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108770,11 +107631,6 @@
         "label": "D",
         "text": "Encrypting stored prompts to prevent leakage",
         "feedback": "✗ not caching's purpose."
-      },
-      {
-        "label": "B",
-        "text": "Reducing the cost and latency of repeatedly computing the same prompt prefix**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108845,11 +107701,6 @@
         "label": "D",
         "text": "F1 Score",
         "feedback": "✗ classification metric."
-      },
-      {
-        "label": "B",
-        "text": "Task Completion Rate**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -108923,11 +107774,6 @@
         "label": "D",
         "text": "Used to accelerate the model training process",
         "feedback": "✗ not its purpose."
-      },
-      {
-        "label": "B",
-        "text": "Combining human judgment with automated metrics, especially supplementing evaluation in quality dimensions that automated metrics cannot capture**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109003,11 +107849,6 @@
         "label": "D",
         "text": "Building a RAG application with Bedrock Knowledge Bases",
         "feedback": "✗ Bedrock feature."
-      },
-      {
-        "label": "B",
-        "text": "Training a custom ML model from scratch using the company's own labeled data**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109085,11 +107926,6 @@
         "label": "D",
         "text": "Converting model weights to a lower-precision format",
         "feedback": "✗ that's quantization."
-      },
-      {
-        "label": "B",
-        "text": "Using a large teacher model's output to train a smaller, faster student model**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109168,11 +108004,6 @@
         "label": "D",
         "text": "Amazon Inspector",
         "feedback": "✗ security vulnerability scanning."
-      },
-      {
-        "label": "B",
-        "text": "SageMaker Clarify**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109250,11 +108081,6 @@
         "label": "D",
         "text": "AI-generated images with insufficient resolution",
         "feedback": "✗ quality issue."
-      },
-      {
-        "label": "B",
-        "text": "AI loan approval system showing significantly different approval rates across racial groups**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109325,11 +108151,6 @@
         "label": "D",
         "text": "Amazon GuardDuty",
         "feedback": "✗ security threat detection."
-      },
-      {
-        "label": "B",
-        "text": "Bedrock Guardrails**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109403,11 +108224,6 @@
         "label": "D",
         "text": "Model requires too many computational resources",
         "feedback": "✗ not related to overfitting."
-      },
-      {
-        "label": "B",
-        "text": "Model performs well on training data but poorly on new data**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109480,11 +108296,6 @@
         "label": "D",
         "text": "Compressing model size",
         "feedback": "✗ not Model Cards' purpose."
-      },
-      {
-        "label": "B",
-        "text": "Providing documented records of the model, including purpose, limitations, performance metrics, and ethical considerations**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109560,11 +108371,6 @@
         "label": "D",
         "text": "Only allowing technical staff to access AI systems",
         "feedback": "✗ excludes end users."
-      },
-      {
-        "label": "B",
-        "text": "Providing user feedback mechanisms so users can report issues with AI decisions, and ensuring AI decision processes are transparent**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109638,11 +108444,6 @@
         "label": "D",
         "text": "All high-performance models have high explainability",
         "feedback": "✗ false, deep learning is low explainability."
-      },
-      {
-        "label": "B",
-        "text": "There is usually a trade-off between explainability and performance**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109716,11 +108517,6 @@
         "label": "D",
         "text": "Using a larger dataset",
         "feedback": "✗ more data doesn't fix quality issues."
-      },
-      {
-        "label": "B",
-        "text": "Manual auditing and subgroup analysis**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109790,11 +108586,6 @@
         "label": "D",
         "text": "Maintaining availability of AWS's global network backbone",
         "feedback": "✗ AWS responsibility."
-      },
-      {
-        "label": "B",
-        "text": "Managing IAM user access permissions and encryption keys**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109865,11 +108656,6 @@
         "label": "D",
         "text": "Compressing model storage space",
         "feedback": "✗ unrelated."
-      },
-      {
-        "label": "B",
-        "text": "Ensuring model outputs are factually grounded, reducing the risk of false information**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -109948,11 +108734,6 @@
         "label": "D",
         "text": "Amazon Inspector",
         "feedback": "✗ vulnerability scanning."
-      },
-      {
-        "label": "B",
-        "text": "Amazon Macie**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -110023,11 +108804,6 @@
         "label": "D",
         "text": "AWS Lambda",
         "feedback": "✗ serverless compute."
-      },
-      {
-        "label": "B",
-        "text": "AWS CloudTrail**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -110106,17 +108882,10 @@
         "label": "D",
         "text": "Compressing API request sizes",
         "feedback": "✗ unrelated."
-      },
-      {
-        "label": "B",
-        "text": "Routing AI service traffic through private networks without going through the public internet**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B",
-      "C"
+      "B"
     ],
     "hint": "Think from a security and compliance perspective",
     "explanation": "PrivateLink provides a private connection between VPCs and AWS services, ensuring data transfers do not traverse the public network.",
@@ -110180,15 +108949,9 @@
         "label": "D",
         "text": "Managing AI model versions",
         "feedback": "✗ not its purpose."
-      },
-      {
-        "label": "B",
-        "text": "Providing a framework to assess and classify the security risk levels of generative AI applications**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": "Think from a security and compliance perspective",
@@ -110261,11 +109024,6 @@
         "label": "D",
         "text": "Provides model compression capabilities",
         "feedback": "✗ not its purpose."
-      },
-      {
-        "label": "B",
-        "text": "Provides identity authentication and access policy management for AI agents**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -110420,11 +109178,6 @@
         "label": "D",
         "text": "Amazon Lex",
         "feedback": "✗ chatbot service."
-      },
-      {
-        "label": "B",
-        "text": "AWS Artifact**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -124979,11 +123732,6 @@
         "label": "D",
         "text": "Clustering",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Regression**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125081,11 +123829,6 @@
         "label": "D",
         "text": "Precision",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Recall**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125191,11 +123934,6 @@
         "label": "D",
         "text": "Clustering",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Clustering**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125295,11 +124033,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "✗ this is a text-to-speech service, not what's..."
-      },
-      {
-        "label": "A",
-        "text": "Add more representative data and use regularization",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125381,11 +124114,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "✗ this is a NLP text analysis service, not..."
-      },
-      {
-        "label": "B",
-        "text": "Amazon Textract**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125492,11 +124220,6 @@
         "label": "D",
         "text": "Amazon Translate",
         "feedback": "✗ this is a language translation service, not..."
-      },
-      {
-        "label": "C",
-        "text": "Amazon Transcribe**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125612,11 +124335,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Amazon Comprehend**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125697,11 +124415,6 @@
         "label": "D",
         "text": "R-squared",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "A",
-        "text": "Recall**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125776,11 +124489,6 @@
         "label": "D",
         "text": "Training set",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Test set**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125879,11 +124587,6 @@
         "label": "D",
         "text": "Amazon Comprehend",
         "feedback": "✗ this is a NLP text analysis service, not..."
-      },
-      {
-        "label": "C",
-        "text": "Amazon Rekognition**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -125999,11 +124702,6 @@
         "label": "D",
         "text": "Underfitting / high bias",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Underfitting / high bias**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126086,11 +124784,6 @@
         "label": "D",
         "text": "Amazon Translate",
         "feedback": "✗ this is a language translation service, not..."
-      },
-      {
-        "label": "A",
-        "text": "Amazon SageMaker AI**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126172,11 +124865,6 @@
         "label": "D",
         "text": "Clustering",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Data leakage**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126254,11 +124942,6 @@
         "label": "D",
         "text": "Fine-tuning",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Average input/output token count and their respective unit prices",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126334,11 +125017,6 @@
         "label": "C",
         "text": "Amazon Rekognition",
         "feedback": "✗ this is a image/video analysis service, not..."
-      },
-      {
-        "label": "D",
-        "text": "Only retrieve and pass in necessary segments",
-        "feedback": "✓ Correct"
       },
       {
         "label": "D",
@@ -126442,11 +125120,6 @@
         "label": "D",
         "text": "AWS Artifact",
         "feedback": "✗ this is a compliance document portal, not..."
-      },
-      {
-        "label": "A",
-        "text": "Increase temperature",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126533,11 +125206,6 @@
         "label": "D",
         "text": "Increase temperature",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Lower the temperature",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126640,11 +125308,6 @@
         "label": "D",
         "text": "Keyword exact match only",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Embeddings + vector similarity**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126755,11 +125418,6 @@
         "label": "D",
         "text": "Reduce size and re-chunk along semantic boundaries",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Reduce size and re-chunk along semantic boundaries",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126846,11 +125504,6 @@
         "label": "D",
         "text": "Amazon Rekognition",
         "feedback": "✗ this is a image/video analysis service, not..."
-      },
-      {
-        "label": "A",
-        "text": "Zero-shot prompting**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -126937,11 +125590,6 @@
         "label": "D",
         "text": "Increase temperature",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Few-shot prompting**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127019,11 +125667,6 @@
         "label": "D",
         "text": "Fine-tuning",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Multimodal foundation model**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127134,11 +125777,6 @@
         "label": "D",
         "text": "Hallucination",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Hallucination**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127239,11 +125877,6 @@
         "label": "D",
         "text": "Mean squared error",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "A",
-        "text": "Model Context Protocol (MCP)**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127325,15 +125958,9 @@
         "label": "D",
         "text": "Batch OCR",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Agentic AI**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
-      "A",
       "B"
     ],
     "hint": "First identify the core concept: **Agentic AI**. Don't just look at service names — find the most important constraint in the question.",
@@ -127411,11 +126038,6 @@
         "label": "D",
         "text": "Increase temperature",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Orchestration / coordination**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127491,11 +126113,6 @@
       {
         "label": "D",
         "text": "Context engineering",
-        "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Context engineering**",
         "feedback": "✓ Correct"
       }
     ],
@@ -127595,11 +126212,6 @@
         "label": "D",
         "text": "Amazon Rekognition",
         "feedback": "✗ this is a image/video analysis service, not..."
-      },
-      {
-        "label": "A",
-        "text": "Prompt caching**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127677,11 +126289,6 @@
         "label": "D",
         "text": "Increase temperature",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Few-shot prompting + explicit format instructions",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127759,11 +126366,6 @@
         "label": "D",
         "text": "Fine-tuning every update",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "RAG**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -127839,11 +126441,6 @@
         "label": "C",
         "text": "AWS Artifact",
         "feedback": "✗ this is a compliance document portal, not..."
-      },
-      {
-        "label": "D",
-        "text": "Require answers based only on retrieved evidence; say \"I don't know\" when no evidence is available",
-        "feedback": "✓ Correct"
       },
       {
         "label": "D",
@@ -127929,11 +126526,6 @@
         "label": "D",
         "text": "IAM policy",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "A",
-        "text": "Continued pre-training**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128014,11 +126606,6 @@
         "label": "D",
         "text": "Prompt caching",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Fine-tuning**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128120,11 +126707,6 @@
         "label": "D",
         "text": "Train a foundation model from scratch every day",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Choose the cheaper model that already meets the quality threshold",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128231,11 +126813,6 @@
         "label": "D",
         "text": "Use a smaller model, streamline context, or use caching",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Use a smaller model, streamline context, or use caching",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128314,16 +126891,10 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "✗ this is a text-to-speech service, not what's..."
-      },
-      {
-        "label": "A",
-        "text": "Knowledge Bases for Amazon Bedrock**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
-      "A",
-      "B"
+      "A"
     ],
     "hint": "First identify the core concept: **Bedrock Knowledge Bases**. Don't just look at service names — find the most important constraint in the question.",
     "explanation": "Bedrock Knowledge Bases supports RAG ingestion and retrieval.\n\nWhen the question uses **MOST appropriate**, it doesn't mean other options are entirely wrong in all scenarios — choose the one that most directly meets the current requirements and constraints.",
@@ -128399,11 +126970,6 @@
         "label": "D",
         "text": "AWS Config",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Amazon Bedrock Prompt Management**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128482,11 +127048,6 @@
         "label": "D",
         "text": "Train a foundation model from scratch every day",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "A database or search service that supports vector search",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128567,11 +127128,6 @@
         "label": "D",
         "text": "Add human approval before payment execution",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Add human approval before payment execution",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128644,11 +127200,6 @@
         "label": "D",
         "text": "AWS Artifact",
         "feedback": "✗ this is a compliance document portal, not..."
-      },
-      {
-        "label": "A",
-        "text": "Display source citations and relevant passages",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128736,11 +127287,6 @@
         "label": "D",
         "text": "Increase temperature",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Check embedding, chunking, metadata filter, and top-k settings",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128820,11 +127366,6 @@
         "label": "D",
         "text": "Fine-tuning every update",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "RAG**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -128932,11 +127473,6 @@
         "label": "D",
         "text": "Prompt injection",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Prompt injection**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129008,11 +127544,6 @@
         "label": "D",
         "text": "Encryption",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "A",
-        "text": "Indirect prompt injection**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129094,11 +127625,6 @@
         "label": "D",
         "text": "Increase temperature",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Least privilege, content isolation, and confirmation for high-risk operations",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129172,11 +127698,6 @@
         "label": "D",
         "text": "RAG",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Model distillation**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129290,11 +127811,6 @@
         "label": "D",
         "text": "Evaluate task completion rate, user satisfaction, and cost per interaction simultaneously",
         "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "Evaluate task completion rate, user satisfaction, and cost per interaction simultaneously",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129369,11 +127885,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "✗ this is a text-to-speech service, not what's..."
-      },
-      {
-        "label": "A",
-        "text": "Fairness / bias investigation**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129453,11 +127964,6 @@
         "label": "D",
         "text": "Hide model limitations",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Provide key contributing factors and understandable reasons",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129557,11 +128063,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "✗ this is a text-to-speech service, not what's..."
-      },
-      {
-        "label": "C",
-        "text": "SageMaker Clarify**",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129642,11 +128143,6 @@
       {
         "label": "D",
         "text": "SageMaker Model Cards",
-        "feedback": "✓ Correct"
-      },
-      {
-        "label": "D",
-        "text": "SageMaker Model Cards**",
         "feedback": "✓ Correct"
       }
     ],
@@ -129748,11 +128244,6 @@
         "label": "D",
         "text": "Amazon Polly",
         "feedback": "✗ this is a text-to-speech service, not what's..."
-      },
-      {
-        "label": "A",
-        "text": "Clearly disclose AI usage and its limitations",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129823,11 +128314,6 @@
         "label": "D",
         "text": "Hide model limitations",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "B",
-        "text": "Retain professional review and human intervention",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -129900,11 +128386,6 @@
         "label": "D",
         "text": "Only increase model parameter count",
         "feedback": "✗ not applicable to this scenario."
-      },
-      {
-        "label": "C",
-        "text": "Add representative samples and perform subgroup evaluation",
-        "feedback": "✓ Correct"
       }
     ],
     "correctAnswers": [
@@ -136498,11 +134979,6 @@
         "label": "D",
         "text": "F1 Score",
         "feedback": "\"F1 Score\" does not address what the question as…"
-      },
-      {
-        "label": "C",
-        "text": "Recall**",
-        "feedback": "recall measures 'of all actual positive samples,…"
       }
     ],
     "correctAnswers": [

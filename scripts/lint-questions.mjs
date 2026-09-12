@@ -64,6 +64,7 @@ const questionFile = process.argv[2] || 'data/questions.json'
 const questions = JSON.parse(readFileSync(questionFile, 'utf8'))
 const errors = []
 const domainErrors = []
+const optionErrors = []
 
 for (const q of questions) {
   if (q.examCode?.toUpperCase() === 'AIF-C01') {
@@ -97,7 +98,15 @@ for (const q of questions) {
   checkField(q, 'mnemonic', q.mnemonic, errors)
   checkField(q, 'whyOthersWrong', q.whyOthersWrong, errors)
 
+  const optionLabels = new Set()
   for (const opt of q.options || []) {
+    if (optionLabels.has(opt.label)) {
+      optionErrors.push({ id: q.id, issue: `duplicate option label ${opt.label}` })
+    }
+    optionLabels.add(opt.label)
+    if (/^\s*\*\*|\*\*\s*$/.test(opt.text)) {
+      optionErrors.push({ id: q.id, issue: `Markdown artifact in option ${opt.label}` })
+    }
     if (!isExemptText(opt.text)) {
       if (q.lang === 'zh-TW' && !ZH_RE.test(opt.text)) {
         errors.push({
@@ -121,6 +130,11 @@ for (const q of questions) {
       }
     }
   }
+  for (const answer of q.correctAnswers || []) {
+    if (!optionLabels.has(answer)) {
+      optionErrors.push({ id: q.id, issue: `correct answer ${answer} has no matching option` })
+    }
+  }
 }
 
 const critical = errors.filter((e) => e.field === 'stem' || e.field.startsWith('option'))
@@ -134,7 +148,15 @@ if (domainErrors.length > 0) {
   if (domainErrors.length > 10) console.error(`  ... and ${domainErrors.length - 10} more`)
 }
 
-if (critical.length > 0 || warnings.length > 0 || domainErrors.length > 0) {
+if (optionErrors.length > 0) {
+  console.error(`❌ ${optionErrors.length} option structure ERRORS:`)
+  for (const error of optionErrors.slice(0, 10)) {
+    console.error(`  [${error.id}] ${error.issue}`)
+  }
+  if (optionErrors.length > 10) console.error(`  ... and ${optionErrors.length - 10} more`)
+}
+
+if (critical.length > 0 || warnings.length > 0 || domainErrors.length > 0 || optionErrors.length > 0) {
   const byField = {}
   for (const e of errors) {
     const key = `${e.examCode}/${e.lang}/${e.field.replace(/ [A-F]$/, '')}`
@@ -164,6 +186,7 @@ if (critical.length > 0 || warnings.length > 0 || domainErrors.length > 0) {
   }
 
   if (domainErrors.length > 0) process.exitCode = 1
+  if (optionErrors.length > 0) process.exitCode = 1
 } else {
   console.log('✅ All questions pass language consistency check')
 }
