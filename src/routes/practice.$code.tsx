@@ -33,6 +33,7 @@ import {
   getDomains,
   getFilteredQuestions,
   getWrongAnswers,
+  isAnswerCorrect,
   saveWrongAnswer,
 } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
@@ -72,11 +73,7 @@ function PracticePage() {
   const [finished, setFinished] = useState(false)
 
   const correctCount = questions.filter(
-    (q) =>
-      revealed.has(q.id) &&
-      answers[q.id] &&
-      q.correctAnswers.every((a) => answers[q.id].includes(a)) &&
-      answers[q.id].length === q.correctAnswers.length,
+    (q) => revealed.has(q.id) && answers[q.id] && isAnswerCorrect(q, answers[q.id]),
   ).length
   const answeredCount = questions.filter((q) => revealed.has(q.id)).length
 
@@ -100,9 +97,10 @@ function PracticePage() {
   const isRevealed = currentQuestion ? revealed.has(currentQuestion.id) : false
   const currentAnswer = currentQuestion ? answers[currentQuestion.id] || [] : []
   const isMulti = currentQuestion?.type === 'multi'
+  const isOrdering = currentQuestion?.type === 'ordering'
 
   function selectOption(label: string) {
-    if (!currentQuestion || isRevealed) return
+    if (!currentQuestion || isRevealed || isOrdering) return
     setAnswers((prev) => {
       const current = prev[currentQuestion.id] || []
       if (isMulti) {
@@ -118,18 +116,21 @@ function PracticePage() {
     }
   }
 
+  function setOrder(order: string[]) {
+    if (!currentQuestion || isRevealed || !isOrdering) return
+    setAnswers((prev) => ({ ...prev, [currentQuestion.id]: order }))
+  }
+
   function revealAnswer() {
     if (!currentQuestion) return
     setRevealed((prev) => new Set(prev).add(currentQuestion.id))
   }
 
-  // Auto-save wrong answers when revealed
   useEffect(() => {
     for (const q of questions) {
       if (!revealed.has(q.id)) continue
       const ans = answers[q.id] || []
-      const isCorrectAnswer = ans.length === q.correctAnswers.length && q.correctAnswers.every((a) => ans.includes(a))
-      if (!isCorrectAnswer && ans.length > 0) {
+      if (!isAnswerCorrect(q, ans) && ans.length > 0) {
         saveWrongAnswer({
           questionId: q.id,
           examCode,
@@ -138,6 +139,10 @@ function PracticePage() {
           reflection: null,
           attemptedAt: new Date().toISOString(),
           reviewedAt: null,
+          easeFactor: 2.5,
+          interval: 1,
+          repetitions: 0,
+          nextReviewAt: new Date().toISOString(),
         })
       }
     }
@@ -154,10 +159,10 @@ function PracticePage() {
       const target = e.target as HTMLElement
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return
       const keyUpper = e.key.toUpperCase()
-      if (!isRevealed && ['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper)) {
+      if (!isOrdering && !isRevealed && ['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper)) {
         const opt = currentQuestion.options.find((o) => o.label === keyUpper)
         if (opt) selectOption(opt.label)
-      } else if (!isRevealed && e.key >= '1' && e.key <= '9') {
+      } else if (!isOrdering && !isRevealed && e.key >= '1' && e.key <= '9') {
         const idx = parseInt(e.key, 10) - 1
         if (idx < currentQuestion.options.length) selectOption(currentQuestion.options[idx].label)
       } else if (e.key === 'Enter') {
@@ -170,7 +175,6 @@ function PracticePage() {
     return () => window.removeEventListener('keydown', handleKey)
   })
 
-  // --- Setup screen ---
   if (!started) {
     return (
       <>
@@ -187,7 +191,6 @@ function PracticePage() {
             </h1>
           </div>
 
-          {/* Simulate Real Exam */}
           <Card className="rise-in" style={{ animationDelay: '80ms' }}>
             <CardContent>
               <button
@@ -209,24 +212,20 @@ function PracticePage() {
             </CardContent>
           </Card>
 
-          {/* Divider */}
           <div className="rise-in flex items-center gap-3 px-2 py-2" style={{ animationDelay: '120ms' }}>
             <div className="h-px flex-1 bg-[var(--line)]" />
             <span className="text-xs font-semibold text-[var(--sea-ink-soft)]">{t('practice.or')}</span>
             <div className="h-px flex-1 bg-[var(--line)]" />
           </div>
 
-          {/* Custom Practice */}
           <h2 className="rise-in mb-2 text-sm font-bold text-[var(--sea-ink-soft)]" style={{ animationDelay: '140ms' }}>
             {t('practice.customPractice')}
           </h2>
 
           <Card className="rise-in" style={{ animationDelay: '160ms' }}>
             <CardContent className="space-y-6">
-              {/* Domains */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.selectDomains')}</h3>
-                {domains.length === 0 && <DomainListSkeleton />}
                 <div className="space-y-1">
                   {domains.map((d) => {
                     const checked = selectedDomains.includes(d)
@@ -275,7 +274,6 @@ function PracticePage() {
                 )}
               </div>
 
-              {/* Difficulty */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.selectDifficulty')}</h3>
                 <div className="flex gap-2">
@@ -301,7 +299,6 @@ function PracticePage() {
                 </div>
               </div>
 
-              {/* Count */}
               <div>
                 <h3 className="mb-3 text-sm font-bold text-[var(--sea-ink)]">{t('practice.questionCount')}</h3>
                 <div className="flex gap-2">
@@ -334,13 +331,9 @@ function PracticePage() {
     )
   }
 
-  // --- Finished screen ---
   if (finished) {
     const pct = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0
-    const wrongInSession = questions.filter((q) => {
-      const ans = answers[q.id] || []
-      return !(q.correctAnswers.every((a) => ans.includes(a)) && ans.length === q.correctAnswers.length)
-    }).length
+    const wrongInSession = questions.filter((q) => !isAnswerCorrect(q, answers[q.id] || [])).length
     const totalWrongInJournal = getWrongAnswers(examCode).length
 
     return (
@@ -348,26 +341,17 @@ function PracticePage() {
         <Header />
         <main className="mx-auto max-w-2xl px-4 pb-16">
           <section className="rise-in pt-10 text-center">
-            <Badge variant="brand" className="mb-4">
-              {t('practice.finish')}
-            </Badge>
+            <Badge variant="brand" className="mb-4">{t('practice.finish')}</Badge>
             <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full border-4 border-[var(--lagoon)]">
               <span className="text-3xl font-black tabular-nums text-[var(--sea-ink)]">{pct}%</span>
             </div>
-            <p className="text-sm text-[var(--sea-ink-soft)]">
-              {t('practice.score', { correct: correctCount, total: answeredCount })}
-            </p>
+            <p className="text-sm text-[var(--sea-ink-soft)]">{t('practice.score', { correct: correctCount, total: answeredCount })}</p>
             {wrongInSession > 0 && (
-              <p className="mt-2 text-xs text-[var(--sea-ink-soft)]">
-                {t('wrongAnswers.addedToJournal', { count: wrongInSession })}
-              </p>
+              <p className="mt-2 text-xs text-[var(--sea-ink-soft)]">{t('wrongAnswers.addedToJournal', { count: wrongInSession })}</p>
             )}
           </section>
-
           <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:justify-center">
-            <Button onClick={() => setStarted(false)}>
-              <RotateCcw className="h-4 w-4" /> {t('practice.tryAgain')}
-            </Button>
+            <Button onClick={() => setStarted(false)}><RotateCcw className="h-4 w-4" /> {t('practice.tryAgain')}</Button>
             {totalWrongInJournal > 0 && (
               <Button asChild variant="secondary">
                 <Link to="/wrong-answers/$code" params={{ code }} className="no-underline">
@@ -375,55 +359,18 @@ function PracticePage() {
                 </Link>
               </Button>
             )}
-            <Button asChild variant="ghost">
-              <Link to="/" className="no-underline">
-                <Home className="h-4 w-4" /> {t('practice.backToHome')}
-              </Link>
-            </Button>
+            <Button asChild variant="ghost"><Link to="/" className="no-underline"><Home className="h-4 w-4" /> {t('practice.backToHome')}</Link></Button>
           </div>
-
-          {/* Knowledge chains for practiced domains */}
-          {(() => {
-            const practicedDomains = [...new Set(questions.map((q) => q.domain))]
-            const chains = getKnowledgeChains(examCode).filter((c) => practicedDomains.includes(c.domain))
-            if (chains.length === 0) return null
-            return (
-              <Card className="mt-8">
-                <CardContent className="space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--sea-ink-soft)]">
-                    {t('knowledgeChain.title')}
-                  </h3>
-                  <p className="text-xs text-[var(--sea-ink-soft)]">{t('knowledgeChain.description')}</p>
-                  {chains.map((c) => (
-                    <div key={c.domainNumber} className="rounded-lg border border-[var(--line)] px-3 py-2">
-                      <span className="mr-2 font-mono text-xs font-bold text-[var(--sea-ink-soft)]">
-                        D{c.domainNumber}
-                      </span>
-                      <span className="text-xs leading-relaxed text-[var(--sea-ink)]">{c.chain}</span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            )
-          })()}
-
           <div className="mt-4 space-y-2">
             {questions.map((q) => {
-              const ans = answers[q.id] || []
-              const correct = q.correctAnswers.every((a) => ans.includes(a)) && ans.length === q.correctAnswers.length
+              const correct = isAnswerCorrect(q, answers[q.id] || [])
               return (
                 <Card key={q.id} className="p-3">
                   <div className="flex items-start gap-2">
-                    {correct ? (
-                      <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--correct)]" />
-                    ) : (
-                      <CircleX className="mt-0.5 h-5 w-5 shrink-0 text-[var(--wrong)]" />
-                    )}
+                    {correct ? <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--correct)]" /> : <CircleX className="mt-0.5 h-5 w-5 shrink-0 text-[var(--wrong)]" />}
                     <div className="min-w-0 flex-1">
                       <p className="line-clamp-2 text-sm text-[var(--sea-ink)]">{q.stem}</p>
-                      {!correct && q.explanation && (
-                        <p className="mt-1 line-clamp-2 text-xs text-[var(--sea-ink-soft)]">{q.explanation}</p>
-                      )}
+                      {!correct && q.explanation && <p className="mt-1 line-clamp-2 text-xs text-[var(--sea-ink-soft)]">{q.explanation}</p>}
                     </div>
                   </div>
                 </Card>
@@ -436,79 +383,27 @@ function PracticePage() {
     )
   }
 
-  // --- In-practice view ---
-  const isCorrect =
-    currentAnswer.length > 0 &&
-    currentQuestion.correctAnswers.every((a) => currentAnswer.includes(a)) &&
-    currentAnswer.length === currentQuestion.correctAnswers.length
-
-  const passingPercent = 70
-  const passingRequired = Math.ceil(questions.length * (passingPercent / 100))
+  const isCorrect = currentAnswer.length > 0 && isAnswerCorrect(currentQuestion, currentAnswer)
 
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] backdrop-blur-xl">
-        <div className="mx-auto max-w-3xl px-4 py-2.5">
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => setStarted(false)}>
-              <ArrowLeft className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">{t('exam.exit')}</span>
-            </Button>
-            <span className="text-sm font-bold text-[var(--sea-ink)]">
-              Q {currentIndex + 1}/{questions.length}
-            </span>
-            <div className="ml-auto flex items-center gap-2">
-              <span className="text-sm font-bold tabular-nums">
-                <span className="text-[var(--correct)]">{correctCount}</span>
-                <span className="text-[var(--sea-ink-soft)]">/{answeredCount}</span>
-              </span>
-              {answeredCount > 0 && (
-                <Badge variant={correctCount / answeredCount >= 0.7 ? 'success' : 'default'}>
-                  {Math.round((correctCount / answeredCount) * 100)}%
-                </Badge>
-              )}
-              <span className="hidden text-xs text-[var(--sea-ink-soft)] sm:inline">
-                {t('practice.passingThreshold', {
-                  required: passingRequired,
-                  total: questions.length,
-                  percent: passingPercent,
-                })}
-              </span>
-            </div>
-          </div>
-          <div className="mt-2">
-            <QuestionGrid
-              questions={questions}
-              answers={answers}
-              revealed={revealed}
-              currentIndex={currentIndex}
-              onSelect={setCurrentIndex}
-              compact
-            />
-          </div>
+        <div className="mx-auto flex max-w-3xl items-center gap-2 px-4 py-2.5">
+          <Button variant="ghost" size="sm" onClick={() => setStarted(false)}><ArrowLeft className="h-3.5 w-3.5" /></Button>
+          <span className="text-sm font-bold text-[var(--sea-ink)]">Q {currentIndex + 1}/{questions.length}</span>
+          <div className="ml-auto flex items-center gap-2"><span className="text-sm font-bold tabular-nums"><span className="text-[var(--correct)]">{correctCount}</span><span className="text-[var(--sea-ink-soft)]">/{answeredCount}</span></span></div>
         </div>
+        <QuestionGrid questions={questions} answers={answers} revealed={revealed} currentIndex={currentIndex} onSelect={setCurrentIndex} compact />
       </header>
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-28 pt-6">
         <div key={currentQuestion.id}>
-          {/* Hint */}
           {!isRevealed && currentQuestion.hint && (
             <div className="mb-4">
               {showHint.has(currentQuestion.id) ? (
-                <div className="rounded-xl border border-[var(--flagged-border)] bg-[var(--flagged-bg)] px-4 py-3">
-                  <p className="m-0 text-sm text-[var(--sea-ink)]">
-                    <Lightbulb className="mr-1.5 inline h-3.5 w-3.5 text-[var(--flagged)]" />
-                    {currentQuestion.hint}
-                  </p>
-                </div>
+                <div className="rounded-xl border border-[var(--flagged-border)] bg-[var(--flagged-bg)] px-4 py-3"><p className="m-0 text-sm text-[var(--sea-ink)]"><Lightbulb className="mr-1.5 inline h-3.5 w-3.5 text-[var(--flagged)]" />{currentQuestion.hint}</p></div>
               ) : (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowHint((prev) => new Set(prev).add(currentQuestion.id))}
-                >
-                  <Eye className="h-4 w-4" /> {t('practice.showHint')}
-                </Button>
+                <Button variant="ghost" size="sm" onClick={() => setShowHint((prev) => new Set(prev).add(currentQuestion.id))}><Eye className="h-4 w-4" /> {t('practice.showHint')}</Button>
               )}
             </div>
           )}
@@ -517,157 +412,32 @@ function PracticePage() {
             question={currentQuestion}
             selectedAnswers={currentAnswer}
             onSelectOption={selectOption}
+            onOrderChange={setOrder}
             disabled={isRevealed}
             showResult={isRevealed}
             showTips
             questionNumber={currentIndex + 1}
           />
 
-          {/* Multi-select confirm */}
-          {!isRevealed && isMulti && currentAnswer.length > 0 && (
-            <Button variant="primary" className="mt-5 w-full" onClick={revealAnswer}>
-              <Check className="h-4 w-4" /> Check Answer
-            </Button>
+          {!isRevealed && (isMulti || isOrdering) && currentAnswer.length > 0 && (
+            <Button variant="primary" className="mt-5 w-full" onClick={revealAnswer}><Check className="h-4 w-4" /> Check Answer</Button>
           )}
 
-          {/* Explanation panel */}
           {isRevealed && (
             <div className="mt-5 space-y-4">
-              {/* Correct/Wrong banner */}
-              <div
-                className={cn(
-                  'rounded-xl border-[1.5px] px-5 py-4',
-                  isCorrect
-                    ? 'border-[var(--correct-border)] bg-[var(--correct-bg)]'
-                    : 'border-[var(--wrong-border)] bg-[var(--wrong-bg)]',
-                )}
-              >
-                <p
-                  className={cn('mb-2 text-sm font-bold', isCorrect ? 'text-[var(--correct)]' : 'text-[var(--wrong)]')}
-                >
-                  {isCorrect ? (
-                    <>
-                      <CircleCheck className="mr-1.5 inline h-4 w-4" />
-                      {t('practice.correct')}
-                    </>
-                  ) : (
-                    <>
-                      <CircleX className="mr-1.5 inline h-4 w-4" />
-                      {t('practice.wrong')} — {t('results.correctAnswer')}: {currentQuestion.correctAnswers.join(', ')}
-                    </>
-                  )}
+              <div className={cn('rounded-xl border-[1.5px] px-5 py-4', isCorrect ? 'border-[var(--correct-border)] bg-[var(--correct-bg)]' : 'border-[var(--wrong-border)] bg-[var(--wrong-bg)]')}>
+                <p className={cn('mb-2 text-sm font-bold', isCorrect ? 'text-[var(--correct)]' : 'text-[var(--wrong)]')}>
+                  {isCorrect ? <><CircleCheck className="mr-1.5 inline h-4 w-4" />{t('practice.correct')}</> : <><CircleX className="mr-1.5 inline h-4 w-4" />{t('practice.wrong')} — {t('results.correctAnswer')}: {currentQuestion.correctAnswers.join(' → ')}</>}
                 </p>
-                {currentQuestion.explanation && (
-                  <p className="mb-0 text-sm leading-relaxed text-[var(--sea-ink)]">{currentQuestion.explanation}</p>
-                )}
-                {!isCorrect && currentQuestion.trap && (
-                  <div className="mt-3 flex items-start gap-1.5 text-xs text-[var(--flagged)]">
-                    <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
-                    {t('practice.trap')}: {currentQuestion.trap}
-                  </div>
-                )}
-                {currentQuestion.mnemonic && (
-                  <div className="mt-2 flex items-start gap-1.5 text-xs text-[var(--sea-ink-soft)]">
-                    <Lightbulb className="mt-0.5 h-3 w-3 shrink-0" />
-                    {t('practice.mnemonic')}: {currentQuestion.mnemonic}
-                  </div>
-                )}
+                {currentQuestion.explanation && <p className="mb-0 text-sm leading-relaxed text-[var(--sea-ink)]">{currentQuestion.explanation}</p>}
+                {!isCorrect && currentQuestion.trap && <div className="mt-3 flex items-start gap-1.5 text-xs text-[var(--flagged)]"><AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />{t('practice.trap')}: {currentQuestion.trap}</div>}
+                {currentQuestion.mnemonic && <div className="mt-2 flex items-start gap-1.5 text-xs text-[var(--sea-ink-soft)]"><Lightbulb className="mt-0.5 h-3 w-3 shrink-0" />{t('practice.mnemonic')}: {currentQuestion.mnemonic}</div>}
               </div>
-
-              {/* Plain explanation */}
-              {currentQuestion.plainExplanation && (
-                <div className="rounded-xl border border-[var(--line)] px-5 py-4">
-                  <h3 className="mb-2 text-sm font-bold text-[var(--sea-ink)]">{t('explanation.plain')}</h3>
-                  <p className="text-sm leading-relaxed text-[var(--sea-ink-soft)]">
-                    {currentQuestion.plainExplanation}
-                  </p>
-                </div>
-              )}
-
-              {/* Option analysis */}
-              {currentQuestion.optionAnalysis && Object.keys(currentQuestion.optionAnalysis).length > 0 && (
-                <div className="rounded-xl border border-[var(--line)] px-5 py-4">
-                  <h3 className="mb-2 text-sm font-bold text-[var(--sea-ink)]">{t('explanation.optionAnalysis')}</h3>
-                  <ul className="space-y-1.5">
-                    {Object.entries(currentQuestion.optionAnalysis).map(([label, analysis]) => (
-                      <li key={label} className="text-sm leading-relaxed text-[var(--sea-ink-soft)]">
-                        <strong
-                          className={cn(
-                            'mr-1',
-                            currentQuestion.correctAnswers.includes(label)
-                              ? 'text-[var(--correct)]'
-                              : 'text-[var(--sea-ink)]',
-                          )}
-                        >
-                          {label}
-                        </strong>
-                        ：{analysis}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* References */}
-              {currentQuestion.references && currentQuestion.references.length > 0 && (
-                <div className="rounded-xl border border-[var(--line)] px-5 py-4">
-                  <h3 className="mb-2 text-sm font-bold text-[var(--sea-ink)]">{t('explanation.references')}</h3>
-                  <ul className="space-y-1">
-                    {currentQuestion.references.map((ref) => (
-                      <li key={ref.url}>
-                        <a
-                          href={ref.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-[var(--lagoon)] hover:underline"
-                        >
-                          {ref.title} ↗
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Next question button */}
-              <Button
-                variant={currentIndex === questions.length - 1 ? 'primary' : 'default'}
-                className="w-full"
-                onClick={nextQuestion}
-              >
-                {currentIndex === questions.length - 1 ? t('practice.finish') : t('explanation.nextQuestion')}
-              </Button>
+              <Button variant={currentIndex === questions.length - 1 ? 'primary' : 'default'} className="w-full" onClick={nextQuestion}>{currentIndex === questions.length - 1 ? t('practice.finish') : t('explanation.nextQuestion')}</Button>
             </div>
           )}
         </div>
       </main>
-
-      {/* Bottom nav */}
-      {isRevealed && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-3xl items-center justify-between py-2.5">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
-              disabled={currentIndex === 0}
-            >
-              <ChevronLeft className="h-4 w-4" /> {t('exam.prev')}
-            </Button>
-            <span className="text-xs tabular-nums text-[var(--sea-ink-soft)]">
-              {currentIndex + 1} / {questions.length}
-            </span>
-            <Button
-              variant={currentIndex === questions.length - 1 ? 'primary' : 'default'}
-              size="sm"
-              onClick={nextQuestion}
-            >
-              {currentIndex === questions.length - 1 ? t('practice.finish') : t('exam.next')}
-              {currentIndex < questions.length - 1 && <ChevronRight className="h-4 w-4" />}
-            </Button>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
