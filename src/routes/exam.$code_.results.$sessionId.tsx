@@ -20,8 +20,9 @@ import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import { useI18n } from '../i18n/index.ts'
+import { getDomainLabel, resolveDomainNumber } from '../lib/domains.ts'
 import { getExamConfig } from '../lib/exam-registry.ts'
-import { getChainForDomain } from '../lib/knowledge-chains.ts'
+import { getChainForDomainNumber } from '../lib/knowledge-chains.ts'
 import { loadResult, saveWrongAnswersFromResult } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
@@ -61,8 +62,8 @@ function ScoreCircle({ score, passed }: { score: number; passed: boolean }) {
 }
 
 function ResultsPage() {
-  const { code_, sessionId } = Route.useParams()
-  const { t } = useI18n()
+  const { code, sessionId } = Route.useParams()
+  const { locale, t } = useI18n()
   const [result, setResult] = useState<ReturnType<typeof loadResult>>(null)
   const [filter, setFilter] = useState<'all' | 'wrong'>('wrong')
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
@@ -132,14 +133,15 @@ function ResultsPage() {
               {t('results.domainBreakdown')}
             </h3>
             {result.domainBreakdown.map((d) => {
-              const isImportant =
-                d.domain === 'Fundamentals of Generative AI' || d.domain === 'Applications of Foundation Models'
-              const chain = getChainForDomain(result.examCode, d.domain)
+              const domainNumber = d.domainNumber ?? resolveDomainNumber(result.examCode, d.domain)
+              const domainLabel = getDomainLabel(result.examCode, domainNumber, locale, d.domain)
+              const isImportant = result.examCode === 'AIF-C01' && (domainNumber === 2 || domainNumber === 3)
+              const chain = getChainForDomainNumber(result.examCode, domainNumber)
               return (
-                <div key={d.domain} className="space-y-1.5">
+                <div key={`${domainNumber}-${d.domain}`} className="space-y-1.5">
                   <div className="flex items-center justify-between gap-2">
                     <span className="min-w-0 flex-1 truncate text-sm text-[var(--sea-ink)]">
-                      {d.domain}
+                      {domainLabel}
                       {isImportant && (
                         <Badge variant="warning" className="ml-2 text-[10px]">
                           {t('results.importantDomains')}
@@ -173,12 +175,12 @@ function ResultsPage() {
         {/* Actions */}
         <div className="rise-in mt-6 flex flex-col gap-2.5 sm:flex-row" style={{ animationDelay: '160ms' }}>
           <Button asChild variant="primary" className="flex-1">
-            <Link to="/practice/$code" params={{ code: code_ }} className="no-underline">
+            <Link to="/practice/$code" params={{ code }} className="no-underline">
               <Dumbbell className="h-4 w-4" /> {t('results.practiceWeak')}
             </Link>
           </Button>
           <Button asChild variant="secondary" className="flex-1">
-            <Link to="/exam/$code" params={{ code: code_ }} className="no-underline">
+            <Link to="/exam/$code" params={{ code }} className="no-underline">
               <RotateCcw className="h-4 w-4" /> {t('results.tryAgain')}
             </Link>
           </Button>
@@ -192,7 +194,7 @@ function ResultsPage() {
         {/* Prep guide link */}
         <div className="rise-in mt-3" style={{ animationDelay: '180ms' }}>
           <a
-            href={getExamConfig(code_)?.prepGuideUrl ?? '#'}
+            href={getExamConfig(code)?.prepGuideUrl ?? '#'}
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--line)] bg-[var(--bg-subtle)] px-4 py-2.5 text-sm font-semibold text-[var(--sea-ink)] transition-all hover:bg-[var(--surface)]"
@@ -205,7 +207,7 @@ function ResultsPage() {
         {wrongCount > 0 && (
           <div className="rise-in mt-4" style={{ animationDelay: '200ms' }}>
             <Button asChild variant="secondary" className="w-full">
-              <Link to="/wrong-answers/$code" params={{ code: code_ }} className="no-underline">
+              <Link to="/wrong-answers/$code" params={{ code }} className="no-underline">
                 <BookOpen className="h-4 w-4" />
                 {t('wrongAnswers.viewJournal')} ({t('wrongAnswers.addedToJournal', { count: wrongCount })})
               </Link>

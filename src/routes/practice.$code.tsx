@@ -24,20 +24,21 @@ import Header from '../components/Header.tsx'
 import { Badge } from '../components/ui/badge.tsx'
 import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent } from '../components/ui/card.tsx'
+import { DomainListSkeleton } from '../components/ui/skeleton.tsx'
 import type { TranslationKey } from '../i18n/index.ts'
 import { useI18n } from '../i18n/index.ts'
+import type { DomainInfo } from '../lib/domains.ts'
 import { getKnowledgeChains } from '../lib/knowledge-chains.ts'
 import type { Question } from '../lib/question-types.ts'
-import {
-  getDomainCounts,
-  getDomains,
-  getFilteredQuestions,
-  getWrongAnswers,
-  saveWrongAnswer,
-} from '../lib/questions.ts'
+import { getDomainInfo, getFilteredQuestions, getWrongAnswers, saveWrongAnswer } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
-export const Route = createFileRoute('/practice/$code')({ component: PracticePage })
+export const Route = createFileRoute('/practice/$code')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    domainNumbers: typeof search.domainNumbers === 'string' ? search.domainNumbers : undefined,
+  }),
+  component: PracticePage,
+})
 
 const DIFFICULTY_KEYS: Record<number, TranslationKey> = {
   1: 'difficulty.1',
@@ -47,20 +48,29 @@ const DIFFICULTY_KEYS: Record<number, TranslationKey> = {
 
 function PracticePage() {
   const { code } = Route.useParams()
+  const { domainNumbers } = Route.useSearch()
   const navigate = useNavigate()
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const examCode = code.toUpperCase()
-  const [domains, setDomains] = useState<string[]>([])
-  const [domainCounts, setDomainCounts] = useState<Record<string, number>>({})
+  const [domains, setDomains] = useState<DomainInfo[]>([])
 
   useEffect(() => {
-    Promise.all([getDomains(examCode), getDomainCounts(examCode)]).then(([d, c]) => {
-      setDomains(d)
-      setDomainCounts(c)
+    let cancelled = false
+    setDomains([])
+    getDomainInfo(examCode, locale).then((domainInfo) => {
+      if (!cancelled) setDomains(domainInfo)
     })
-  }, [examCode])
+    return () => {
+      cancelled = true
+    }
+  }, [examCode, locale])
 
-  const [selectedDomains, setSelectedDomains] = useState<string[]>([])
+  const [selectedDomainNumbers, setSelectedDomainNumbers] = useState<number[]>(() =>
+    (domainNumbers ?? '')
+      .split(',')
+      .map(Number)
+      .filter((domainNumber) => Number.isInteger(domainNumber) && domainNumber > 0),
+  )
   const [selectedDifficulties, setSelectedDifficulties] = useState<number[]>([])
   const [questionCount, setQuestionCount] = useState<number | 'all'>(10)
   const [started, setStarted] = useState(false)
@@ -82,7 +92,7 @@ function PracticePage() {
 
   function startPractice() {
     getFilteredQuestions(examCode, {
-      domains: selectedDomains.length > 0 ? selectedDomains : undefined,
+      domainNumbers: selectedDomainNumbers.length > 0 ? selectedDomainNumbers : undefined,
       difficulties: selectedDifficulties.length > 0 ? selectedDifficulties : undefined,
       count: questionCount === 'all' ? undefined : questionCount,
     }).then((qs) => {
@@ -229,13 +239,17 @@ function PracticePage() {
                 {domains.length === 0 && <DomainListSkeleton />}
                 <div className="space-y-1">
                   {domains.map((d) => {
-                    const checked = selectedDomains.includes(d)
+                    const checked = selectedDomainNumbers.includes(d.domainNumber)
                     return (
                       <button
-                        key={d}
+                        key={d.domainNumber}
                         type="button"
                         onClick={() =>
-                          setSelectedDomains((prev) => (checked ? prev.filter((x) => x !== d) : [...prev, d]))
+                          setSelectedDomainNumbers((prev) =>
+                            checked
+                              ? prev.filter((domainNumber) => domainNumber !== d.domainNumber)
+                              : [...prev, d.domainNumber],
+                          )
                         }
                         className={cn(
                           'flex w-full items-center gap-3 rounded-xl border-[1.5px] px-4 py-3 text-left transition-all duration-200',
@@ -264,13 +278,13 @@ function PracticePage() {
                             </svg>
                           )}
                         </span>
-                        <span className="flex-1 text-sm text-[var(--sea-ink)]">{d}</span>
-                        <Badge>{domainCounts[d]}</Badge>
+                        <span className="flex-1 text-sm text-[var(--sea-ink)]">{d.label}</span>
+                        <Badge>{d.count}</Badge>
                       </button>
                     )
                   })}
                 </div>
-                {selectedDomains.length === 0 && (
+                {selectedDomainNumbers.length === 0 && (
                   <p className="mt-2 text-xs text-[var(--sea-ink-soft)]">{t('practice.all')}</p>
                 )}
               </div>
@@ -384,8 +398,10 @@ function PracticePage() {
 
           {/* Knowledge chains for practiced domains */}
           {(() => {
-            const practicedDomains = [...new Set(questions.map((q) => q.domain))]
-            const chains = getKnowledgeChains(examCode).filter((c) => practicedDomains.includes(c.domain))
+            const practicedDomainNumbers = new Set(questions.map((question) => question.domainNumber))
+            const chains = getKnowledgeChains(examCode).filter((chain) =>
+              practicedDomainNumbers.has(chain.domainNumber),
+            )
             if (chains.length === 0) return null
             return (
               <Card className="mt-8">

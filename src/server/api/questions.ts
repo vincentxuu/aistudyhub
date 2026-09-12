@@ -1,4 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
+import { canonicalizeDomain, type DomainInfo, getDomainLabel } from '../../lib/domains.ts'
 import type { Question, QuestionOption } from '../../lib/question-types.ts'
 import { getDB } from '../d1.ts'
 
@@ -30,6 +31,7 @@ interface QuestionRow {
 }
 
 function rowToQuestion(row: QuestionRow): Question {
+  const domainInfo = canonicalizeDomain(row.exam_code, row.domain, row.domain_number, row.lang)
   return {
     id: row.id,
     hash: row.hash,
@@ -38,8 +40,7 @@ function rowToQuestion(row: QuestionRow): Question {
     courseCode: null,
     seriesSlug: null,
     topicSlug: null,
-    domain: row.domain,
-    domainNumber: row.domain_number,
+    ...domainInfo,
     difficulty: row.difficulty as 1 | 2 | 3,
     type: row.type as 'single' | 'multi' | 'ordering' | 'matching',
     questionStyle: 'other',
@@ -72,7 +73,14 @@ export const fetchExamQuestions = createServerFn({ method: 'GET' })
     const db = await getDB()
     if (!db) return { ok: false as const, questions: [] as Question[] }
     const result = await db
-      .prepare('SELECT * FROM questions WHERE exam_code = ? AND lang = ?')
+      .prepare(
+        `SELECT * FROM questions
+         WHERE id IN (
+           SELECT MIN(id) FROM questions
+           WHERE exam_code = ? AND lang = ? AND domain_number > 0
+           GROUP BY hash
+         )`,
+      )
       .bind(data.examCode, data.lang)
       .all<QuestionRow>()
     return { ok: true as const, questions: result.results.map(rowToQuestion) }
@@ -82,17 +90,25 @@ export const fetchDomainInfo = createServerFn({ method: 'GET' })
   .validator((input: { examCode: string; lang: string }) => input)
   .handler(async ({ data }) => {
     const db = await getDB()
-    if (!db) return { ok: false as const, domains: [] as string[], counts: {} as Record<string, number> }
+    if (!db) return { ok: false as const, domains: [] as DomainInfo[] }
     const result = await db
       .prepare(
-        'SELECT domain, COUNT(*) as cnt FROM questions WHERE exam_code = ? AND lang = ? GROUP BY domain ORDER BY domain',
+        `SELECT domain_number, MIN(domain) AS fallback_label, COUNT(DISTINCT hash) AS cnt
+         FROM questions
+         WHERE exam_code = ? AND lang = ? AND domain_number > 0
+         GROUP BY domain_number
+         ORDER BY domain_number`,
       )
       .bind(data.examCode, data.lang)
-      .all<{ domain: string; cnt: number }>()
-    const domains = result.results.map((r) => r.domain)
-    const counts: Record<string, number> = {}
-    for (const r of result.results) counts[r.domain] = r.cnt
-    return { ok: true as const, domains, counts }
+      .all<{ domain_number: number; fallback_label: string; cnt: number }>()
+    const domains: DomainInfo[] = result.results.map(
+      (row: { domain_number: number; fallback_label: string; cnt: number }) => ({
+        domainNumber: row.domain_number,
+        label: getDomainLabel(data.examCode, row.domain_number, data.lang, row.fallback_label),
+        count: row.cnt,
+      }),
+    )
+    return { ok: true as const, domains }
   })
 
 export const fetchExamSet = createServerFn({ method: 'GET' })
@@ -111,14 +127,24 @@ export const fetchExamSet = createServerFn({ method: 'GET' })
 
     if (data.mode === 'diagnostic') {
       const domains = await db
-        .prepare('SELECT DISTINCT domain_number FROM questions WHERE exam_code = ? AND lang = ? ORDER BY domain_number')
+        .prepare(
+          `SELECT DISTINCT domain_number FROM questions
+           WHERE exam_code = ? AND lang = ? AND domain_number > 0
+           ORDER BY domain_number`,
+        )
         .bind(data.examCode, data.lang)
         .all<{ domain_number: number }>()
       const questions: Question[] = []
       for (const d of domains.results) {
         const batch = await db
           .prepare(
-            'SELECT * FROM questions WHERE exam_code = ? AND lang = ? AND domain_number = ? ORDER BY RANDOM() LIMIT 4',
+            `SELECT * FROM questions
+             WHERE id IN (
+               SELECT MIN(id) FROM questions
+               WHERE exam_code = ? AND lang = ? AND domain_number = ?
+               GROUP BY hash
+             )
+             ORDER BY RANDOM() LIMIT 4`,
           )
           .bind(data.examCode, data.lang, d.domain_number)
           .all<QuestionRow>()
@@ -132,7 +158,13 @@ export const fetchExamSet = createServerFn({ method: 'GET' })
       for (const w of data.domainWeights) {
         const batch = await db
           .prepare(
-            'SELECT * FROM questions WHERE exam_code = ? AND lang = ? AND domain_number = ? ORDER BY RANDOM() LIMIT ?',
+            `SELECT * FROM questions
+             WHERE id IN (
+               SELECT MIN(id) FROM questions
+               WHERE exam_code = ? AND lang = ? AND domain_number = ?
+               GROUP BY hash
+             )
+             ORDER BY RANDOM() LIMIT ?`,
           )
           .bind(data.examCode, data.lang, w.domainNumber, w.count)
           .all<QuestionRow>()
@@ -143,7 +175,15 @@ export const fetchExamSet = createServerFn({ method: 'GET' })
 
     const count = data.count || 65
     const result = await db
-      .prepare('SELECT * FROM questions WHERE exam_code = ? AND lang = ? ORDER BY RANDOM() LIMIT ?')
+      .prepare(
+        `SELECT * FROM questions
+         WHERE id IN (
+           SELECT MIN(id) FROM questions
+           WHERE exam_code = ? AND lang = ? AND domain_number > 0
+           GROUP BY hash
+         )
+         ORDER BY RANDOM() LIMIT ?`,
+      )
       .bind(data.examCode, data.lang, count)
       .all<QuestionRow>()
     return { ok: true as const, questions: result.results.map(rowToQuestion) }
@@ -151,28 +191,29 @@ export const fetchExamSet = createServerFn({ method: 'GET' })
 
 export const fetchFilteredQuestions = createServerFn({ method: 'GET' })
   .validator(
-    (input: { examCode: string; lang: string; domains?: string[]; difficulties?: number[]; count?: number }) => input,
+    (input: { examCode: string; lang: string; domainNumbers?: number[]; difficulties?: number[]; count?: number }) =>
+      input,
   )
   .handler(async ({ data }) => {
     const db = await getDB()
     if (!db) return { ok: false as const, questions: [] as Question[] }
 
-    let sql = 'SELECT * FROM questions WHERE exam_code = ? AND lang = ?'
+    let subquery = 'SELECT MIN(id) FROM questions WHERE exam_code = ? AND lang = ? AND domain_number > 0'
     const bindings: (string | number)[] = [data.examCode, data.lang]
 
-    if (data.domains && data.domains.length > 0) {
-      const placeholders = data.domains.map(() => '?').join(', ')
-      sql += ` AND domain IN (${placeholders})`
-      bindings.push(...data.domains)
+    if (data.domainNumbers && data.domainNumbers.length > 0) {
+      const placeholders = data.domainNumbers.map(() => '?').join(', ')
+      subquery += ` AND domain_number IN (${placeholders})`
+      bindings.push(...data.domainNumbers)
     }
 
     if (data.difficulties && data.difficulties.length > 0) {
       const placeholders = data.difficulties.map(() => '?').join(', ')
-      sql += ` AND difficulty IN (${placeholders})`
+      subquery += ` AND difficulty IN (${placeholders})`
       bindings.push(...data.difficulties)
     }
 
-    sql += ' ORDER BY RANDOM()'
+    let sql = `SELECT * FROM questions WHERE id IN (${subquery} GROUP BY hash) ORDER BY RANDOM()`
 
     if (data.count) {
       sql += ' LIMIT ?'
@@ -192,7 +233,12 @@ export const fetchQuestionsByIds = createServerFn({ method: 'GET' })
 
     const placeholders = data.ids.map(() => '?').join(', ')
     const result = await db
-      .prepare(`SELECT * FROM questions WHERE id IN (${placeholders})`)
+      .prepare(
+        `SELECT * FROM questions
+         WHERE id IN (
+           SELECT MIN(id) FROM questions WHERE id IN (${placeholders}) GROUP BY hash
+         )`,
+      )
       .bind(...data.ids)
       .all<QuestionRow>()
     return { ok: true as const, questions: result.results.map(rowToQuestion) }

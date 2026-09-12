@@ -9,33 +9,35 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card.
 import { Progress } from '../components/ui/progress.tsx'
 import { ExamCardSkeleton } from '../components/ui/skeleton.tsx'
 import { useI18n } from '../i18n/index.ts'
+import type { DomainInfo } from '../lib/domains.ts'
 import { getAllExamCodes, getExamConfig } from '../lib/exam-registry.ts'
-import { getDomainCounts, getExamQuestions } from '../lib/questions.ts'
+import { getDomainInfo, getExamQuestions } from '../lib/questions.ts'
 import { getUserStats } from '../lib/user-data.ts'
 
 export const Route = createFileRoute('/')({ component: HomePage })
 
 function ExamCard({ examKey, delay }: { examKey: string; delay: number }) {
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const config = getExamConfig(examKey)
   const [totalQuestions, setTotalQuestions] = useState(0)
-  const [sortedDomains, setSortedDomains] = useState<[string, number][]>([])
+  const [sortedDomains, setSortedDomains] = useState<DomainInfo[]>([])
   const [maxCount, setMaxCount] = useState(1)
 
   useEffect(() => {
     if (!config) return
     let cancelled = false
-    Promise.all([getExamQuestions(config.code), getDomainCounts(config.code)]).then(([questions, domainCounts]) => {
-      if (cancelled) return
-      setTotalQuestions(questions.length)
-      const sorted = Object.entries(domainCounts).sort(([a], [b]) => a.localeCompare(b))
-      setSortedDomains(sorted)
-      setMaxCount(Math.max(...Object.values(domainCounts), 1))
-    })
+    Promise.all([getExamQuestions(config.code, locale), getDomainInfo(config.code, locale)]).then(
+      ([questions, domains]) => {
+        if (cancelled) return
+        setTotalQuestions(questions.length)
+        setSortedDomains(domains)
+        setMaxCount(Math.max(...domains.map((domain) => domain.count), 1))
+      },
+    )
     return () => {
       cancelled = true
     }
-  }, [config])
+  }, [config, locale])
 
   if (!config) return null
   if (sortedDomains.length === 0) return <ExamCardSkeleton />
@@ -71,16 +73,16 @@ function ExamCard({ examKey, delay }: { examKey: string; delay: number }) {
         </div>
 
         <div className="space-y-2.5">
-          {sortedDomains.map(([domain, count], i) => (
-            <div key={domain} className="space-y-1">
+          {sortedDomains.map((domain) => (
+            <div key={domain.domainNumber} className="space-y-1">
               <div className="flex items-baseline justify-between gap-2 text-sm">
                 <span className="min-w-0 text-[var(--sea-ink)]">
-                  <span className="mr-1.5 font-mono text-xs text-[var(--sea-ink-soft)]">D{i + 1}</span>
-                  {domain}
+                  <span className="mr-1.5 font-mono text-xs text-[var(--sea-ink-soft)]">D{domain.domainNumber}</span>
+                  {domain.label}
                 </span>
-                <span className="shrink-0 font-mono text-xs font-bold text-[var(--sea-ink-soft)]">{count}</span>
+                <span className="shrink-0 font-mono text-xs font-bold text-[var(--sea-ink-soft)]">{domain.count}</span>
               </div>
-              <Progress value={count} max={maxCount} />
+              <Progress value={domain.count} max={maxCount} />
             </div>
           ))}
         </div>

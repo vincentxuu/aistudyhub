@@ -1,4 +1,13 @@
-import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Dumbbell, ExternalLink, Target } from '@sketchyicons/react'
+import {
+  ArrowLeft,
+  BookOpen,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Dumbbell,
+  ExternalLink,
+  Target,
+} from '@sketchyicons/react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useCallback, useEffect, useState } from 'react'
 import { QuestionView } from '../components/exam/QuestionView.tsx'
@@ -10,6 +19,7 @@ import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import { QuestionSkeleton } from '../components/ui/skeleton.tsx'
 import { useI18n } from '../i18n/index.ts'
+import { getDomainLabel } from '../lib/domains.ts'
 import { getExamConfig } from '../lib/exam-registry.ts'
 import type { Question } from '../lib/question-types.ts'
 import { getDiagnosticSet } from '../lib/questions.ts'
@@ -19,7 +29,7 @@ export const Route = createFileRoute('/diagnostic/$code')({ component: Diagnosti
 
 function DiagnosticPage() {
   const { code } = Route.useParams()
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const examConfig = getExamConfig(code)
   const examCode = code.toUpperCase()
 
@@ -28,12 +38,17 @@ function DiagnosticPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
+    let cancelled = false
     setLoading(true)
-    getDiagnosticSet(examCode).then((qs) => {
+    getDiagnosticSet(examCode, locale).then((qs) => {
+      if (cancelled) return
       setQuestions(qs)
       setLoading(false)
     })
-  }, [examCode])
+    return () => {
+      cancelled = true
+    }
+  }, [examCode, locale])
   const [answers, setAnswers] = useState<Record<string, string[]>>({})
   const [revealed, setRevealed] = useState<Set<string>>(new Set())
   const [finished, setFinished] = useState(false)
@@ -138,10 +153,11 @@ function DiagnosticPage() {
 
   // === RESULTS VIEW ===
   if (finished) {
-    const domainResults = new Map<string, { domain: string; domainNumber: number; correct: number; total: number }>()
+    const domainResults = new Map<number, { domain: string; domainNumber: number; correct: number; total: number }>()
     for (const q of questions) {
-      const entry = domainResults.get(q.domain) || {
-        domain: q.domain,
+      if (q.domainNumber <= 0) continue
+      const entry = domainResults.get(q.domainNumber) || {
+        domain: getDomainLabel(examCode, q.domainNumber, locale, q.domain),
         domainNumber: q.domainNumber,
         correct: 0,
         total: 0,
@@ -151,7 +167,7 @@ function DiagnosticPage() {
       const isCorrect =
         selected.length === q.correctAnswers.length && selected.every((a) => q.correctAnswers.includes(a))
       if (isCorrect) entry.correct++
-      domainResults.set(q.domain, entry)
+      domainResults.set(q.domainNumber, entry)
     }
 
     const sorted = [...domainResults.values()].sort((a, b) => a.domainNumber - b.domainNumber)
@@ -161,7 +177,7 @@ function DiagnosticPage() {
 
     const weakDomains = sorted.filter((d) => d.correct / d.total < 0.5)
     const strongDomains = sorted.filter((d) => d.correct / d.total >= 0.75)
-    const weakDomainNames = weakDomains.map((d) => d.domain)
+    const weakDomainNumbers = weakDomains.map((domain) => domain.domainNumber)
 
     return (
       <>
@@ -277,7 +293,7 @@ function DiagnosticPage() {
             <div className="flex flex-col gap-2.5 sm:flex-row">
               {weakDomains.length > 0 && (
                 <Button asChild variant="primary" className="flex-1">
-                  <Link to="/practice/$code" params={{ code }} search={{ domains: weakDomainNames.join(',') }}>
+                  <Link to="/practice/$code" params={{ code }} search={{ domainNumbers: weakDomainNumbers.join(',') }}>
                     <Dumbbell className="h-4 w-4" />
                     {t('diagnostic.practiceWeak')}
                   </Link>

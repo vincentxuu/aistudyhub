@@ -43,3 +43,7 @@ export function getKnowledgeChains(examCode: string): KnowledgeChain[] {
 export function getChainForDomain(examCode: string, domain: string): KnowledgeChain | undefined {
   return getKnowledgeChains(examCode).find((c) => c.domain === domain)
 }
+
+export function getChainForDomainNumber(examCode: string, domainNumber: number): KnowledgeChain | undefined {
+  return getKnowledgeChains(examCode).find((chain) => chain.domainNumber === domainNumber)
+}

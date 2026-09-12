@@ -14,6 +14,7 @@ const steps = [
   { name: 'biome check', command: 'npx @biomejs/biome check src/' },
   { name: 'lint:ui', command: 'bash scripts/lint-ui.sh' },
   { name: 'lint:questions', command: 'node scripts/lint-questions.mjs' },
+  { name: 'domain parser regression', command: 'node scripts/verify-question-domain-parser.mjs' },
   { name: 'build', command: 'npx vite build' },
 ]
 

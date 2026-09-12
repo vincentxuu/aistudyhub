@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
 import { nanoid } from 'nanoid'
+import { canonicalizeDomain, getDomainLabel } from './domains.js'
 import type { Format, Question, QuestionOption } from './question-types.js'
 
 function normalize(text: string): string {
@@ -84,12 +85,38 @@ function extractCorrectAnswers(answerBlock: string): string[] {
   return single ? [single[1]] : []
 }
 
-const DOMAIN_MAP: Record<number, string> = {
-  1: 'Fundamentals of AI and ML',
-  2: 'Fundamentals of Generative AI',
-  3: 'Applications of Foundation Models',
-  4: 'Guidelines for Responsible AI',
-  5: 'Security, Compliance, and Governance for AI Solutions',
+const DOMAIN_MAP = Object.fromEntries(
+  [1, 2, 3, 4, 5].map((domainNumber) => [domainNumber, getDomainLabel('AIF-C01', domainNumber, 'en')]),
+) as Record<number, string>
+
+interface DomainSection {
+  offset: number
+  domain: string
+  domainNumber: number
+}
+
+function findDomainSections(content: string): DomainSection[] {
+  const sections: DomainSection[] = []
+  const headerRegex = /^(?:#{1,6}\s*)?(?:Domain\s+([1-9])|第\s*([1-9])\s*章)\s*(?:[-—:：]|\s)/gim
+  let match
+  while ((match = headerRegex.exec(content)) !== null) {
+    const domainNumber = parseInt(match[1] || match[2], 10)
+    sections.push({
+      offset: match.index,
+      domain: DOMAIN_MAP[domainNumber] || `Domain ${domainNumber}`,
+      domainNumber,
+    })
+  }
+  return sections
+}
+
+function domainAtOffset(sections: DomainSection[], offset: number): { domain: string; domainNumber: number } {
+  let result = { domain: 'Unknown', domainNumber: 0 }
+  for (const section of sections) {
+    if (section.offset > offset) break
+    result = { domain: section.domain, domainNumber: section.domainNumber }
+  }
+  return result
 }
 
 function guessDomain(text: string): { domain: string; domainNumber: number } {
@@ -173,10 +200,18 @@ function parseFormatA(content: string, filename: string): Partial<Question>[] {
 // --- Format B parser ---
 function parseFormatB(content: string, filename: string): Partial<Question>[] {
   const questions: Partial<Question>[] = []
-  const blocks = content.split(/^## Question \d+/m).filter((b) => b.trim())
+  const domainSections = findDomainSections(content)
+  const questionHeaderRegex = /^## Question \d+/gm
+  const questionStarts: number[] = []
+  let questionMatch
+  while ((questionMatch = questionHeaderRegex.exec(content)) !== null) questionStarts.push(questionMatch.index)
 
-  for (const block of blocks) {
-    const domainInfo = guessDomain(block)
+  for (let index = 0; index < questionStarts.length; index++) {
+    const start = questionStarts[index]
+    const end = index + 1 < questionStarts.length ? questionStarts[index + 1] : content.length
+    const block = content.slice(start, end).replace(/^## Question \d+\s*/, '')
+    const sectionDomain = domainAtOffset(domainSections, start)
+    const domainInfo = sectionDomain.domainNumber > 0 ? sectionDomain : guessDomain(block)
 
     const keyTermsMatch = block.match(/🔑\s*題幹關鍵字[^`]*`([^`]+)`/)
     const keyTerms = keyTermsMatch ? keyTermsMatch[1].split(/[、,]/).map((t) => t.trim()) : []
@@ -281,11 +316,11 @@ function parseFormatC(content: string, filename: string): Partial<Question>[] {
   }
 
   for (const line of lines) {
-    const domainHeader = line.match(/^##\s+Domain\s+(\d)[:\s]/i)
+    const domainHeader = line.match(/^#{1,6}\s+(?:Domain\s+(\d)|第\s*(\d)\s*章)(?:[-—:：\s])/i)
     if (domainHeader) {
       flushBlock()
       currentBlock = ''
-      const num = parseInt(domainHeader[1], 10)
+      const num = parseInt(domainHeader[1] || domainHeader[2], 10)
       currentDomain = { domain: DOMAIN_MAP[num] || `Domain ${num}`, domainNumber: num }
       continue
     }
@@ -450,7 +485,7 @@ function parseFormatD(
       correctAnswers,
       type: type as 'single' | 'multi' | 'ordering' | 'matching',
       domain: qDomain.domain || domainFromMeta,
-      domainNumber: qDomainNumber || 3,
+      domainNumber: qDomainNumber,
       difficulty: diffMatch ? (parseInt(diffMatch[1], 10) as 1 | 2 | 3) : 1,
       hint: hintMatch ? hintMatch[1].trim() : null,
       explanation: explMatch ? explMatch[1].trim() : null,
@@ -470,26 +505,8 @@ function parseFormatD(
 function parseFormatG(content: string, filename: string): Partial<Question>[] {
   const questions: Partial<Question>[] = []
 
-  // Pre-scan for domain sections (## Domain N: ...)
-  const domainSections: { offset: number; domain: string; domainNumber: number }[] = []
-  const domainHeaderRegex = /^## Domain\s+(\d)[:\s]/gim
-  let dm
-  while ((dm = domainHeaderRegex.exec(content)) !== null) {
-    const num = parseInt(dm[1], 10)
-    domainSections.push({
-      offset: dm.index,
-      domain: DOMAIN_MAP[num] || `Domain ${num}`,
-      domainNumber: num,
-    })
-  }
-
-  function domainAtOffset(offset: number): { domain: string; domainNumber: number } {
-    let result = { domain: 'Unknown', domainNumber: 0 }
-    for (const ds of domainSections) {
-      if (ds.offset <= offset) result = { domain: ds.domain, domainNumber: ds.domainNumber }
-    }
-    return result
-  }
+  // Pre-scan for one- or multi-hash English/Chinese domain headings.
+  const domainSections = findDomainSections(content)
 
   // Split by ### Q markers, keeping track of offset
   const qRegex = /^### Q\d+/gm
@@ -504,7 +521,7 @@ function parseFormatG(content: string, filename: string): Partial<Question>[] {
     const end = i + 1 < qStarts.length ? qStarts[i + 1] : content.length
     const block = content.slice(start, end).replace(/^### Q\d+\s*/, '')
 
-    const currentDomain = domainAtOffset(start)
+    const currentDomain = domainAtOffset(domainSections, start)
 
     // Extract stem: text before first option line (handles * A., - A., A. styles)
     const optionStart = block.search(/\n[\s*-]*[A-F][.)]\s+\S/)
@@ -546,18 +563,17 @@ function parseFormatG(content: string, filename: string): Partial<Question>[] {
 // --- Format I parser (Q1. stem + 解答：X + 解析：text, plain text) ---
 function parseFormatI(content: string, filename: string): Partial<Question>[] {
   const questions: Partial<Question>[] = []
-  let currentDomain = { domain: 'Unknown', domainNumber: 0 }
+  const domainSections = findDomainSections(content)
+  const questionRegex = /^Q\d+\.\s/gm
+  const questionStarts: number[] = []
+  let questionMatch
+  while ((questionMatch = questionRegex.exec(content)) !== null) questionStarts.push(questionMatch.index)
 
-  // Split by Q-number markers
-  const parts = content.split(/(?=Q\d+\.\s)/)
-
-  for (const part of parts) {
-    // Check for domain headers within the part
-    const domainInfo = guessDomain(part)
-    if (domainInfo.domainNumber > 0) currentDomain = domainInfo
-
-    const qMatch = part.match(/^Q\d+\.\s/)
-    if (!qMatch) continue
+  for (let index = 0; index < questionStarts.length; index++) {
+    const start = questionStarts[index]
+    const end = index + 1 < questionStarts.length ? questionStarts[index + 1] : content.length
+    const part = content.slice(start, end)
+    const currentDomain = domainAtOffset(domainSections, start)
 
     // Split into question part and answer part
     const answerSplit = part.split(/^解答[：:]\s*/m)
@@ -709,9 +725,12 @@ export function parseQuestions(
   const lang = overrides.lang ?? (content.includes('答案') ? 'zh-TW' : 'en')
   const track = overrides.examCode ? 'certification' : overrides.courseCode ? 'course' : 'certification'
 
-  return rawQuestions.map((q) => {
+  const normalizedQuestions: Question[] = rawQuestions.map((q) => {
     const correctAnswers = q.correctAnswers || []
     const hash = questionHash(q.stem || '', correctAnswers, lang)
+    const domainInfo = overrides.examCode
+      ? canonicalizeDomain(overrides.examCode, q.domain, q.domainNumber, lang)
+      : { domain: q.domain || 'Unknown', domainNumber: q.domainNumber || 0 }
 
     return {
       id: nanoid(12),
@@ -721,8 +740,7 @@ export function parseQuestions(
       courseCode: overrides.courseCode || null,
       seriesSlug: overrides.seriesSlug || null,
       topicSlug: null,
-      domain: q.domain || 'Unknown',
-      domainNumber: q.domainNumber || 0,
+      ...domainInfo,
       difficulty: q.difficulty || 1,
       type: q.type || 'single',
       questionStyle: 'other',
@@ -748,6 +766,15 @@ export function parseQuestions(
       lang,
     }
   })
+
+  if (overrides.examCode?.toUpperCase() === 'AIF-C01') {
+    const invalid = normalizedQuestions.find((q) => q.domainNumber === 0)
+    if (invalid) {
+      throw new Error(`${filename}: AIF-C01 question is missing a recognized domain: "${invalid.stem.slice(0, 80)}"`)
+    }
+  }
+
+  return normalizedQuestions
 }
 
 export function dedup(allQuestions: Question[]): {

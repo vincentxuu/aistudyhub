@@ -8,6 +8,7 @@ import { Button } from '../components/ui/button.tsx'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import { useI18n } from '../i18n/index.ts'
+import { getDomainLabel, resolveDomainNumber } from '../lib/domains.ts'
 import type { ExamResult } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
@@ -135,7 +136,7 @@ function ScoreTrendChart({ results }: { results: ExamResult[] }) {
 }
 
 function StatsPage() {
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const [results] = useState(loadExamResults)
 
   const totalExams = results.length
@@ -144,17 +145,24 @@ function StatsPage() {
   const avgScore = totalExams > 0 ? Math.round(results.reduce((sum, r) => sum + r.score, 0) / totalExams) : 0
   const totalTimeMs = results.reduce((sum, r) => sum + r.timeTakenMs, 0)
 
-  const domainStats = new Map<string, { correct: number; total: number }>()
+  const domainStats = new Map<string, { domain: string; correct: number; total: number }>()
   for (const r of results) {
     for (const d of r.domainBreakdown) {
-      const existing = domainStats.get(d.domain) || { correct: 0, total: 0 }
+      const domainNumber = d.domainNumber ?? resolveDomainNumber(r.examCode, d.domain)
+      const key = `${r.examCode}:${domainNumber || d.domain}`
+      const existing = domainStats.get(key) || {
+        domain: getDomainLabel(r.examCode, domainNumber, locale, d.domain),
+        correct: 0,
+        total: 0,
+      }
       existing.correct += d.correct
       existing.total += d.total
-      domainStats.set(d.domain, existing)
+      domainStats.set(key, existing)
     }
   }
   const domainEntries = [...domainStats.entries()]
-    .map(([domain, { correct, total }]) => ({
+    .map(([key, { domain, correct, total }]) => ({
+      key,
       domain,
       correct,
       total,
@@ -285,7 +293,7 @@ function StatsPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               {weakDomains.map((d) => (
-                <div key={d.domain} className="space-y-1">
+                <div key={d.key} className="space-y-1">
                   <div className="flex items-center justify-between gap-2 text-sm">
                     <span className="min-w-0 truncate text-[var(--sea-ink)]">{d.domain}</span>
                     <span className="shrink-0 font-mono text-xs font-bold text-[var(--wrong)]">
@@ -308,7 +316,7 @@ function StatsPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {domainEntries.map((d) => (
-              <div key={d.domain} className="space-y-1">
+              <div key={d.key} className="space-y-1">
                 <div className="flex items-center justify-between gap-2 text-sm">
                   <span className="min-w-0 truncate text-[var(--sea-ink)]">{d.domain}</span>
                   <span

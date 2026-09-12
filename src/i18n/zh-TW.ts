@@ -9,7 +9,7 @@ export default {
   'landing.questions': '{count} 題',
   'landing.mockExam': '模擬考試（{count} 題）',
   'landing.practice': '練習模式',
-  'landing.domains': '個 Domain',
+  'landing.domains': '個領域',
 
   // Exam
   'exam.title': '模擬考試',
@@ -30,11 +30,11 @@ export default {
 
   // Practice
   'practice.simulateExam': '模擬真實考試',
-  'practice.simulateExamDesc': '65 題 · 90 分鐘 · 依照真實考試 Domain 比例出題',
+  'practice.simulateExamDesc': '65 題 · 90 分鐘 · 依照真實考試領域比例出題',
   'practice.or': '或',
   'practice.customPractice': '自訂練習',
   'practice.title': '練習模式',
-  'practice.selectDomains': '選擇 Domain',
+  'practice.selectDomains': '選擇領域',
   'practice.selectDifficulty': '選擇難度',
   'practice.questionCount': '題數',
   'practice.all': '全部',
@@ -57,7 +57,7 @@ export default {
   'results.fail': '未通過',
   'results.score': '得分',
   'results.passingScore': '及格分數：{score}%',
-  'results.domainBreakdown': 'Domain 分析',
+  'results.domainBreakdown': '領域分析',
   'results.questionReview': '逐題回顧',
   'results.showAll': '全部',
   'results.showWrong': '只看錯題',
@@ -70,8 +70,8 @@ export default {
   // Diagnostic
   'diagnostic.title': '診斷測驗',
   'diagnostic.subtitle': '20 題快速找出你的弱項',
-  'diagnostic.weakAreas': '建議加強的 Domain',
-  'diagnostic.strongAreas': '已掌握的 Domain',
+  'diagnostic.weakAreas': '建議加強的領域',
+  'diagnostic.strongAreas': '已掌握的領域',
   'diagnostic.recommendation': '建議穩定 85% 以上再報名考試',
   'diagnostic.practiceWeak': '練習弱項',
   'diagnostic.readGuide': '閱讀備考指南',
@@ -129,7 +129,7 @@ export default {
 
   // Knowledge Chain
   'knowledgeChain.title': '知識鏈',
-  'knowledgeChain.description': '用一條鏈記住整個 Domain',
+  'knowledgeChain.description': '用一條鏈記住整個領域',
 
   // Tips
   'tips.longStem': '長題幹技巧：從倒數第二句開始讀，確認問的是什麼，再回頭看情境。',
@@ -183,8 +183,8 @@ export default {
   'stats.studyTime': '學習時長',
   'stats.accuracy': '整體正確率',
   'stats.scoreTrend': '分數趨勢',
-  'stats.weakDomains': '需加強 Domain',
-  'stats.domainStrength': '各 Domain 正確率',
+  'stats.weakDomains': '需加強領域',
+  'stats.domainStrength': '各領域正確率',
   'stats.recentActivity': '最近考試紀錄',
 
   // Sync

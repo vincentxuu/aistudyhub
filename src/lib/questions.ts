@@ -1,4 +1,5 @@
 import { getStoredLocale } from '../i18n/index.ts'
+import type { DomainInfo } from './domains.ts'
 import { getExamConfig } from './exam-registry.ts'
 import type { Question } from './question-types.ts'
 
@@ -16,7 +17,7 @@ export async function getExamQuestions(examCode: string, lang?: string): Promise
   return []
 }
 
-export async function getDomains(examCode: string, lang?: string): Promise<string[]> {
+export async function getDomainInfo(examCode: string, lang?: string): Promise<DomainInfo[]> {
   const l = currentLang(lang)
   try {
     const { fetchDomainInfo } = await import('../server/api/questions.ts')
@@ -26,14 +27,14 @@ export async function getDomains(examCode: string, lang?: string): Promise<strin
   return []
 }
 
+/** @deprecated Prefer getDomainInfo so labels and counts are fetched together. */
+export async function getDomains(examCode: string, lang?: string): Promise<string[]> {
+  return (await getDomainInfo(examCode, lang)).map((domain) => domain.label)
+}
+
+/** @deprecated Prefer getDomainInfo so labels and counts are fetched together. */
 export async function getDomainCounts(examCode: string, lang?: string): Promise<Record<string, number>> {
-  const l = currentLang(lang)
-  try {
-    const { fetchDomainInfo } = await import('../server/api/questions.ts')
-    const result = await fetchDomainInfo({ data: { examCode, lang: l } })
-    if (result.ok) return result.counts
-  } catch {}
-  return {}
+  return Object.fromEntries((await getDomainInfo(examCode, lang)).map((domain) => [domain.label, domain.count]))
 }
 
 export async function getRealisticExamSet(examCode: string, lang?: string): Promise<Question[]> {
@@ -98,7 +99,7 @@ export async function getDiagnosticSet(examCode: string, lang?: string): Promise
 export async function getFilteredQuestions(
   examCode: string,
   options: {
-    domains?: string[]
+    domainNumbers?: number[]
     difficulties?: number[]
     count?: number
     lang?: string
@@ -111,7 +112,7 @@ export async function getFilteredQuestions(
       data: {
         examCode,
         lang: l,
-        domains: options.domains,
+        domainNumbers: options.domainNumbers,
         difficulties: options.difficulties,
         count: options.count,
       },
@@ -119,8 +120,8 @@ export async function getFilteredQuestions(
     if (result.ok && result.questions.length > 0) return result.questions
   } catch {}
   let pool = await getExamQuestions(examCode, l)
-  if (options.domains && options.domains.length > 0) {
-    pool = pool.filter((q) => options.domains!.includes(q.domain))
+  if (options.domainNumbers && options.domainNumbers.length > 0) {
+    pool = pool.filter((q) => options.domainNumbers!.includes(q.domainNumber))
   }
   if (options.difficulties && options.difficulties.length > 0) {
     pool = pool.filter((q) => options.difficulties!.includes(q.difficulty))
@@ -174,6 +175,7 @@ export interface ExamResult {
   completedAt: string
   domainBreakdown: {
     domain: string
+    domainNumber?: number
     correct: number
     total: number
     percentage: number
@@ -222,18 +224,22 @@ export function computeResult(session: {
   const correctCount = questionResults.filter((r) => r.isCorrect).length
   const totalQuestions = session.questions.length
 
-  const domainMap = new Map<string, { correct: number; total: number }>()
+  const questionsById = new Map(session.questions.map((question) => [question.id, question]))
+  const domainMap = new Map<number, { domain: string; correct: number; total: number }>()
   for (const r of questionResults) {
-    const entry = domainMap.get(r.domain) || { correct: 0, total: 0 }
+    const question = questionsById.get(r.questionId)
+    if (!question || question.domainNumber <= 0) continue
+    const entry = domainMap.get(question.domainNumber) || { domain: r.domain, correct: 0, total: 0 }
     entry.total++
     if (r.isCorrect) entry.correct++
-    domainMap.set(r.domain, entry)
+    domainMap.set(question.domainNumber, entry)
   }
 
   const domainBreakdown = [...domainMap.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([domain, { correct, total }]) => ({
+    .sort(([a], [b]) => a - b)
+    .map(([domainNumber, { domain, correct, total }]) => ({
       domain,
+      domainNumber,
       correct,
       total,
       percentage: Math.round((correct / total) * 100),

@@ -11,8 +11,9 @@ import { Progress } from '../components/ui/progress.tsx'
 import { DomainListSkeleton } from '../components/ui/skeleton.tsx'
 import type { TranslationKey } from '../i18n/index.ts'
 import { useI18n } from '../i18n/index.ts'
+import type { DomainInfo } from '../lib/domains.ts'
 import type { Question } from '../lib/question-types.ts'
-import { getDomainCounts, getDomains, getFilteredQuestions } from '../lib/questions.ts'
+import { getDomainInfo, getFilteredQuestions } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
 export const Route = createFileRoute('/study/$code')({ component: StudyPage })
@@ -64,19 +65,22 @@ function AccordionSection({
 
 function StudyPage() {
   const { code } = Route.useParams()
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const examCode = code.toUpperCase()
-  const [domains, setDomains] = useState<string[]>([])
-  const [domainCounts, setDomainCounts] = useState<Record<string, number>>({})
+  const [domains, setDomains] = useState<DomainInfo[]>([])
 
   useEffect(() => {
-    Promise.all([getDomains(examCode), getDomainCounts(examCode)]).then(([d, c]) => {
-      setDomains(d)
-      setDomainCounts(c)
+    let cancelled = false
+    setDomains([])
+    getDomainInfo(examCode, locale).then((domainInfo) => {
+      if (!cancelled) setDomains(domainInfo)
     })
-  }, [examCode])
+    return () => {
+      cancelled = true
+    }
+  }, [examCode, locale])
 
-  const [selectedDomains, setSelectedDomains] = useState<string[]>([])
+  const [selectedDomainNumbers, setSelectedDomainNumbers] = useState<number[]>([])
   const [richOnly, setRichOnly] = useState(true)
   const [questionCount, setQuestionCount] = useState<number | 'all'>(25)
   const [started, setStarted] = useState(false)
@@ -88,7 +92,7 @@ function StudyPage() {
 
   function startStudy() {
     getFilteredQuestions(examCode, {
-      domains: selectedDomains.length > 0 ? selectedDomains : undefined,
+      domainNumbers: selectedDomainNumbers.length > 0 ? selectedDomainNumbers : undefined,
       count: questionCount === 'all' ? undefined : questionCount,
     }).then((qs) => {
       if (richOnly) {
@@ -192,16 +196,18 @@ function StudyPage() {
                 <div className="space-y-2">
                   {domains.map((domain) => (
                     <button
-                      key={domain}
+                      key={domain.domainNumber}
                       type="button"
                       onClick={() => {
-                        setSelectedDomains((prev) =>
-                          prev.includes(domain) ? prev.filter((d) => d !== domain) : [...prev, domain],
+                        setSelectedDomainNumbers((prev) =>
+                          prev.includes(domain.domainNumber)
+                            ? prev.filter((domainNumber) => domainNumber !== domain.domainNumber)
+                            : [...prev, domain.domainNumber],
                         )
                       }}
                       className={cn(
                         'flex w-full items-center gap-3 rounded-lg border-[1.5px] px-4 py-3 text-left text-sm transition-all duration-200',
-                        selectedDomains.includes(domain)
+                        selectedDomainNumbers.includes(domain.domainNumber)
                           ? 'border-[var(--selected-border)] bg-[var(--selected-bg)]'
                           : 'border-[var(--line)] bg-transparent hover:border-[var(--hover-border)]',
                       )}
@@ -209,23 +215,23 @@ function StudyPage() {
                       <span
                         className={cn(
                           'flex h-5 w-5 shrink-0 items-center justify-center rounded border text-xs transition-colors',
-                          selectedDomains.includes(domain)
+                          selectedDomainNumbers.includes(domain.domainNumber)
                             ? 'border-[var(--lagoon)] bg-[var(--lagoon)] text-[var(--palm)]'
                             : 'border-[var(--line)]',
                         )}
                       >
-                        {selectedDomains.includes(domain) && '✓'}
+                        {selectedDomainNumbers.includes(domain.domainNumber) && '✓'}
                       </span>
-                      <span className="flex-1 text-[var(--sea-ink)]">{domain}</span>
+                      <span className="flex-1 text-[var(--sea-ink)]">{domain.label}</span>
                       <Badge variant="default" className="font-mono text-xs">
-                        {domainCounts[domain] || 0}
+                        {domain.count}
                       </Badge>
                     </button>
                   ))}
                 </div>
                 <button
                   type="button"
-                  onClick={() => setSelectedDomains([])}
+                  onClick={() => setSelectedDomainNumbers([])}
                   className="mt-2 text-xs text-[var(--sea-ink-soft)] hover:underline"
                 >
                   {t('practice.all')}

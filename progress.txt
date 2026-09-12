@@ -3,10 +3,10 @@ Last updated: 2026-09-12
 ## Current Status
 - Live at: https://aistudyhub.vincent-xu-work.workers.dev
 - GitHub: https://github.com/vincentxuu/aistudyhub
-- 2,360 questions across 4 certifications, bilingual (zh-TW + en)
-  - AIF-C01: 1,020 zh-TW + 950 en (100% metadata: hint/trap/mnemonic)
-  - CCAO-F (Claude Certified Associate): 65 zh-TW + 65 en
-  - NCA-GENL (NVIDIA): 65 zh-TW + 65 en
+- 2,241 questions across 4 certifications
+  - AIF-C01: 955 zh-TW + 962 en
+  - CCAO-F (Claude Certified Associate): 65 en
+  - NCA-GENL (NVIDIA): 65 zh-TW + 64 en
   - AI-103 (Microsoft): 65 zh-TW + 65 en
 - 5 modes: Mock Exam, Practice, Study (answer-first + progressive reveal), Diagnostic, Wrong Answer Journal
 - Settings page with export/import JSON, language toggle, theme toggle
@@ -38,10 +38,11 @@ Last updated: 2026-09-12
 - [x] Format F parser + import merge mode
 - [x] Bilingual support — all questions filtered by UI language
 - [x] Study mode redesign — answer-first + progressive reveal
+- [x] Domain taxonomy repair — locale-aware labels, numeric filtering, parser guard, and normalized AIF-C01 data
 
 ## Known Issues
 - questions.json bundled client-side (4.3MB) — should move to D1 or code-split
-- AIF-C01 has 70 more en than zh-TW (950 vs 1020) — some translations are duplicated pairs
+- AIF-C01 has 7 more en than zh-TW (962 vs 955)
 
 ## Next (prioritized)
 - P1: GitHub OAuth login + cross-device sync

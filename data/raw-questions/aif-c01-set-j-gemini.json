@@ -25,7 +25,9 @@
     ],
     "explanation": "Amazon SageMaker Canvas provides a visual point-and-click interface that allows business analysts to generate accurate ML predictions without writing any code.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which AWS service provides API access to foundation models (FMs) from Amazon and third-party AI companies without managing infrastructure?",
@@ -53,7 +55,9 @@
     ],
     "explanation": "Amazon Bedrock is a fully managed service that offers choice of high-performing foundation models via a single API.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "A business wants to restrict its Generative AI application from generating toxic content or answering off-topic queries. Which feature in Amazon Bedrock fulfills this requirement?",
@@ -81,7 +85,9 @@
     ],
     "explanation": "Amazon Bedrock Guardrails allows users to implement customized safeguards based on use cases and responsible AI policies.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Guidelines for Responsible AI",
+    "domainNumber": 4
   },
   {
     "stem": "Which Machine Learning concept refers to fine-tuning a model on a domain-specific dataset by retrieving relevant documents from a knowledge store during inference?",
@@ -109,7 +115,9 @@
     ],
     "explanation": "RAG combines foundation models with internal data repositories to deliver contextualized, accurate answers.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "An AI practitioner needs to analyze the potential bias in a dataset before training a model in SageMaker. Which feature should they use?",
@@ -137,7 +145,9 @@
     ],
     "explanation": "Amazon SageMaker Clarify provides developers with visibility into training data and models so they can identify bias and explain predictions.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Guidelines for Responsible AI",
+    "domainNumber": 4
   },
   {
     "stem": "Which metric evaluates how closely a machine translation model's output matches a human reference translation?",
@@ -165,7 +175,9 @@
     ],
     "explanation": "BLEU (Bilingual Evaluation Understudy) is an algorithm for evaluating the quality of text translated from one natural language to another.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "A developer wants an AI coding assistant integrated directly into their IDE to generate code suggestions. Which AWS service should they use?",
@@ -193,7 +205,9 @@
     ],
     "explanation": "Amazon Q Developer (formerly Amazon CodeWhisperer) assists developers by suggesting code snippets and entire functions in real-time within the IDE.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which of the following is a key consideration of Responsible AI according to AWS principles?",
@@ -221,7 +235,9 @@
     ],
     "explanation": "Responsible AI focuses on safety, security, fairness, transparency, explainability, and governance.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Guidelines for Responsible AI",
+    "domainNumber": 4
   },
   {
     "stem": "What is the primary function of Amazon Bedrock Knowledge Bases?",
@@ -249,7 +265,9 @@
     ],
     "explanation": "Amazon Bedrock Knowledge Bases automates the RAG process by connecting FMs to data sources like S3.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which metric measures the balance between Precision and Recall in binary classification tasks?",
@@ -277,7 +295,9 @@
     ],
     "explanation": "F1 Score is the harmonic mean of Precision and Recall.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "A media company needs to extract text from scanned PDFs and tables automatically. Which service is best suited?",
@@ -305,7 +325,9 @@
     ],
     "explanation": "Amazon Textract automatically extracts printed text, handwriting, and layout data from documents.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "A call center wants to analyze customer sentiments from recorded phone calls. Which combination of AWS services should be used?",
@@ -333,7 +355,9 @@
     ],
     "explanation": "Amazon Transcribe converts audio to text, and Amazon Comprehend analyzes the sentiment of the transcribed text.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What phenomenon occurs when a Large Language Model generates plausible-sounding but factually incorrect information?",
@@ -361,7 +385,9 @@
     ],
     "explanation": "Hallucination occurs when an AI model outputs information that seems confident and real but is ungrounded or incorrect.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which technique adjusts a small subset of parameters in a Foundation Model to adapt it to a specialized task while saving computing resources?",
@@ -389,7 +415,9 @@
     ],
     "explanation": "PEFT techniques (like LoRA) fine-tune a small set of extra model parameters without updating all base model weights.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "A retail company wants to forecast daily product demand using historical time-series data. Which managed service should they use?",
@@ -417,7 +445,9 @@
     ],
     "explanation": "Amazon Forecast is a managed service that uses ML to deliver highly accurate time-series forecasts.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which metric evaluates the fluency and content overlap of summarized text against human-written summaries?",
@@ -445,7 +475,9 @@
     ],
     "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is commonly used to evaluate automatic summarization tasks.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "In Prompt Engineering, providing a model with a few examples of input-output pairs before asking the target question is called:",
@@ -473,7 +505,9 @@
     ],
     "explanation": "Few-shot prompting provides a few demonstrations to guide the model towards the desired behavior.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which prompt technique encourages LLMs to solve complex reasoning tasks by breaking them down into intermediate step-by-step reasoning?",
@@ -501,7 +535,9 @@
     ],
     "explanation": "Chain-of-Thought prompting prompts the model to articulate intermediate reasoning steps before arriving at a final answer.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "An enterprise wants to deploy an AI search engine across its internal Confluence, SharePoint, and S3 buckets. Which AWS service is purpose-built for enterprise intelligence search?",
@@ -529,7 +565,9 @@
     ],
     "explanation": "Amazon Kendra is an intelligent enterprise search service powered by machine learning.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is the primary purpose of Amazon SageMaker Model Monitor?",
@@ -557,7 +595,9 @@
     ],
     "explanation": "SageMaker Model Monitor continuously monitors the quality of AWS Machine Learning models in production.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "According to the AWS Shared Responsibility Model for Generative AI on Amazon Bedrock, who is responsible for securing customer data ingested into Knowledge Bases?",
@@ -585,7 +625,9 @@
     ],
     "explanation": "Under the AWS Shared Responsibility Model, customers are responsible for data classification, encryption settings, and access control.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "domainNumber": 5
   },
   {
     "stem": "Which Amazon Bedrock feature allows execution of multistep business workflows, such as booking flights or querying databases autonomously?",
@@ -613,7 +655,9 @@
     ],
     "explanation": "Agents for Amazon Bedrock execute multistep tasks across company systems and data sources autonomously.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "A developer needs to convert speech/audio streams into written text real-time in multiple languages. Which service should they choose?",
@@ -641,7 +685,9 @@
     ],
     "explanation": "Amazon Transcribe uses advanced deep learning technologies to convert spoken audio into text.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "A healthcare system wants to build conversational voice chatbots for patient scheduling. Which service powers interactive conversational bots?",
@@ -669,7 +715,9 @@
     ],
     "explanation": "Amazon Lex is a service for building conversational interfaces into any application using voice and text.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which type of machine learning model architecture forms the core foundation of modern Large Language Models (LLMs)?",
@@ -697,7 +745,9 @@
     ],
     "explanation": "Transformer architecture, based on self-attention mechanisms, powers modern generative LLMs.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which metric measures how well a language model predicts a sample of text (where lower values indicate better prediction performance)?",
@@ -725,7 +775,9 @@
     ],
     "explanation": "Perplexity measures how well a probability distribution or probability model predicts a sample. Lower perplexity indicates the model is better at predicting.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "What is 'Temperature' in the context of LLM inference configuration?",
@@ -753,7 +805,9 @@
     ],
     "explanation": "Higher temperature leads to more creative/random outputs, while lower temperature makes the response more deterministic.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "What does Top-P (Nucleus Sampling) control in generative language generation?",
@@ -781,7 +835,9 @@
     ],
     "explanation": "Top-P sampling selects tokens from the smallest subset of options whose combined probability reaches P.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which term describes a model performing poorly on new, unseen data because it learned training data noise too closely?",
@@ -809,7 +865,9 @@
     ],
     "explanation": "Overfitting occurs when a machine learning model fits exact training data too closely and struggles with general validation sets.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is the process of breaking text strings down into smaller units (such as words or subwords) before feeding them into an LLM?",
@@ -837,7 +895,9 @@
     ],
     "explanation": "Tokenization breaks input text into tokens (words or sub-words) suitable for computational processing.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which vector database capability allows Amazon OpenSearch Service and Amazon Bedrock Knowledge Bases to search documents by semantic meaning?",
@@ -865,7 +925,9 @@
     ],
     "explanation": "Vector embeddings represent semantic meanings, enabling k-Nearest Neighbor (k-NN) similarity searches.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "A financial firm wants to prevent Personally Identifiable Information (PII) like SSNs from leaking through model responses. Which Bedrock feature provides automatic PII redaction?",
@@ -893,7 +955,9 @@
     ],
     "explanation": "Amazon Bedrock Guardrails includes sensitive information filters to detect and redact PII.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "domainNumber": 5
   },
   {
     "stem": "Which AWS service converts written text into lifelike speech using deep learning?",
@@ -921,7 +985,9 @@
     ],
     "explanation": "Amazon Polly turns text into lifelike speech.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is the primary benefit of Model Quantization for Large Language Models?",
@@ -949,7 +1015,9 @@
     ],
     "explanation": "Quantization reduces precision of weights, dramatically saving memory and speeding up inference with minimal loss in accuracy.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which AWS framework/card provides standardized information about AWS AI models' safety, performance, and operational bounds?",
@@ -977,7 +1045,9 @@
     ],
     "explanation": "AWS AI Service Cards are transparent documentation resources that outline intended use cases, limitations, and ethical considerations.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Guidelines for Responsible AI",
+    "domainNumber": 4
   },
   {
     "stem": "A organization needs to automatically label millions of images with custom bounding boxes. Which AWS SageMaker solution provides human-in-the-loop data labeling?",
@@ -1005,7 +1075,9 @@
     ],
     "explanation": "Amazon SageMaker Ground Truth helps build accurate training datasets using machine learning and human annotators.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which technique leverages feedback from human evaluators to align foundation model outputs with human preferences and safety guidelines?",
@@ -1033,7 +1105,9 @@
     ],
     "explanation": "RLHF uses human preferences to optimize model fine-tuning toward desired ethical and conversational behaviors.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "What is the purpose of a System Prompt in Generative AI interactions?",
@@ -1061,7 +1135,9 @@
     ],
     "explanation": "System prompts define the persona, constraints, and overarching tone for how the LLM should respond.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which AWS managed service provides personalized product recommendations based on user interaction histories?",
@@ -1089,7 +1165,9 @@
     ],
     "explanation": "Amazon Personalize enables developers to build applications with real-time personalized recommendations.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "When training an ML model, what is the term for data held back from training to evaluate model generalization performance during training rounds?",
@@ -1117,7 +1195,9 @@
     ],
     "explanation": "The validation dataset provides an unbiased evaluation of a model fit while tuning hyperparameters.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which computer vision service offers automated video and image analysis, such as detecting facial attributes and unsafe content?",
@@ -1145,7 +1225,9 @@
     ],
     "explanation": "Amazon Rekognition makes it easy to add image and video analysis to your applications.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "In classification tasks, what metric calculates the proportion of true positive predictions among all positive predictions made by the model?",
@@ -1173,7 +1255,9 @@
     ],
     "explanation": "Precision = True Positives / (True Positives + False Positives).",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What security strategy ensures that Bedrock foundation models do NOT train on customer proprietary data?",
@@ -1201,7 +1285,9 @@
     ],
     "explanation": "Amazon Bedrock ensures customer data remains private; inputs and outputs are not used to train base models or shared with third parties.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "domainNumber": 5
   },
   {
     "stem": "Which AWS service acts as a generative AI assistant for software development, helping write, test, and debug code inside AWS console and IDEs?",
@@ -1229,7 +1315,9 @@
     ],
     "explanation": "Amazon Q Developer is tailor-made to assist developers with coding, debugging, and cloud optimization tasks.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which AWS generative AI solution can answer business questions based on corporate data connectors (e.g., Salesforce, Slack, Gmail)?",
@@ -1257,7 +1345,9 @@
     ],
     "explanation": "Amazon Q Business is a fully managed generative AI assistant configured to answer questions based on internal company enterprise data.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which metric evaluates continuous numerical predictions by averaging the squared differences between predicted values and actual values?",
@@ -1285,7 +1375,9 @@
     ],
     "explanation": "MSE is a standard evaluation metric for regression problems measuring average squared residuals.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is 'Model Drift'?",
@@ -1313,7 +1405,9 @@
     ],
     "explanation": "Model drift occurs when changes in target variables or statistical properties of inputs lower model accuracy over time.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which AWS service handles end-to-end data preparation, cleaning, and visual feature engineering for machine learning pipelines?",
@@ -1341,7 +1435,9 @@
     ],
     "explanation": "SageMaker Data Wrangler simplifies and accelerates the process of data preparation and feature engineering.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is the primary trade-off when increasing the Context Window size in Large Language Models?",
@@ -1369,7 +1465,9 @@
     ],
     "explanation": "Larger context windows allow processing longer inputs but demand significantly more GPU memory and compute processing.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which technique involves distilling knowledge from a large model into a smaller, faster model to reduce deployment costs?",
@@ -1397,7 +1495,9 @@
     ],
     "explanation": "Model Distillation trains a smaller 'student' model to reproduce the performance of a large 'teacher' model.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "What attack vector occurs when an attacker crafts input text designed to bypass system safety controls or manipulate LLM output instructions?",
@@ -1425,7 +1525,9 @@
     ],
     "explanation": "Prompt injection involves designing malicious inputs to trick an LLM into ignoring system guardrails or executing untrusted code.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "domainNumber": 5
   },
   {
     "stem": "Which AWS feature provides dedicated throughput capacity for Amazon Bedrock models to guarantee consistent response times during peak traffic?",
@@ -1453,7 +1555,9 @@
     ],
     "explanation": "Provisioned Throughput guarantees dedicated processing capacity for high-volume or critical workloads on Bedrock.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which AWS ML service automatically creates, trains, and tunes the best machine learning models based on tabular raw data?",
@@ -1481,7 +1585,9 @@
     ],
     "explanation": "SageMaker Autopilot automates AutoML tasks like feature engineering, algorithm selection, and hyperparameter optimization.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is an 'Embedding' in Machine Learning?",
@@ -1509,7 +1615,9 @@
     ],
     "explanation": "Embeddings represent numerical vector representations of complex inputs where similar concepts sit closer together in vector space.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which security measure ensures data sent between client applications and Amazon Bedrock models is protected in transit?",
@@ -1537,7 +1645,9 @@
     ],
     "explanation": "Data in transit to and from Amazon Bedrock endpoints is always encrypted using Transport Layer Security (TLS).",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "domainNumber": 5
   },
   {
     "stem": "What type of generative AI model is primarily used for creating realistic synthetic images and digital media from text descriptions?",
@@ -1565,7 +1675,9 @@
     ],
     "explanation": "Diffusion models (e.g., Stable Diffusion) excel at converting text prompts into high-quality images.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of Generative AI",
+    "domainNumber": 2
   },
   {
     "stem": "Which cost-optimization pricing option for Amazon EC2 offers up to 90% discount for fault-tolerant batch ML training jobs?",
@@ -1593,7 +1705,9 @@
     ],
     "explanation": "EC2 Spot Instances take advantage of unused EC2 capacity with steep discounts, ideal for fault-tolerant ML workloads.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "Which metric calculates the total proportion of correct predictions (both true positives and true negatives) out of all total test predictions?",
@@ -1621,7 +1735,9 @@
     ],
     "explanation": "Accuracy measures total correct predictions divided by total predictions made.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is 'Hallucination Mitigation' in Generative AI architectures?",
@@ -1649,7 +1765,9 @@
     ],
     "explanation": "Combining RAG (verifiable context), guardrails, and deterministic parameters helps reduce ungrounded outputs.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which AWS service provides an enterprise translation service delivering fast, high-quality, and customizable language translation?",
@@ -1677,7 +1795,9 @@
     ],
     "explanation": "Amazon Translate is a neural machine translation service that delivers fast and high-quality translation.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "A business wants to ensure their generative AI applications do not violate copyright laws. Which Amazon Bedrock feature offers customer protection against copyright claims for foundation model outputs?",
@@ -1705,7 +1825,9 @@
     ],
     "explanation": "AWS provides copyright indemnification coverage for customers using standard Bedrock foundation models.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "domainNumber": 5
   },
   {
     "stem": "What is the function of 'Stop Sequences' in LLM generation configurations?",
@@ -1733,7 +1855,9 @@
     ],
     "explanation": "Stop sequences tell the model to cease generating text as soon as the specified character or string is encountered.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   },
   {
     "stem": "Which AWS capability allows central management and governance of feature datasets used across multiple machine learning models?",
@@ -1761,7 +1885,9 @@
     ],
     "explanation": "Amazon SageMaker Feature Store is a fully managed repository to store, update, search, and share ML features.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1
   },
   {
     "stem": "What is the core purpose of Model Explainability tools like SageMaker Clarify?",
@@ -1789,7 +1915,9 @@
     ],
     "explanation": "Explainability identifies feature importance values (e.g., via SHAP values) behind model decisions.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Guidelines for Responsible AI",
+    "domainNumber": 4
   },
   {
     "stem": "In the context of generative AI evaluation, what does Human-in-the-Loop (HITL) refer to?",
@@ -1817,6 +1945,8 @@
     ],
     "explanation": "HITL ensures human expertise is incorporated into dataset creation, evaluation, model oversight, and validation cycles.",
     "difficulty": 1,
-    "tags": []
+    "tags": [],
+    "domain": "Applications of Foundation Models",
+    "domainNumber": 3
   }
 ]
