@@ -1,4 +1,7 @@
+import { rpgEn } from './rpg.ts'
+
 export default {
+  ...rpgEn,
   // Site
   'site.name': 'AI Exam Prep',
   'site.tagline': 'Learn by testing',

@@ -15,6 +15,7 @@ import { Route as StatsRouteImport } from './routes/stats'
 import { Route as DiagnosticCodeRouteImport } from './routes/diagnostic.$code'
 import { Route as ExamCodeRouteImport } from './routes/exam.$code'
 import { Route as PracticeCodeRouteImport } from './routes/practice.$code'
+import { Route as RpgCodeRouteImport } from './routes/rpg.$code'
 import { Route as StudyCodeRouteImport } from './routes/study.$code'
 import { Route as WrongAnswersCodeRouteImport } from './routes/wrong-answers.$code'
 import { Route as ExamCodeResultsSessionIdRouteImport } from './routes/exam.$code_.results.$sessionId'
@@ -49,6 +50,11 @@ const PracticeCodeRoute = PracticeCodeRouteImport.update({
   path: '/practice/$code',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RpgCodeRoute = RpgCodeRouteImport.update({
+  id: '/rpg/$code',
+  path: '/rpg/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudyCodeRoute = StudyCodeRouteImport.update({
   id: '/study/$code',
   path: '/study/$code',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
+  '/rpg/$code': typeof RpgCodeRoute
   '/study/$code': typeof StudyCodeRoute
   '/wrong-answers/$code': typeof WrongAnswersCodeRoute
   '/exam/$code/results/$sessionId': typeof ExamCodeResultsSessionIdRoute
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
+  '/rpg/$code': typeof RpgCodeRoute
   '/study/$code': typeof StudyCodeRoute
   '/wrong-answers/$code': typeof WrongAnswersCodeRoute
   '/exam/$code/results/$sessionId': typeof ExamCodeResultsSessionIdRoute
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/diagnostic/$code': typeof DiagnosticCodeRoute
   '/exam/$code': typeof ExamCodeRoute
   '/practice/$code': typeof PracticeCodeRoute
+  '/rpg/$code': typeof RpgCodeRoute
   '/study/$code': typeof StudyCodeRoute
   '/wrong-answers/$code': typeof WrongAnswersCodeRoute
   '/exam/$code_/results/$sessionId': typeof ExamCodeResultsSessionIdRoute
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
+    | '/rpg/$code'
     | '/study/$code'
     | '/wrong-answers/$code'
     | '/exam/$code/results/$sessionId'
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
+    | '/rpg/$code'
     | '/study/$code'
     | '/wrong-answers/$code'
     | '/exam/$code/results/$sessionId'
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/diagnostic/$code'
     | '/exam/$code'
     | '/practice/$code'
+    | '/rpg/$code'
     | '/study/$code'
     | '/wrong-answers/$code'
     | '/exam/$code_/results/$sessionId'
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   DiagnosticCodeRoute: typeof DiagnosticCodeRoute
   ExamCodeRoute: typeof ExamCodeRoute
   PracticeCodeRoute: typeof PracticeCodeRoute
+  RpgCodeRoute: typeof RpgCodeRoute
   StudyCodeRoute: typeof StudyCodeRoute
   WrongAnswersCodeRoute: typeof WrongAnswersCodeRoute
   ExamCodeResultsSessionIdRoute: typeof ExamCodeResultsSessionIdRoute
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeCodeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rpg/$code': {
+      id: '/rpg/$code'
+      path: '/rpg/$code'
+      fullPath: '/rpg/$code'
+      preLoaderRoute: typeof RpgCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/study/$code': {
       id: '/study/$code'
       path: '/study/$code'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiagnosticCodeRoute: DiagnosticCodeRoute,
   ExamCodeRoute: ExamCodeRoute,
   PracticeCodeRoute: PracticeCodeRoute,
+  RpgCodeRoute: RpgCodeRoute,
   StudyCodeRoute: StudyCodeRoute,
   WrongAnswersCodeRoute: WrongAnswersCodeRoute,
   ExamCodeResultsSessionIdRoute: ExamCodeResultsSessionIdRoute,

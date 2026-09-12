@@ -1,0 +1,1484 @@
+[
+  {
+    "id": "INOs_iFCbm-Y",
+    "hash": "de7e4bd6f94c830e",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "下列何者最能區分「監督式學習」與「非監督式學習」？",
+    "keyTerms": [],
+    "options": [
+      {
+        "label": "A",
+        "text": "監督式學習使用有標籤資料，非監督式學習使用無標籤資料",
+        "feedback": "✓ 有無標籤是最核心差異"
+      },
+      {
+        "label": "B",
+        "text": "監督式學習只能做分類，非監督式只能做回歸",
+        "feedback": "✗ 兩者都不限於單一任務"
+      },
+      {
+        "label": "C",
+        "text": "兩者完全相同",
+        "feedback": "✗ 兩者有本質區別"
+      },
+      {
+        "label": "D",
+        "text": "非監督式學習一定需要 GPU",
+        "feedback": "✗ GPU 非必要條件"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": null,
+    "explanation": "監督式學習的核心特徵是使用有標籤資料（每筆資料都有正確答案），模型從中學習輸入到輸出的映射。非監督式學習使用無標籤資料，模型自行發現資料中的結構與模式。這是兩者最根本的區別。",
+    "whyOthersWrong": "監督式學習可做分類也可做迴歸，非監督式學習做聚類而非迴歸。兩者有明確區別，且是否需要 GPU 取決於模型和資料規模，與學習類型無直接關係。",
+    "trap": null,
+    "mnemonic": null,
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-f-compact.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "references": [
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "正確，因為有無標籤資料是監督式與非監督式學習最本質的區別。",
+      "B": "錯誤，因為監督式也能做迴歸，非監督式不做迴歸而是做聚類。",
+      "C": "錯誤，因為兩者有明確的區別，並不相同。",
+      "D": "錯誤，因為非監督式學習不一定需要 GPU，取決於資料量與模型複雜度。"
+    },
+    "plainExplanation": "監督式學習就像有老師批改的考卷（有標準答案），非監督式學習就像自己整理房間（沒人告訴你怎麼分類，自己找規律）。",
+    "familyId": "aif-learning-supervised",
+    "conceptId": "learning-paradigms",
+    "contentVersion": "c14bf6a12faa44a8"
+  },
+  {
+    "id": "G0gPDv6Ewo60",
+    "hash": "3225f72b5add6cef",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "Which of the following best distinguishes 'supervised learning' from 'unsupervised learning'?",
+    "keyTerms": [
+      "supervised learning",
+      "unsupervised learning"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Supervised learning uses labeled data, while unsupervised learning uses unlabeled data",
+        "feedback": "the fundamental distinction is that supervised l…"
+      },
+      {
+        "label": "B",
+        "text": "Supervised learning can only do classification, while unsupervised learning can only do regression",
+        "feedback": "\"Supervised learning can only d…\" does not addre…"
+      },
+      {
+        "label": "C",
+        "text": "They are completely identical",
+        "feedback": "\"They are completely identical\" does not address…"
+      },
+      {
+        "label": "D",
+        "text": "Unsupervised learning always requires a GPU",
+        "feedback": "\"Unsupervised learning always r…\" does not addre…"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": "Supervised learning requires labeled training data — consider what distinguishes these two approaches.",
+    "explanation": "The fundamental distinction is that supervised learning trains on labeled data (input-output pairs) to learn a mapping function, while unsupervised learning discovers patterns in unlabeled data without predefined outputs.",
+    "whyOthersWrong": "B) Supervised learning handles both classification and regression; unsupervised handles clustering and dimensionality reduction. C) They are fundamentally different approaches. D) GPU requirements depend on model complexity, not the learning paradigm.",
+    "trap": "Don't be misled by option B — supervised learning handles regression too (e.g., predicting house prices), not just classification.",
+    "mnemonic": "Supervised = labeled data, Unsupervised = unlabeled data",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-f-compact.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "en",
+    "plainExplanation": "In simple terms, the fundamental distinction is that supervised learning trains on labeled data (input-output pairs) to learn a mapping f….",
+    "optionAnalysis": {
+      "A": "Correct, because the fundamental distinction is that supervised learning trains on labeled data (input-output pairs) to learn a mapping function, while unsupervised learning discovers patterns in unlabeled data without predefined outputs.",
+      "B": "Wrong, \"Supervised learning can only d…\" does not address what the question asks.",
+      "C": "Wrong, \"They are completely identical\" does not address what the question asks.",
+      "D": "Wrong, \"Unsupervised learning always r…\" does not address what the question asks."
+    },
+    "references": [
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-learning-supervised",
+    "conceptId": "learning-paradigms",
+    "contentVersion": "c14bf6a12faa44a8"
+  },
+  {
+    "id": "1pE7DjsFuA4Q",
+    "hash": "18af7aa773a4854b",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "下列何者屬於非監督式學習常見應用？",
+    "keyTerms": [],
+    "options": [
+      {
+        "label": "A",
+        "text": "分類已知標籤資料",
+        "feedback": "✗ 已知標籤=監督式學習"
+      },
+      {
+        "label": "B",
+        "text": "聚類未標籤客戶行為",
+        "feedback": "✓ 聚類未標籤資料=非監督式經典應用"
+      },
+      {
+        "label": "C",
+        "text": "強化學習遊戲策略",
+        "feedback": "✗ 強化學習是獨立類型"
+      },
+      {
+        "label": "D",
+        "text": "監督式回歸預測",
+        "feedback": "✗ 回歸預測=監督式學習"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "hint": null,
+    "explanation": "非監督式學習（Unsupervised Learning）用於處理未標籤資料，常見應用包括聚類（Clustering）、降維和異常偵測。聚類未標籤的客戶行為資料，將客戶分群以發現行為模式，是典型的非監督式學習應用。",
+    "whyOthersWrong": "分類已知標籤資料（A）和回歸預測（D）都需要標籤資料，屬於監督式學習。強化學習（C）是第三種學習範式，通過獎勵信號學習，不歸類為非監督式。只有聚類未標籤資料（B）才是非監督式學習。",
+    "trap": null,
+    "mnemonic": null,
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-compact.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "references": [
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      },
+      {
+        "title": "What is Reinforcement Learning?",
+        "url": "https://aws.amazon.com/what-is/reinforcement-learning/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "錯誤，因為分類已知標籤資料屬於監督式學習（Supervised Learning），不是非監督式。",
+      "B": "正確，因為聚類未標籤客戶行為是非監督式學習的經典應用。",
+      "C": "錯誤，因為強化學習（Reinforcement Learning）是獨立的學習類型，不屬於非監督式。",
+      "D": "錯誤，因為監督式回歸預測屬於監督式學習，需要標籤資料。"
+    },
+    "plainExplanation": "非監督式學習就像把一堆沒有標籤的襪子按顏色和花紋自動分堆——你沒告訴它怎麼分，它自己找出相似的放一起。",
+    "familyId": "aif-learning-clustering",
+    "conceptId": "learning-paradigms",
+    "contentVersion": "896eaf6e2bd1ec40"
+  },
+  {
+    "id": "TDdwwaeXf40i",
+    "hash": "56dba18a2440bf41",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "Which of the following is a common application of unsupervised learning?",
+    "keyTerms": [
+      "supervised",
+      "unsupervised",
+      "reinforcement learning",
+      "classification"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Classifying labeled data",
+        "feedback": "✗ That's supervised learning"
+      },
+      {
+        "label": "B",
+        "text": "Clustering unlabeled customer behavior",
+        "feedback": "✓ Clustering unlabeled data = unsupervised"
+      },
+      {
+        "label": "C",
+        "text": "Reinforcement learning game strategies",
+        "feedback": "✗ RL is a separate paradigm"
+      },
+      {
+        "label": "D",
+        "text": "Supervised regression prediction",
+        "feedback": "✗ Regression needs labels"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "hint": "This is a fundamental ML concept question",
+    "explanation": "Unsupervised learning works with unlabeled data to discover hidden patterns and structures. Clustering—grouping similar data points together—is its most common application. Examples include customer segmentation, anomaly detection, and topic modeling. Supervised learning (classification, regression) requires labeled data, while reinforcement learning uses reward signals.",
+    "whyOthersWrong": "Classifying labeled data (A) is supervised learning. Reinforcement learning (C) is a third paradigm where agents learn through trial-and-error with reward signals. Supervised regression (D) predicts continuous values from labeled training data.",
+    "trap": "\"Classifying labeled data\" is a distractor; choose \"Clustering unlabeled behavior\"",
+    "mnemonic": "Fundamentals: Unsupervised = clustering unlabeled data",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-compact.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "en",
+    "references": [
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      },
+      {
+        "title": "What is Reinforcement Learning?",
+        "url": "https://aws.amazon.com/what-is/reinforcement-learning/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "Wrong, because classifying labeled data is supervised learning by definition.",
+      "B": "Correct, because clustering unlabeled data is the textbook example of unsupervised learning.",
+      "C": "Wrong, because reinforcement learning is a separate paradigm using rewards, not unsupervised.",
+      "D": "Wrong, because supervised regression requires labeled data with continuous target values."
+    },
+    "plainExplanation": "Unsupervised learning is like sorting a mixed bag of coins by size and color without anyone telling you the categories—the algorithm discovers the groups on its own.",
+    "familyId": "aif-learning-clustering",
+    "conceptId": "learning-paradigms",
+    "contentVersion": "896eaf6e2bd1ec40"
+  },
+  {
+    "id": "NmyiK--J8vEj",
+    "hash": "12a9070d53692470",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 2,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "一家公司有 100 筆已標註的客服工單和 50,000 筆未標註的工單。哪種學習方法可以同時利用兩者？",
+    "keyTerms": [
+      "半監督式學習",
+      "已標註與未標註"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "僅使用監督式學習",
+        "feedback": "監督式學習只使用已標註資料，忽略了 50,000…"
+      },
+      {
+        "label": "B",
+        "text": "僅使用非監督式學習",
+        "feedback": "非監督式忽略了 100 筆寶貴的已標註範例"
+      },
+      {
+        "label": "C",
+        "text": "半監督式學習 (Semi-supervised Learning)",
+        "feedback": "半監督式學習結合少量已標註資料與大量未標註資料"
+      },
+      {
+        "label": "D",
+        "text": "基於規則的分類",
+        "feedback": "基於規則的方法不透過學習來利用任一類資料"
+      }
+    ],
+    "correctAnswers": [
+      "C"
+    ],
+    "hint": "如果你可以用少量已標註範例加上大量未標註資料呢？",
+    "explanation": "半監督式學習結合少量已標註資料與大量未標註資料。它通常從未標註資料中學習底層資料結構，並使用已標註範例來引導分類。當標註成本高昂但未標註資料量大時，這是很實用的方法。",
+    "whyOthersWrong": "A) 監督式學習只使用已標註資料，忽略了 50,000 筆未標註範例。B) 非監督式忽略了 100 筆寶貴的已標註範例。D) 基於規則的方法不透過學習來利用任一類資料。",
+    "trap": "因為未標註資料「沒有標籤」就捨棄它——半監督式方法能從未標註資料的底層模式中擷取價值。",
+    "mnemonic": "半監督式 = 兩全其美。少量標籤 + 大量未標註 = 高效學習。",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-e.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "plainExplanation": "半監督式學習結合少量已標註資料與大量未標註資料。",
+    "optionAnalysis": {
+      "A": "錯誤，因為監督式學習只使用已標註資料，忽略了 50,000 筆未標註範例。",
+      "B": "錯誤，因為非監督式忽略了 100 筆寶貴的已標註範例。",
+      "C": "正確，因為半監督式學習結合少量已標註資料與大量未標註資料。",
+      "D": "錯誤，因為基於規則的方法不透過學習來利用任一類資料。"
+    },
+    "references": [
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      }
+    ],
+    "familyId": "aif-learning-semi-supervised",
+    "conceptId": "learning-paradigms",
+    "contentVersion": "bbc1a5b42cdc2583"
+  },
+  {
+    "id": "6mZi7mfymvmz",
+    "hash": "0af3b723b0b33126",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 2,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "A company has 100 labeled customer support tickets and 50,000 unlabeled ones. Which learning approach can leverage BOTH?",
+    "keyTerms": [
+      "semi-supervised-learning",
+      "labeled-unlabeled"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Supervised learning only",
+        "feedback": "supervised learning uses only labeled data, …"
+      },
+      {
+        "label": "B",
+        "text": "Unsupervised learning only",
+        "feedback": "unsupervised ignores the 100 valuable labele…"
+      },
+      {
+        "label": "C",
+        "text": "Semi-supervised learning",
+        "feedback": "semi-supervised learning combines a small am…"
+      },
+      {
+        "label": "D",
+        "text": "Rule-based classification",
+        "feedback": "rule-based doesn't leverage either data type…"
+      }
+    ],
+    "correctAnswers": [
+      "C"
+    ],
+    "hint": "What if you could use a small number of labeled examples plus a large number of unlabeled ones?",
+    "explanation": "Semi-supervised learning combines a small amount of labeled data with a large amount of unlabeled data. It typically learns the underlying data structure from unlabeled data and uses labeled examples to guide classification. This is practical when labeling is expensive but unlabeled data is abundant.",
+    "whyOthersWrong": "A) Supervised learning uses only labeled data, ignoring the 50,000 unlabeled examples. B) Unsupervised ignores the 100 valuable labeled examples. D) Rule-based doesn't leverage either data type through learning.",
+    "trap": "Discarding unlabeled data because it \"has no labels\" — semi-supervised methods extract value from the underlying patterns in unlabeled data.",
+    "mnemonic": "Semi-supervised = the best of both worlds. Few labels + many unlabeled = efficient learning.",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-e.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "en",
+    "plainExplanation": "Semi-supervised = the best of both worlds. Few labels + many unlabeled = efficient learning.",
+    "optionAnalysis": {
+      "A": "Wrong, because supervised learning uses only labeled data, ignoring the 50,000 unlabeled examples.",
+      "B": "Wrong, because unsupervised ignores the 100 valuable labeled examples.",
+      "D": "Wrong, because rule-based doesn't leverage either data type through learning.",
+      "C": "Correct, because semi-supervised learning combines a small amount of labeled data with a large amount of unlabeled data."
+    },
+    "references": [
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      }
+    ],
+    "familyId": "aif-learning-semi-supervised",
+    "conceptId": "learning-paradigms",
+    "contentVersion": "bbc1a5b42cdc2583"
+  },
+  {
+    "id": "SN-k65e6Jlga",
+    "hash": "3c9eaaab376a36f6",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 2,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "哪個描述最能區分 training 與 inference？",
+    "keyTerms": [
+      "Learn parameters",
+      "Prediction"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Training 產生預測；inference 更新模型權重",
+        "feedback": "Training 透過資料更新模型參數"
+      },
+      {
+        "label": "B",
+        "text": "Training 學習模型參數；inference 使用模型產生結果",
+        "feedback": "Training 透過資料更新模型參數；Inferen…"
+      },
+      {
+        "label": "C",
+        "text": "Training 只能使用文字；inference 可以使用圖片",
+        "feedback": "Training 透過資料更新模型參數"
+      },
+      {
+        "label": "D",
+        "text": "Training 一定發生在本地端",
+        "feedback": "Training 透過資料更新模型參數"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "hint": "Training 是學習，Inference 是使用。",
+    "explanation": "Training 透過資料更新模型參數；Inference 使用已訓練好的模型做預測或生成。\n\n**其他選項為什麼不對：** 其餘敘述都把角色顛倒或加入不存在的限制。",
+    "whyOthersWrong": "** 其餘敘述都把角色顛倒或加入不存在的限制。",
+    "trap": "常見陷阱：只背服務名稱，沒有先抓題幹中的需求關鍵字。",
+    "mnemonic": "**Training vs Inference：先認需求關鍵字，再選概念或 AWS 服務。**",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-full.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "plainExplanation": "簡單來說，Training 透過資料更新模型參數；Inference 使用已訓練好的模型做預測或生成。",
+    "optionAnalysis": {
+      "A": "錯誤，Training 透過資料更新模型參數。",
+      "B": "正確，因為Training 透過資料更新模型參數；Inference 使用已訓練好的模型做預測或生成。",
+      "C": "錯誤，Training 透過資料更新模型參數。",
+      "D": "錯誤，Training 透過資料更新模型參數。"
+    },
+    "references": [
+      {
+        "title": "Training ML Models",
+        "url": "https://docs.aws.amazon.com/machine-learning/latest/dg/training-ml-models.html"
+      },
+      {
+        "title": "Deploy models for inference",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-lifecycle-training",
+    "conceptId": "model-lifecycle",
+    "contentVersion": "7fb102cf5a4205bc"
+  },
+  {
+    "id": "5l2tCsYbKVNv",
+    "hash": "64e740be4c56f914",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 2,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "Which description best distinguishes training from inference?",
+    "keyTerms": [
+      "Learn parameters",
+      "Prediction"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Training produces predictions; inference updates model weights",
+        "feedback": "✗ not applicable to this scenario."
+      },
+      {
+        "label": "B",
+        "text": "Training learns model parameters; inference uses the model to produce results",
+        "feedback": "✓ Correct"
+      },
+      {
+        "label": "C",
+        "text": "Training can only use text; inference can use images",
+        "feedback": "✗ not applicable to this scenario."
+      },
+      {
+        "label": "D",
+        "text": "Training must happen on-premises",
+        "feedback": "✗ not applicable to this scenario."
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "hint": "Training is learning, inference is using.",
+    "explanation": "Training updates model parameters through data; inference uses the trained model for predictions or generation.\n\nWhy others are wrong: The other statements either reverse the roles or add non-existent constraints.",
+    "whyOthersWrong": "The other statements reverse the roles or add non-existent constraints.",
+    "trap": "Common trap: memorizing service names without first identifying requirement keywords.",
+    "mnemonic": "Training = learn parameters; Inference = produce results",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-full.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "en",
+    "plainExplanation": "Think of it this way: Training updates model parameters through data;",
+    "optionAnalysis": {
+      "A": "Wrong — not applicable to this scenario.",
+      "B": "Correct — Training updates model parameters through data;",
+      "C": "Wrong — not applicable to this scenario.",
+      "D": "Wrong — not applicable to this scenario."
+    },
+    "references": [
+      {
+        "title": "Training ML Models",
+        "url": "https://docs.aws.amazon.com/machine-learning/latest/dg/training-ml-models.html"
+      },
+      {
+        "title": "Deploy models for inference",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+        "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-lifecycle-training",
+    "conceptId": "model-lifecycle",
+    "contentVersion": "7fb102cf5a4205bc"
+  },
+  {
+    "id": "P4iK7vHPgbT7",
+    "hash": "9e9b12bd7639faac",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 2,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "一間零售公司每天晚上需要替數百萬筆產品產生預測，並不要求立即得到結果。哪種 inference 類型最合適？",
+    "keyTerms": [
+      "大量",
+      "非即時",
+      "Batch"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Real-time inference",
+        "feedback": "Real-time/streaming 適合低延遲"
+      },
+      {
+        "label": "B",
+        "text": "Batch inference",
+        "feedback": "Batch inference 適合大量資料、可延後處…"
+      },
+      {
+        "label": "C",
+        "text": "Streaming inference",
+        "feedback": "不符合題目所問的條件"
+      },
+      {
+        "label": "D",
+        "text": "Interactive inference",
+        "feedback": "Interactive 並非此處最佳模式"
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "hint": "大量資料、非即時、排程執行。",
+    "explanation": "Batch inference 適合大量資料、可延後處理、不需毫秒級回應的場景。\n\n**其他選項為什麼不對：** Real-time/streaming 適合低延遲；Interactive 並非此處最佳模式。",
+    "whyOthersWrong": "** Real-time/streaming 適合低延遲；Interactive 並非此處最佳模式。",
+    "trap": "常見陷阱：只背服務名稱，沒有先抓題幹中的需求關鍵字。",
+    "mnemonic": "**Batch inference：先認需求關鍵字，再選概念或 AWS 服務。**",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-full.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "plainExplanation": "簡單來說，Batch inference 適合大量資料、可延後處理、不需毫秒級回應的場景。",
+    "optionAnalysis": {
+      "A": "錯誤，Real-time/streaming 適合低延遲。",
+      "B": "正確，因為Batch inference 適合大量資料、可延後處理、不需毫秒級回應的場景。",
+      "C": "錯誤，不符合題目所問的條件。",
+      "D": "錯誤，Interactive 並非此處最佳模式。"
+    },
+    "references": [
+      {
+        "title": "Batch transform for inference with Amazon SageMaker AI",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html"
+      },
+      {
+        "title": "Deploy models for inference",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-lifecycle-batch",
+    "conceptId": "model-lifecycle",
+    "contentVersion": "27ab4db1dbb56bc9"
+  },
+  {
+    "id": "eGzV7ECY_DPM",
+    "hash": "bfd1ed2a1c3fb566",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 2,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "A retail company needs to generate predictions for millions of products every night and does not require immediate results. Which inference type is most suitable?",
+    "keyTerms": [
+      "large volume",
+      "non-real-time",
+      "Batch"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Real-time inference",
+        "feedback": "✗ not applicable to this scenario."
+      },
+      {
+        "label": "B",
+        "text": "Batch inference",
+        "feedback": "✓ Correct"
+      },
+      {
+        "label": "C",
+        "text": "Streaming inference",
+        "feedback": "✗ not applicable to this scenario."
+      },
+      {
+        "label": "D",
+        "text": "Interactive inference",
+        "feedback": "✗ not applicable to this scenario."
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "hint": "Large volume, non-real-time, scheduled execution.",
+    "explanation": "Batch inference is suitable for large volumes of data with deferred processing that doesn't require millisecond-level responses.\n\nWhy others are wrong: Real-time/streaming are for low latency; Interactive is not the best mode here.",
+    "whyOthersWrong": "Real-time/streaming are for low latency; Interactive is not the best mode here.",
+    "trap": "Common trap: memorizing service names without first identifying requirement keywords.",
+    "mnemonic": "Large volume + non-real-time → Batch inference",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-full.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "en",
+    "plainExplanation": "Think of it this way: Batch inference is suitable for large volumes of data with deferred processing that doesn't require millisecond-level responses.",
+    "optionAnalysis": {
+      "A": "Wrong — not applicable to this scenario.",
+      "B": "Correct — Batch inference is suitable for large volumes of data with deferred processing that doesn't require.",
+      "C": "Wrong — not applicable to this scenario.",
+      "D": "Wrong — not applicable to this scenario."
+    },
+    "references": [
+      {
+        "title": "Batch transform for inference with Amazon SageMaker AI",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html"
+      },
+      {
+        "title": "Deploy models for inference",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-lifecycle-batch",
+    "conceptId": "model-lifecycle",
+    "contentVersion": "27ab4db1dbb56bc9"
+  },
+  {
+    "id": "glgqoqIYU2S_",
+    "hash": "d788e4a8aaa8793d",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "過擬合（overfitting）的典型特徵是？",
+    "keyTerms": [],
+    "options": [
+      {
+        "label": "A",
+        "text": "訓練集表現好、測試集表現差",
+        "feedback": "✓ 訓練好+測試差=過擬合經典特徵"
+      },
+      {
+        "label": "B",
+        "text": "訓練與測試都差",
+        "feedback": "✗ 兩者都差是欠擬合"
+      },
+      {
+        "label": "C",
+        "text": "只在深度學習發生",
+        "feedback": "✗ 任何 ML 模型都可能過擬合"
+      },
+      {
+        "label": "D",
+        "text": "永遠無法避免",
+        "feedback": "✗ 可用正則化等方法緩解"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": null,
+    "explanation": "過擬合（Overfitting）發生在模型過度學習訓練資料的細節和噪音時。典型特徵是模型在訓練集上表現很好（低訓練誤差），但在未見過的測試集上表現明顯變差（高測試誤差）。這代表模型「記住」了訓練資料而非學到通用規律。",
+    "whyOthersWrong": "訓練與測試都差（B）是欠擬合，代表模型太簡單。過擬合不限於深度學習（C），傳統 ML 如決策樹也會。過擬合也不是無法避免的（D），有多種成熟的緩解技術。",
+    "trap": null,
+    "mnemonic": null,
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-compact.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "references": [
+      {
+        "title": "Model Fit: Underfitting vs. Overfitting",
+        "url": "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html"
+      },
+      {
+        "title": "What is Overfitting?",
+        "url": "https://aws.amazon.com/what-is/overfitting/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "正確，因為訓練集表現好但測試集表現差，是過擬合的典型特徵。",
+      "B": "錯誤，因為訓練與測試都差是欠擬合（Underfitting）的特徵，不是過擬合。",
+      "C": "錯誤，因為過擬合可以發生在任何 ML 模型中，包括決策樹、線性模型等，不限於深度學習。",
+      "D": "錯誤，因為過擬合可以通過正則化、Dropout、早停法、增加資料量等方法來緩解。"
+    },
+    "plainExplanation": "過擬合就像一個學生把考古題的答案全背下來，原題考 100 分，但換個題目就不會了——他沒有真正理解概念。",
+    "familyId": "aif-lifecycle-overfitting",
+    "conceptId": "model-lifecycle",
+    "contentVersion": "ea16fe85622910f7"
+  },
+  {
+    "id": "EOiESYLWbDXW",
+    "hash": "4c59f6299ffd02f4",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "What is the typical characteristic of overfitting?",
+    "keyTerms": [
+      "overfitting"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Good performance on training set, poor on test set",
+        "feedback": "✓ Good train, poor test = overfitting"
+      },
+      {
+        "label": "B",
+        "text": "Poor on both training and test",
+        "feedback": "✗ That describes underfitting"
+      },
+      {
+        "label": "C",
+        "text": "Only happens in deep learning",
+        "feedback": "✗ Happens in all ML, not just DL"
+      },
+      {
+        "label": "D",
+        "text": "Can never be avoided",
+        "feedback": "✗ Regularization helps prevent it"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": "This is a fundamental ML concept question",
+    "explanation": "Overfitting occurs when a model learns the training data too well, including its noise and peculiarities, resulting in excellent training performance but poor generalization to new, unseen data. It's characterized by a large gap between training accuracy (high) and test/validation accuracy (low).",
+    "whyOthersWrong": "Poor performance on both sets (B) describes underfitting. Overfitting occurs in all ML algorithms from linear regression to neural networks, not just deep learning (C). Multiple techniques like regularization, cross-validation, and early stopping help prevent overfitting (D).",
+    "trap": "\"Poor on both\" is a distractor; choose \"good on training, poor on test\"",
+    "mnemonic": "Fundamentals: Overfitting = good train, poor test",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-compact.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "en",
+    "references": [
+      {
+        "title": "Model Fit: Underfitting vs. Overfitting",
+        "url": "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html"
+      },
+      {
+        "title": "What is Overfitting?",
+        "url": "https://aws.amazon.com/what-is/overfitting/"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "Correct, because overfitting means high training performance but poor generalization to test data.",
+      "B": "Wrong, because poor performance on both training and test is underfitting, not overfitting.",
+      "C": "Wrong, because overfitting can happen in any ML model, not just deep learning.",
+      "D": "Wrong, because regularization, dropout, and early stopping can mitigate overfitting."
+    },
+    "plainExplanation": "Overfitting is like memorizing a textbook word-for-word but failing the exam because the questions are worded differently. The model 'memorizes' training examples instead of learning general patterns.",
+    "familyId": "aif-lifecycle-overfitting",
+    "conceptId": "model-lifecycle",
+    "contentVersion": "ea16fe85622910f7"
+  },
+  {
+    "id": "fk9Fm3THlgUs",
+    "hash": "ee46a964d82314f6",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "Amazon Transcribe 的主要用途是？",
+    "keyTerms": [],
+    "options": [
+      {
+        "label": "A",
+        "text": "語音轉文字",
+        "feedback": "✓ Transcribe = 語音轉文字"
+      },
+      {
+        "label": "B",
+        "text": "文字轉語音",
+        "feedback": "✗ 文字轉語音是 Polly"
+      },
+      {
+        "label": "C",
+        "text": "文字翻譯",
+        "feedback": "✗ 翻譯是 Translate"
+      },
+      {
+        "label": "D",
+        "text": "影像辨識",
+        "feedback": "✗ 影像辨識是 Rekognition"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": null,
+    "explanation": "Amazon Transcribe 是 AWS 的自動語音辨識（ASR）服務，將語音轉換成文字。支援即時串流和批次轉錄，廣泛用於字幕生成、會議紀錄、客服通話分析等場景。文字轉語音是 Polly、文字翻譯是 Translate、影像辨識是 Rekognition。",
+    "whyOthersWrong": "文字轉語音由 Polly 負責，翻譯由 Translate 負責，影像辨識由 Rekognition 負責。AWS 每個 AI 服務都有明確的專職分工。",
+    "trap": null,
+    "mnemonic": null,
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-f-compact.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "references": [
+      {
+        "title": "What is Amazon Transcribe?",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html"
+      },
+      {
+        "title": "What Is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Translate?",
+        "url": "https://docs.aws.amazon.com/translate/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Rekognition?",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "正確，因為 Transcribe 專門做語音轉文字（Speech-to-Text）。",
+      "B": "錯誤，因為文字轉語音是 Amazon Polly 的功能。",
+      "C": "錯誤，因為文字翻譯是 Amazon Translate 的功能。",
+      "D": "錯誤，因為影像辨識是 Amazon Rekognition 的功能。"
+    },
+    "plainExplanation": "Transcribe 就像一位即時速記員：你說話，它幫你寫成文字。名字中的「Transcribe」就是「謄寫」的意思。",
+    "familyId": "aif-service-transcribe",
+    "conceptId": "ai-services",
+    "contentVersion": "203ffe839f58b8ca"
+  },
+  {
+    "id": "eRn8QgDVD6yZ",
+    "hash": "0395a6e875474ac9",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "What is the primary use of Amazon Transcribe?",
+    "keyTerms": [
+      "Transcribe",
+      "Amazon"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Speech to text",
+        "feedback": "Amazon Transcribe is an automatic speech recogni…"
+      },
+      {
+        "label": "B",
+        "text": "Text to speech",
+        "feedback": "\"Text to speech\" does not address what the quest…"
+      },
+      {
+        "label": "C",
+        "text": "Text translation",
+        "feedback": "\"Text translation\" does not address what the que…"
+      },
+      {
+        "label": "D",
+        "text": "Image recognition",
+        "feedback": "\"Image recognition\" does not address what the qu…"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": "Think about what 'transcribe' means — writing down spoken words.",
+    "explanation": "Amazon Transcribe is an automatic speech recognition (ASR) service that converts audio speech into text.",
+    "whyOthersWrong": "B) Text to speech is handled by Amazon Polly. C) Text translation is handled by Amazon Translate. D) Image recognition is handled by Amazon Rekognition.",
+    "trap": "Confusing Transcribe (speech→text) with Polly (text→speech). The name 'Transcribe' literally means to write down speech.",
+    "mnemonic": "Transcribe = write down what you hear. Speech → Text.",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-f-compact.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "en",
+    "plainExplanation": "In simple terms, Amazon Transcribe is an automatic speech recognition (ASR) service that converts audio speech into text. Think of it as picking the right tool for the job.",
+    "optionAnalysis": {
+      "A": "Correct, because Amazon Transcribe is an automatic speech recognition (ASR) service that converts audio speech into text.",
+      "B": "Wrong, \"Text to speech\" does not address what the question asks.",
+      "C": "Wrong, \"Text translation\" does not address what the question asks.",
+      "D": "Wrong, \"Image recognition\" does not address what the question asks."
+    },
+    "references": [
+      {
+        "title": "What is Amazon Transcribe?",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html"
+      },
+      {
+        "title": "What Is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Translate?",
+        "url": "https://docs.aws.amazon.com/translate/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Rekognition?",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-service-transcribe",
+    "conceptId": "ai-services",
+    "contentVersion": "203ffe839f58b8ca"
+  },
+  {
+    "id": "WBXYyTL-BlcR",
+    "hash": "85c452887b75ceb8",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "Amazon Polly 的主要功能是？",
+    "keyTerms": [],
+    "options": [
+      {
+        "label": "A",
+        "text": "文字轉語音",
+        "feedback": "✓ Polly = 文字轉語音（TTS）"
+      },
+      {
+        "label": "B",
+        "text": "語音轉文字",
+        "feedback": "✗ 語音轉文字是 Transcribe"
+      },
+      {
+        "label": "C",
+        "text": "自然語言理解",
+        "feedback": "✗ 自然語言理解是 Comprehend/Lex"
+      },
+      {
+        "label": "D",
+        "text": "影像生成",
+        "feedback": "✗ 影像生成與 Polly 無關"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": null,
+    "explanation": "Amazon Polly 是 AWS 的文字轉語音（Text-to-Speech, TTS）服務。它能將文字內容轉換為自然語音，支援多種語言和語音風格（包括神經語音），常用於語音助手、有聲書、自動播報等場景。",
+    "whyOthersWrong": "語音轉文字（B）是 Transcribe 做的事，方向與 Polly 相反。自然語言理解（C）由 Comprehend（分析）或 Lex（對話）處理。影像生成（D）由 Bedrock 的影像模型（如 Stable Diffusion、Titan Image）處理，與語音服務無關。",
+    "trap": null,
+    "mnemonic": null,
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-compact.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "references": [
+      {
+        "title": "What Is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Transcribe?",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Comprehend?",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Lex V2?",
+        "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html"
+      },
+      {
+        "title": "Amazon Titan Image Generator G1 model",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "正確，因為 Polly 的核心功能就是文字轉語音（TTS）。",
+      "B": "錯誤，因為語音轉文字是 Amazon Transcribe 的功能，Polly 做的是反方向。",
+      "C": "錯誤，因為自然語言理解是 Amazon Comprehend 或 Lex 的功能。",
+      "D": "錯誤，因為影像生成與 Polly 完全無關，這是 Bedrock 中的影像模型功能。"
+    },
+    "plainExplanation": "Polly 就是 AWS 的「朗讀機」——你給它一段文字，它用自然的聲音念出來。名字來源是鸚鵡 Polly，鸚鵡會學人說話。",
+    "familyId": "aif-service-polly",
+    "conceptId": "ai-services",
+    "contentVersion": "eec5f23b86b8033b"
+  },
+  {
+    "id": "nxcTcqTajdAn",
+    "hash": "2b43785620646ea4",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "What is the main function of Amazon Polly?",
+    "keyTerms": [
+      "Amazon Polly"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Text-to-speech",
+        "feedback": "✓ Polly = text-to-speech"
+      },
+      {
+        "label": "B",
+        "text": "Speech-to-text",
+        "feedback": "✗ That's Transcribe (reverse)"
+      },
+      {
+        "label": "C",
+        "text": "Natural language understanding",
+        "feedback": "✗ NLU is Comprehend"
+      },
+      {
+        "label": "D",
+        "text": "Image generation",
+        "feedback": "✗ Image gen uses Titan/Stable Diffusion"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": "This is a fundamental ML concept question",
+    "explanation": "Amazon Polly is a text-to-speech (TTS) service that converts written text into natural-sounding speech. It supports multiple languages and voices, including neural TTS for more realistic output. Polly is used in applications like read-aloud features, voice-enabled interfaces, and accessibility tools.",
+    "whyOthersWrong": "Speech-to-text (B) is the reverse operation handled by Transcribe. NLU (C) involves understanding text meaning, which Comprehend does. Image generation (D) is done by models like Titan Image Generator or Stable Diffusion through Bedrock.",
+    "trap": "\"Speech-to-text\" is a distractor; choose \"Text-to-speech\"",
+    "mnemonic": "Fundamentals: Polly = text-to-speech",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-b-compact.md",
+    "generatedBy": "human",
+    "reviewed": true,
+    "lang": "en",
+    "references": [
+      {
+        "title": "What Is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Transcribe?",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Comprehend?",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Lex V2?",
+        "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html"
+      },
+      {
+        "title": "Amazon Titan Image Generator G1 model",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "Correct, because Polly converts text into spoken audio (text-to-speech).",
+      "B": "Wrong, because speech-to-text is Amazon Transcribe's function (the reverse of Polly).",
+      "C": "Wrong, because natural language understanding is Amazon Comprehend's function.",
+      "D": "Wrong, because image generation uses services like Titan Image Generator."
+    },
+    "plainExplanation": "Polly is the 'mouth' of AWS AI—give it text, and it speaks it aloud in a natural-sounding voice, like a virtual narrator.",
+    "familyId": "aif-service-polly",
+    "conceptId": "ai-services",
+    "contentVersion": "eec5f23b86b8033b"
+  },
+  {
+    "id": "MxGQspN9Ojxr",
+    "hash": "0750925a9af9381d",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "AI 與 ML 基礎",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "Amazon Comprehend 主要功能是什麼？",
+    "keyTerms": [],
+    "options": [
+      {
+        "label": "A",
+        "text": "自然語言處理（情感分析、實體辨識、關鍵詞抽取）",
+        "feedback": "✓ Comprehend 專做 NLP 分析"
+      },
+      {
+        "label": "B",
+        "text": "語音合成",
+        "feedback": "✗ 語音合成是 Polly"
+      },
+      {
+        "label": "C",
+        "text": "影像分類",
+        "feedback": "✗ 影像分類是 Rekognition"
+      },
+      {
+        "label": "D",
+        "text": "對話機器人",
+        "feedback": "✗ 對話機器人是 Lex"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": null,
+    "explanation": "Amazon Comprehend 是 AWS 的自然語言處理（NLP）託管服務，主要功能包括情感分析、實體辨識、關鍵詞抽取、語言偵測和主題建模。它專門處理文字資料的理解與分析。語音合成是 Polly、影像分類是 Rekognition、對話機器人是 Lex。",
+    "whyOthersWrong": "語音合成由 Polly 負責、影像分類由 Rekognition 負責、對話機器人由 Lex 負責，各有專精，Comprehend 只專注於文字的自然語言處理。",
+    "trap": null,
+    "mnemonic": null,
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-f-compact.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "zh-TW",
+    "references": [
+      {
+        "title": "What is Amazon Comprehend?",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html"
+      },
+      {
+        "title": "What Is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Rekognition?",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Lex V2?",
+        "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "optionAnalysis": {
+      "A": "正確，因為 Comprehend 專門做 NLP 任務：情感分析、實體辨識、關鍵詞抽取等。",
+      "B": "錯誤，因為語音合成是 Amazon Polly 的功能。",
+      "C": "錯誤，因為影像分類是 Amazon Rekognition 的功能。",
+      "D": "錯誤，因為對話機器人是 Amazon Lex 的功能。"
+    },
+    "plainExplanation": "Comprehend 就像一位速讀專家：你丟一篇文章給它，它能告訴你文章在講什麼（主題）、提到哪些人事物（實體）、語氣是正面還是負面（情感）。",
+    "familyId": "aif-service-comprehend",
+    "conceptId": "ai-services",
+    "contentVersion": "a28643349b6da3da"
+  },
+  {
+    "id": "rrBpvTfCgYDZ",
+    "hash": "1112f48d74a42a7b",
+    "track": "certification",
+    "examCode": "AIF-C01",
+    "courseCode": null,
+    "seriesSlug": null,
+    "topicSlug": null,
+    "domain": "Fundamentals of AI and ML",
+    "domainNumber": 1,
+    "difficulty": 1,
+    "type": "single",
+    "questionStyle": "other",
+    "tags": [],
+    "concepts": [],
+    "stem": "What is the primary function of Amazon Comprehend?",
+    "keyTerms": [
+      "Comprehend",
+      "Amazon"
+    ],
+    "options": [
+      {
+        "label": "A",
+        "text": "Natural language processing (sentiment analysis, entity recognition, keyword extraction)",
+        "feedback": "Amazon Comprehend is a fully managed NLP service…"
+      },
+      {
+        "label": "B",
+        "text": "Speech synthesis",
+        "feedback": "\"Speech synthesis\" does not address what the que…"
+      },
+      {
+        "label": "C",
+        "text": "Image classification",
+        "feedback": "\"Image classification\" does not address what the…"
+      },
+      {
+        "label": "D",
+        "text": "Chatbot",
+        "feedback": "\"Chatbot\" does not address what the question ask…"
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "hint": "Think about what the word 'comprehend' means — understanding language.",
+    "explanation": "Amazon Comprehend is a fully managed NLP service that provides sentiment analysis, entity recognition, key phrase extraction, and language detection.",
+    "whyOthersWrong": "B) Speech synthesis is handled by Amazon Polly. C) Image classification is handled by Amazon Rekognition. D) Chatbot functionality is provided by Amazon Lex.",
+    "trap": "Confusing Comprehend with other AWS AI services. Remember each service has a specific NLP, vision, or speech focus.",
+    "mnemonic": "Comprehend = Comprehension of text. NLP service for understanding written language.",
+    "relatedQuestionIds": [],
+    "sourceArticleUrl": null,
+    "sourceFile": "aif-c01-set-f-compact.md",
+    "generatedBy": "ai",
+    "reviewed": true,
+    "lang": "en",
+    "plainExplanation": "In simple terms, Amazon Comprehend is a fully managed NLP service that provides sentiment analysis, entity recognition, key phrase extraction, and language detection. Think of it as picking the right tool for the job.",
+    "optionAnalysis": {
+      "A": "Correct, because Amazon Comprehend is a fully managed NLP service that provides sentiment analysis, entity recognition, key phrase extraction, and language detection.",
+      "B": "Wrong, \"Speech synthesis\" does not address what the question asks.",
+      "C": "Wrong, \"Image classification\" does not address what the question asks.",
+      "D": "Wrong, \"Chatbot\" does not address what the question asks."
+    },
+    "references": [
+      {
+        "title": "What is Amazon Comprehend?",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html"
+      },
+      {
+        "title": "What Is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Rekognition?",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html"
+      },
+      {
+        "title": "What is Amazon Lex V2?",
+        "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html"
+      },
+      {
+        "title": "Content Domain 1: Fundamentals of AI and ML",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      }
+    ],
+    "familyId": "aif-service-comprehend",
+    "conceptId": "ai-services",
+    "contentVersion": "a28643349b6da3da"
+  }
+]

@@ -109,6 +109,15 @@ function ExamCard({ examKey, delay }: { examKey: string; delay: number }) {
           </Link>
         </Button>
 
+        {examKey === 'aif-c01' && (
+          <Button asChild variant="outline" className="w-full">
+            <Link to="/rpg/$code" params={{ code: examKey }} search={{ view: 'map' }}>
+              <Play className="h-4 w-4" />
+              {t('rpg.entry')}
+            </Link>
+          </Button>
+        )}
+
         <div className="border-t border-[var(--line)] pt-4">
           <Button asChild variant="outline" className="w-full">
             <Link to="/diagnostic/$code" params={{ code: examKey }}>

@@ -1,4 +1,7 @@
+import { rpgZh } from './rpg.ts'
+
 export default {
+  ...rpgZh,
   // Site
   'site.name': 'AI Exam Prep',
   'site.tagline': '用考試驗證學習',

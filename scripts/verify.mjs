@@ -15,6 +15,8 @@ const steps = [
   { name: 'lint:ui', command: 'bash scripts/lint-ui.sh' },
   { name: 'lint:questions', command: 'node scripts/lint-questions.mjs' },
   { name: 'domain parser regression', command: 'node scripts/verify-question-domain-parser.mjs' },
+  { name: 'RPG curated content', command: 'node scripts/build-rpg-content.mjs --check' },
+  { name: 'RPG progression rules', command: 'node scripts/verify-rpg.mjs' },
   { name: 'build', command: 'npx vite build' },
 ]
 

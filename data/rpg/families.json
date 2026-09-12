@@ -1,0 +1,83 @@
+[
+  {
+    "familyId": "aif-learning-supervised",
+    "conceptId": "learning-paradigms",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "INOs_iFCbm-Y",
+      "en": "G0gPDv6Ewo60"
+    }
+  },
+  {
+    "familyId": "aif-learning-clustering",
+    "conceptId": "learning-paradigms",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "1pE7DjsFuA4Q",
+      "en": "TDdwwaeXf40i"
+    }
+  },
+  {
+    "familyId": "aif-learning-semi-supervised",
+    "conceptId": "learning-paradigms",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "NmyiK--J8vEj",
+      "en": "6mZi7mfymvmz"
+    }
+  },
+  {
+    "familyId": "aif-lifecycle-training",
+    "conceptId": "model-lifecycle",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "SN-k65e6Jlga",
+      "en": "5l2tCsYbKVNv"
+    }
+  },
+  {
+    "familyId": "aif-lifecycle-batch",
+    "conceptId": "model-lifecycle",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "P4iK7vHPgbT7",
+      "en": "eGzV7ECY_DPM"
+    }
+  },
+  {
+    "familyId": "aif-lifecycle-overfitting",
+    "conceptId": "model-lifecycle",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "glgqoqIYU2S_",
+      "en": "EOiESYLWbDXW"
+    }
+  },
+  {
+    "familyId": "aif-service-transcribe",
+    "conceptId": "ai-services",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "fk9Fm3THlgUs",
+      "en": "eRn8QgDVD6yZ"
+    }
+  },
+  {
+    "familyId": "aif-service-polly",
+    "conceptId": "ai-services",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "WBXYyTL-BlcR",
+      "en": "nxcTcqTajdAn"
+    }
+  },
+  {
+    "familyId": "aif-service-comprehend",
+    "conceptId": "ai-services",
+    "domainNumber": 1,
+    "questionIds": {
+      "zh-TW": "MxGQspN9Ojxr",
+      "en": "rrBpvTfCgYDZ"
+    }
+  }
+]

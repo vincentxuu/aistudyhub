@@ -169,3 +169,16 @@ body {
 .rise-in {
   animation: rise-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* Pixel art uses the project palette; UI inherits the site's light/dark tokens. */
+.rpg-theme {
+  --rpg-water: var(--palm);
+  --rpg-grass: #b8c7dc;
+  --rpg-forest: #1b2d45;
+  --rpg-path: var(--accent-tertiary);
+  --rpg-gold: var(--accent-tertiary);
+  --rpg-mountain: var(--accent-secondary);
+  --rpg-ink: var(--palm);
+  --rpg-paper: #fffffe;
+  --rpg-wood: var(--accent-secondary);
+}

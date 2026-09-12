@@ -1,0 +1,107 @@
+[
+  {
+    "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "title": "Content Domain 1: Fundamentals of AI and ML",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+  },
+  {
+    "url": "https://aws.amazon.com/what-is/reinforcement-learning/",
+    "title": "What is Reinforcement Learning?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://aws.amazon.com/what-is/reinforcement-learning/"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/machine-learning/latest/dg/training-ml-models.html",
+    "title": "Training ML Models",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/machine-learning/latest/dg/training-ml-models.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+    "title": "Deploy models for inference",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html",
+    "title": "Batch transform for inference with Amazon SageMaker AI",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html",
+    "title": "Model Fit: Underfitting vs. Overfitting",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html"
+  },
+  {
+    "url": "https://aws.amazon.com/what-is/overfitting/",
+    "title": "What is Overfitting?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://aws.amazon.com/what-is/overfitting/"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+    "title": "What is Amazon Transcribe?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+    "title": "What Is Amazon Polly?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+    "title": "What is Amazon Comprehend?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/translate/latest/dg/what-is.html",
+    "title": "What is Amazon Translate?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/translate/latest/dg/what-is.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+    "title": "What is Amazon Rekognition?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+    "title": "What is Amazon Lex V2?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html",
+    "title": "Amazon Titan Image Generator G1 model",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html"
+  },
+  {
+    "url": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+    "title": "What’s the Difference Between Supervised and Unsupervised Learning?",
+    "retrievalTool": "Groundlane web_fetch",
+    "status": 200,
+    "finalUrl": "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+  }
+]

@@ -1,0 +1,425 @@
+{
+  "version": 1,
+  "examCode": "AIF-C01",
+  "scope": "RPG curated subset only; original question bank and review ledger unchanged",
+  "records": [
+    {
+      "id": "INOs_iFCbm-Y",
+      "questionHash": "de7e4bd6f94c830e",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-learning-supervised",
+      "scopeTask": "1.1",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Labeled input-output pairs distinguish supervised learning; unlabeled pattern discovery distinguishes unsupervised learning. The AWS comparison covers classification and regression under supervised learning and clustering/dimensionality reduction under unsupervised learning. GPU hardware is not a defining condition."
+    },
+    {
+      "id": "G0gPDv6Ewo60",
+      "questionHash": "3225f72b5add6cef",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-learning-supervised",
+      "scopeTask": "1.1",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Labeled input-output pairs distinguish supervised learning; unlabeled pattern discovery distinguishes unsupervised learning. The AWS comparison covers classification and regression under supervised learning and clustering/dimensionality reduction under unsupervised learning. GPU hardware is not a defining condition."
+    },
+    {
+      "id": "1pE7DjsFuA4Q",
+      "questionHash": "18af7aa773a4854b",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+        "https://aws.amazon.com/what-is/reinforcement-learning/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-learning-clustering",
+      "scopeTask": "1.1 / 1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select B. Grouping unlabeled customer behavior is clustering. Supervised classification/regression use target labels; reinforcement learning uses reward signals. AWS sources support pattern discovery, clustering, anomaly detection, and the separate reward-driven paradigm."
+    },
+    {
+      "id": "TDdwwaeXf40i",
+      "questionHash": "56dba18a2440bf41",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+        "https://aws.amazon.com/what-is/reinforcement-learning/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-learning-clustering",
+      "scopeTask": "1.1 / 1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select B. Grouping unlabeled customer behavior is clustering. Supervised classification/regression use target labels; reinforcement learning uses reward signals. AWS sources support pattern discovery, clustering, anomaly detection, and the separate reward-driven paradigm."
+    },
+    {
+      "id": "SN-k65e6Jlga",
+      "questionHash": "3c9eaaab376a36f6",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/machine-learning/latest/dg/training-ml-models.html",
+        "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-lifecycle-training",
+      "scopeTask": "1.1 / 1.3",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select B. Training learns patterns/model parameters from data; inference uses a trained model to produce predictions. AWS examples include image and text inputs and managed cloud training/deployment, refuting the text-only and on-premises-only distractors. Introductory learning comparison describes adjusting neural-network data weightings."
+    },
+    {
+      "id": "5l2tCsYbKVNv",
+      "questionHash": "64e740be4c56f914",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/machine-learning/latest/dg/training-ml-models.html",
+        "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-lifecycle-training",
+      "scopeTask": "1.1 / 1.3",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select B. Training learns patterns/model parameters from data; inference uses a trained model to produce predictions. AWS examples include image and text inputs and managed cloud training/deployment, refuting the text-only and on-premises-only distractors. Introductory learning comparison describes adjusting neural-network data weightings."
+    },
+    {
+      "id": "P4iK7vHPgbT7",
+      "questionHash": "9e9b12bd7639faac",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html",
+        "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-lifecycle-batch",
+      "scopeTask": "1.1",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select B. Nightly predictions over millions of products have no immediate-response requirement. Batch transform processes large datasets without a persistent endpoint; interactive real-time endpoints prioritize low latency. This pair avoids pricing generalizations in other batch-inference questions."
+    },
+    {
+      "id": "eGzV7ECY_DPM",
+      "questionHash": "bfd1ed2a1c3fb566",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html",
+        "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-lifecycle-batch",
+      "scopeTask": "1.1",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select B. Nightly predictions over millions of products have no immediate-response requirement. Batch transform processes large datasets without a persistent endpoint; interactive real-time endpoints prioritize low latency. This pair avoids pricing generalizations in other batch-inference questions."
+    },
+    {
+      "id": "glgqoqIYU2S_",
+      "questionHash": "d788e4a8aaa8793d",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.631Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html",
+        "https://aws.amazon.com/what-is/overfitting/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-lifecycle-overfitting",
+      "scopeTask": "1.1 / 1.3",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Good training performance with poor held-out performance is the typical overfitting pattern. AWS contrasts underfitting, explains memorization rather than generalization, and describes regularization, dropout, early stopping and more data as mitigations. The question asks for a typical pattern, not a conclusive diagnosis from scores alone."
+    },
+    {
+      "id": "EOiESYLWbDXW",
+      "questionHash": "4c59f6299ffd02f4",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html",
+        "https://aws.amazon.com/what-is/overfitting/",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-lifecycle-overfitting",
+      "scopeTask": "1.1 / 1.3",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Good training performance with poor held-out performance is the typical overfitting pattern. AWS contrasts underfitting, explains memorization rather than generalization, and describes regularization, dropout, early stopping and more data as mitigations. The question asks for a typical pattern, not a conclusive diagnosis from scores alone."
+    },
+    {
+      "id": "fk9Fm3THlgUs",
+      "questionHash": "ee46a964d82314f6",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/translate/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-service-transcribe",
+      "scopeTask": "1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Transcribe converts audio to text, supports streaming and batch. Reverse speech synthesis belongs to Polly, translation to Translate, image recognition to Rekognition. Both stems, option meanings, explanations and distractor analyses agree."
+    },
+    {
+      "id": "eRn8QgDVD6yZ",
+      "questionHash": "0395a6e875474ac9",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/translate/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-service-transcribe",
+      "scopeTask": "1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Transcribe converts audio to text, supports streaming and batch. Reverse speech synthesis belongs to Polly, translation to Translate, image recognition to Rekognition. Both stems, option meanings, explanations and distractor analyses agree."
+    },
+    {
+      "id": "WBXYyTL-BlcR",
+      "questionHash": "85c452887b75ceb8",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-service-polly",
+      "scopeTask": "1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Polly converts text to lifelike speech with multilingual and neural voice support. Reverse transcription, text understanding and image generation are distinct capabilities. AWS service guides confirm those differences and Titan image generation. Bird comparison is a memory aid, not evidence for service selection."
+    },
+    {
+      "id": "nxcTcqTajdAn",
+      "questionHash": "2b43785620646ea4",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-service-polly",
+      "scopeTask": "1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Polly converts text to lifelike speech with multilingual and neural voice support. Reverse transcription, text understanding and image generation are distinct capabilities. AWS service guides confirm those differences and Titan image generation. Bird comparison is a memory aid, not evidence for service selection."
+    },
+    {
+      "id": "MxGQspN9Ojxr",
+      "questionHash": "0750925a9af9381d",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-service-comprehend",
+      "scopeTask": "1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Comprehend extracts entities, key phrases, language and sentiment from documents and supports topic modeling. Speech synthesis, vision and conversational interfaces are mapped to Polly, Rekognition and Lex respectively. The focus on text understanding describes the task rather than an assertion about accepted file formats."
+    },
+    {
+      "id": "rrBpvTfCgYDZ",
+      "questionHash": "1112f48d74a42a7b",
+      "status": "verified",
+      "reviewer": "codex-rpg-content",
+      "reviewedAt": "2026-09-12T15:07:39.632Z",
+      "referenceUrls": [
+        "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "familyId": "aif-service-comprehend",
+      "scopeTask": "1.2",
+      "retrievalTool": "Groundlane web_fetch",
+      "notes": "Both language versions select A. Comprehend extracts entities, key phrases, language and sentiment from documents and supports topic modeling. Speech synthesis, vision and conversational interfaces are mapped to Polly, Rekognition and Lex respectively. The focus on text understanding describes the task rather than an assertion about accepted file formats."
+    },
+    {
+      "id": "NmyiK--J8vEj",
+      "questionHash": "12a9070d53692470",
+      "status": "verified",
+      "reviewer": "codex",
+      "reviewedAt": "2026-09-12T13:56:38Z",
+      "referenceUrls": [
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "notes": "Replaced two indirect legacy Amazon ML pages with an AWS first-party comparison that explicitly defines semi-supervised learning as using a small labeled set with substantial unlabeled data."
+    },
+    {
+      "id": "6mZi7mfymvmz",
+      "questionHash": "0af3b723b0b33126",
+      "status": "verified",
+      "reviewer": "codex",
+      "reviewedAt": "2026-09-12T13:56:38Z",
+      "referenceUrls": [
+        "https://aws.amazon.com/compare/the-difference-between-machine-learning-supervised-and-unsupervised/"
+      ],
+      "checks": {
+        "stem": true,
+        "answer": true,
+        "explanation": true,
+        "distractors": true,
+        "examScope": true
+      },
+      "notes": "English sibling of NmyiK--J8vEj; the replacement AWS source explicitly supports the labeled-plus-unlabeled answer."
+    }
+  ]
+}
