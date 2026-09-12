@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Dumbbell, ExternalLink, Target } from '@sketchyicons/react'
+import { ArrowLeft, BookOpen, Check, ChevronLeft, ChevronRight, Dumbbell, ExternalLink, Target } from '@sketchyicons/react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useCallback, useEffect, useState } from 'react'
 import { QuestionView } from '../components/exam/QuestionView.tsx'
@@ -10,7 +10,7 @@ import { Card, CardContent } from '../components/ui/card.tsx'
 import { Progress } from '../components/ui/progress.tsx'
 import { useI18n } from '../i18n/index.ts'
 import type { Question } from '../lib/question-types.ts'
-import { getDiagnosticSet } from '../lib/questions.ts'
+import { getDiagnosticSet, isAnswerCorrect } from '../lib/questions.ts'
 import { cn } from '../lib/utils.ts'
 
 export const Route = createFileRoute('/diagnostic/$code')({ component: DiagnosticPage })
@@ -30,10 +30,11 @@ function DiagnosticPage() {
   const answeredCount = Object.keys(answers).length
   const currentAnswered = currentQuestion ? !!answers[currentQuestion.id] : false
   const currentRevealed = currentQuestion ? revealed.has(currentQuestion.id) : false
+  const isOrdering = currentQuestion?.type === 'ordering'
 
   const selectOption = useCallback(
     (label: string) => {
-      if (!currentQuestion || currentRevealed) return
+      if (!currentQuestion || currentRevealed || currentQuestion.type === 'ordering') return
       const isMulti = currentQuestion.type === 'multi'
       setAnswers((prev) => {
         const current = prev[currentQuestion.id] || []
@@ -43,6 +44,14 @@ function DiagnosticPage() {
         }
         return { ...prev, [currentQuestion.id]: [label] }
       })
+    },
+    [currentQuestion, currentRevealed],
+  )
+
+  const setOrder = useCallback(
+    (order: string[]) => {
+      if (!currentQuestion || currentRevealed || currentQuestion.type !== 'ordering') return
+      setAnswers((prev) => ({ ...prev, [currentQuestion.id]: order }))
     },
     [currentQuestion, currentRevealed],
   )
@@ -67,11 +76,11 @@ function DiagnosticPage() {
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return
 
       const keyUpper = e.key.toUpperCase()
-      if (['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper) && currentQuestion) {
+      if (!isOrdering && ['A', 'B', 'C', 'D', 'E', 'F'].includes(keyUpper) && currentQuestion) {
         const opt = currentQuestion.options.find((o) => o.label === keyUpper)
         if (opt) selectOption(opt.label)
-      } else if (e.key >= '1' && e.key <= '9' && currentQuestion) {
-        const idx = Number.parseInt(e.key) - 1
+      } else if (!isOrdering && e.key >= '1' && e.key <= '9' && currentQuestion) {
+        const idx = Number.parseInt(e.key, 10) - 1
         if (idx < currentQuestion.options.length) selectOption(currentQuestion.options[idx].label)
       } else if (e.key === 'Enter') {
         if (currentRevealed) goNext()
@@ -84,12 +93,11 @@ function DiagnosticPage() {
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [currentIndex, currentQuestion, currentAnswered, currentRevealed, finished, selectOption, confirmAnswer, goNext])
+  }, [currentIndex, currentQuestion, currentAnswered, currentRevealed, finished, isOrdering, selectOption, confirmAnswer, goNext])
 
-  // Auto-reveal for single-select
   useEffect(() => {
     if (!currentQuestion || currentRevealed) return
-    if (currentQuestion.type !== 'multi' && currentAnswered) {
+    if (currentQuestion.type === 'single' && currentAnswered) {
       const timer = setTimeout(() => {
         setRevealed((prev) => new Set(prev).add(currentQuestion.id))
       }, 300)
@@ -112,7 +120,6 @@ function DiagnosticPage() {
     )
   }
 
-  // === RESULTS VIEW ===
   if (finished) {
     const domainResults = new Map<string, { domain: string; domainNumber: number; correct: number; total: number }>()
     for (const q of questions) {
@@ -123,10 +130,7 @@ function DiagnosticPage() {
         total: 0,
       }
       entry.total++
-      const selected = answers[q.id] || []
-      const isCorrect =
-        selected.length === q.correctAnswers.length && selected.every((a) => q.correctAnswers.includes(a))
-      if (isCorrect) entry.correct++
+      if (isAnswerCorrect(q, answers[q.id] || [])) entry.correct++
       domainResults.set(q.domain, entry)
     }
 
@@ -149,7 +153,6 @@ function DiagnosticPage() {
               <h1 className="text-xl font-bold text-[var(--sea-ink)]">{t('diagnostic.complete')}</h1>
             </div>
 
-            {/* Overall score */}
             <Card className="mb-6">
               <CardContent className="flex items-center justify-between py-5">
                 <span className="text-sm font-medium text-[var(--sea-ink-soft)]">{t('diagnostic.overallScore')}</span>
@@ -168,7 +171,6 @@ function DiagnosticPage() {
               </CardContent>
             </Card>
 
-            {/* Per-domain breakdown */}
             <Card className="mb-6">
               <CardContent className="space-y-4 py-5">
                 {sorted.map((d) => {
@@ -208,7 +210,6 @@ function DiagnosticPage() {
               </CardContent>
             </Card>
 
-            {/* Weak areas */}
             {weakDomains.length > 0 && (
               <Card className="mb-4 border-[var(--wrong-border)]">
                 <CardContent className="py-5">
@@ -227,7 +228,6 @@ function DiagnosticPage() {
               </Card>
             )}
 
-            {/* Strong areas */}
             {strongDomains.length > 0 && (
               <Card className="mb-6 border-[var(--correct-border)]">
                 <CardContent className="py-5">
@@ -246,10 +246,8 @@ function DiagnosticPage() {
               </Card>
             )}
 
-            {/* Recommendation */}
             <p className="mb-6 text-center text-sm text-[var(--sea-ink-soft)]">{t('diagnostic.recommendation')}</p>
 
-            {/* Actions */}
             <div className="flex flex-col gap-2.5 sm:flex-row">
               {weakDomains.length > 0 && (
                 <Button asChild variant="primary" className="flex-1">
@@ -285,14 +283,12 @@ function DiagnosticPage() {
     )
   }
 
-  // === QUESTION VIEW ===
   const selectedAnswers = answers[currentQuestion.id] || []
 
   return (
     <>
       <Header />
       <main className="mx-auto max-w-3xl px-4 pb-28 pt-6">
-        {/* Progress header */}
         <div className="mb-2 flex items-center justify-between">
           <Button asChild variant="ghost" size="sm">
             <Link to="/">
@@ -309,18 +305,17 @@ function DiagnosticPage() {
         </div>
         <Progress value={currentIndex + 1} max={questions.length} className="mb-8" />
 
-        {/* Question */}
         <QuestionView
           key={currentQuestion.id}
           question={currentQuestion}
           selectedAnswers={selectedAnswers}
           onSelectOption={selectOption}
+          onOrderChange={setOrder}
           disabled={currentRevealed}
           showResult={currentRevealed}
           questionNumber={currentIndex + 1}
         />
 
-        {/* Explanation after reveal */}
         {currentRevealed && currentQuestion.explanation && (
           <Card className="mt-4">
             <CardContent className="py-4">
@@ -336,7 +331,6 @@ function DiagnosticPage() {
           </Card>
         )}
 
-        {/* Navigation */}
         <div className="mt-6 flex items-center justify-between">
           <Button
             variant="ghost"
@@ -347,7 +341,7 @@ function DiagnosticPage() {
             {t('exam.prev')}
           </Button>
 
-          {currentAnswered && !currentRevealed && currentQuestion.type === 'multi' && (
+          {currentAnswered && !currentRevealed && (currentQuestion.type === 'multi' || isOrdering) && (
             <Button variant="primary" onClick={confirmAnswer}>
               <Check className="h-4 w-4" />
               {t('exam.submit')}
