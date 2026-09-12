@@ -32,4 +32,4 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           pnpm build
-          pnpm exec wrangler pages deploy dist/client --project-name=aistudyhub
+          pnpm exec wrangler deploy
