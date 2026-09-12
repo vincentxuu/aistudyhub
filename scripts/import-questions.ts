@@ -8,7 +8,6 @@ const dryRun = args.includes('--dry-run')
 const examCode = args.find((_, i) => args[i - 1] === '--exam') || null
 const generatedBy = (args.find((_, i) => args[i - 1] === '--generated-by') || 'human') as 'human' | 'ai'
 const lang = (args.find((_, i) => args[i - 1] === '--lang') || undefined) as 'en' | 'zh-TW' | undefined
-const paths = args.filter(a => !a.startsWith('--') && args[args.indexOf(a) - 1]?.startsWith('--') === false || (!a.startsWith('--') && !['--exam', '--generated-by', '--lang', '--dry-run'].includes(args[args.indexOf(a) - 1])))
 
 const inputPaths = args.filter(a => !a.startsWith('--')).filter(a => {
   const prev = args[args.indexOf(a) - 1]
@@ -28,6 +27,33 @@ function collectFiles(p: string): string[] {
       .map(f => resolve(p, f))
   }
   return [resolve(p)]
+}
+
+function validateQuestions(questions: Question[]): string[] {
+  const errors: string[] = []
+
+  for (const q of questions) {
+    const labels = q.options.map(option => option.label)
+    const duplicateLabels = labels.filter((label, index) => labels.indexOf(label) !== index)
+
+    if (duplicateLabels.length > 0) {
+      errors.push(`${q.sourceFile}: duplicate option labels in "${q.stem.slice(0, 80)}" (${[...new Set(duplicateLabels)].join(', ')})`)
+    }
+
+    for (const option of q.options) {
+      if (/^\*\*|\*\*$/.test(option.text.trim())) {
+        errors.push(`${q.sourceFile}: Markdown artifact in option ${option.label} for "${q.stem.slice(0, 80)}"`)
+      }
+    }
+
+    for (const answer of q.correctAnswers) {
+      if (!labels.includes(answer)) {
+        errors.push(`${q.sourceFile}: correct answer ${answer} has no matching option in "${q.stem.slice(0, 80)}"`)
+      }
+    }
+  }
+
+  return errors
 }
 
 const allFiles = inputPaths.flatMap(collectFiles)
@@ -80,9 +106,19 @@ console.log(`  Trap: ${withTrap}/${unique.length}`)
 console.log(`  Mnemonic: ${withMnemonic}/${unique.length}`)
 console.log(`  Key Terms: ${withKeyTerms}/${unique.length}`)
 
+const validationErrors = validateQuestions(unique)
+console.log(`\n--- Validation ---`)
+if (validationErrors.length > 0) {
+  for (const error of validationErrors) console.error(`  ✗ ${error}`)
+  console.error(`\nImport aborted: ${validationErrors.length} validation error(s).`)
+  process.exitCode = 1
+} else {
+  console.log(`  ✓ No duplicate option labels, dangling Markdown markers, or missing answer labels found.`)
+}
+
 if (dryRun) {
   console.log(`\n[DRY RUN] No changes written.`)
-} else {
+} else if (validationErrors.length === 0) {
   const outPath = resolve(process.cwd(), 'data/questions.json')
   writeFileSync(outPath, JSON.stringify(unique, null, 2))
   console.log(`\nWritten ${unique.length} questions to ${outPath}`)
