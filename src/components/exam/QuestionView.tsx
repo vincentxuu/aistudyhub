@@ -62,14 +62,20 @@ export function QuestionView({
         {question.stem}
       </p>
 
-      {isOrdering && onOrderChange ? (
-        <OrderingQuestion
-          options={question.options}
-          order={selectedAnswers}
-          onChange={onOrderChange}
-          disabled={disabled || showResult}
-          correctOrder={showResult ? question.correctAnswers : undefined}
-        />
+      {isOrdering ? (
+        onOrderChange ? (
+          <OrderingQuestion
+            options={question.options}
+            order={selectedAnswers}
+            onChange={onOrderChange}
+            disabled={disabled || showResult}
+            correctOrder={showResult ? question.correctAnswers : undefined}
+          />
+        ) : (
+          <p className="rounded-lg border border-[var(--wrong-border)] bg-[var(--wrong-bg)] px-4 py-3 text-sm text-[var(--wrong)]">
+            Ordering question controls are unavailable in this view.
+          </p>
+        )
       ) : (
         <>
           {isMulti && !showResult && (
