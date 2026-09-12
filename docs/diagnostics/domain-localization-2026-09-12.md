@@ -28,11 +28,12 @@ Before migration, the local snapshot contained 955 `zh-TW` AIF-C01 rows and
 The parser contributes to the inconsistency through an English-only numeric domain
 map and an `Unknown` fallback. The seed script then copies those values to D1.
 
-Production D1 verification was attempted with a read-only Wrangler query, but the
-configured Cloudflare account returned authorization error 7403. The screenshot's
-counts total 1,975 and remain the production evidence; the local snapshot
-independently reproduces the same mixed-label shape. Production accumulation from
-non-idempotent reseeding is plausible, but not live-confirmed.
+Production D1 verification now succeeds with Wrangler OAuth against account
+`1ff43f...`. The earlier error 7403 came from a request sent to a different account
+(`c544ec...`), which was not authorized for this D1 database. A fresh read-only
+query confirms 4,601 production rows and the unresolved legacy records remain:
+65 English and 122 `zh-TW` AIF-C01 rows still have Domain 0 / `Unknown`. No remote
+writes were performed.
 
 ## Recommended model
 
@@ -56,5 +57,12 @@ non-idempotent reseeding is plausible, but not live-confirmed.
 - `pnpm verify` passes all five gates, including the new parser regression check.
 - `git diff --check` passes, and local SSR returned HTTP 200 for `/` and
   `/practice/aif-c01?domainNumbers=2%2C3`.
-- In-app browser visual verification was unavailable because no browser instance
-  was connected; production remains unchanged until deployment.
+- Local Playwright MCP smoke verification confirms the Study screen renders five
+  localized domain labels in both Traditional Chinese and English. The Practice
+  route also preselects domain numbers 2 and 3 from
+  `?domainNumbers=2%2C3`; see the three `aif-domain-*-smoke-*.png` captures.
+- The visual interaction passes, but the dev server reports a React hydration
+  mismatch after switching locale: SSR renders the default Chinese sync label
+  while the client hydrates from the stored English locale. This is a separate
+  issue, so the browser smoke is not a clean console pass yet.
+- Production remains unchanged until deployment.
