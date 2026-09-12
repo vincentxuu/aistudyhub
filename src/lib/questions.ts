@@ -111,6 +111,14 @@ export function getFilteredQuestions(
   return shuffled
 }
 
+export function isAnswerCorrect(question: Question, selectedAnswers: string[]): boolean {
+  if (selectedAnswers.length !== question.correctAnswers.length) return false
+  if (question.type === 'ordering') {
+    return selectedAnswers.every((answer, index) => answer === question.correctAnswers[index])
+  }
+  return question.correctAnswers.every((answer) => selectedAnswers.includes(answer))
+}
+
 export interface ExamSession {
   id: string
   examCode: string
@@ -162,7 +170,7 @@ export function computeResult(session: {
 }): ExamResult {
   const questionResults = session.questions.map((q) => {
     const selected = session.answers[q.id] || []
-    const isCorrect = selected.length === q.correctAnswers.length && selected.every((a) => q.correctAnswers.includes(a))
+    const isCorrect = isAnswerCorrect(q, selected)
     return {
       questionId: q.id,
       stem: q.stem,
