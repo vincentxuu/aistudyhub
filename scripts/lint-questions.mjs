@@ -190,3 +190,35 @@ if (critical.length > 0 || warnings.length > 0 || domainErrors.length > 0 || opt
 } else {
   console.log('✅ All questions pass language consistency check')
 }
+
+// --- Bilingual coverage check ---
+// Only check exams registered in exam-registry.ts (keep in sync)
+const registeredExams = new Set(['AIF-C01', 'AIP-C01', 'PMLE', 'NCA-GENL', 'NCP-AAI', 'NCP-GENL', 'AI-103'])
+const byExamLang = {}
+for (const q of questions) {
+  const code = q.examCode || 'unknown'
+  if (!byExamLang[code]) byExamLang[code] = { en: 0, 'zh-TW': 0 }
+  if (q.lang === 'en') byExamLang[code].en++
+  else if (q.lang === 'zh-TW') byExamLang[code]['zh-TW']++
+}
+const bilingualWarnings = []
+for (const [code, counts] of Object.entries(byExamLang)) {
+  if (code === 'unknown') continue
+  if (!registeredExams.has(code.toUpperCase())) continue
+  const total = counts.en + counts['zh-TW']
+  if (counts['zh-TW'] === 0) {
+    bilingualWarnings.push(`${code}: ${counts.en} en, 0 zh-TW (missing zh-TW entirely)`)
+  } else {
+    const ratio = counts['zh-TW'] / counts.en
+    if (ratio < 0.5) {
+      bilingualWarnings.push(`${code}: ${counts.en} en, ${counts['zh-TW']} zh-TW (zh-TW < 50% of en)`)
+    }
+  }
+}
+if (bilingualWarnings.length > 0) {
+  console.error(`\n❌ ${bilingualWarnings.length} exam(s) missing bilingual coverage:`)
+  for (const w of bilingualWarnings) console.error(`  ${w}`)
+  process.exitCode = 1
+} else {
+  console.log('✅ All exams have bilingual coverage (zh-TW ≥ 50% of en)')
+}
