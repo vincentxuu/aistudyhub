@@ -280,7 +280,12 @@
     "whyOthersWrong": "Classifying labeled data (A) is supervised learning. Reinforcement learning (C) is a third paradigm where agents learn through trial-and-error with reward signals. Supervised regression (D) predicts continuous values from labeled training data.",
     "trap": "\"Classifying labeled data\" is a distractor; choose \"Clustering unlabeled behavior\"",
     "mnemonic": "Fundamentals: Unsupervised = clustering unlabeled data",
-    "relatedQuestionIds": [],
+    "relatedQuestionIds": [
+      "0OP_FuBjGZwU",
+      "DbBHi4Mi61AH",
+      "0OP_FuBjGZwU",
+      "DbBHi4Mi61AH"
+    ],
     "sourceArticleUrl": null,
     "sourceFile": "aif-c01-set-b-compact.md",
     "generatedBy": "human",
@@ -918,7 +923,10 @@
     "whyOthersWrong": "Poor performance on both sets (B) describes underfitting. Overfitting occurs in all ML algorithms from linear regression to neural networks, not just deep learning (C). Multiple techniques like regularization, cross-validation, and early stopping help prevent overfitting (D).",
     "trap": "\"Poor on both\" is a distractor; choose \"good on training, poor on test\"",
     "mnemonic": "Fundamentals: Overfitting = good train, poor test",
-    "relatedQuestionIds": [],
+    "relatedQuestionIds": [
+      "zQwNWm4PM3dX",
+      "zQwNWm4PM3dX"
+    ],
     "sourceArticleUrl": null,
     "sourceFile": "aif-c01-set-b-compact.md",
     "generatedBy": "human",
@@ -1085,7 +1093,12 @@
     "whyOthersWrong": "B) Text to speech is handled by Amazon Polly. C) Text translation is handled by Amazon Translate. D) Image recognition is handled by Amazon Rekognition.",
     "trap": "Confusing Transcribe (speech→text) with Polly (text→speech). The name 'Transcribe' literally means to write down speech.",
     "mnemonic": "Transcribe = write down what you hear. Speech → Text.",
-    "relatedQuestionIds": [],
+    "relatedQuestionIds": [
+      "nxcTcqTajdAn",
+      "rrBpvTfCgYDZ",
+      "nxcTcqTajdAn",
+      "rrBpvTfCgYDZ"
+    ],
     "sourceArticleUrl": null,
     "sourceFile": "aif-c01-set-f-compact.md",
     "generatedBy": "ai",
@@ -1263,7 +1276,14 @@
     "whyOthersWrong": "Speech-to-text (B) is the reverse operation handled by Transcribe. NLU (C) involves understanding text meaning, which Comprehend does. Image generation (D) is done by models like Titan Image Generator or Stable Diffusion through Bedrock.",
     "trap": "\"Speech-to-text\" is a distractor; choose \"Text-to-speech\"",
     "mnemonic": "Fundamentals: Polly = text-to-speech",
-    "relatedQuestionIds": [],
+    "relatedQuestionIds": [
+      "uWTNVG_QpBbZ",
+      "rrBpvTfCgYDZ",
+      "eRn8QgDVD6yZ",
+      "uWTNVG_QpBbZ",
+      "rrBpvTfCgYDZ",
+      "eRn8QgDVD6yZ"
+    ],
     "sourceArticleUrl": null,
     "sourceFile": "aif-c01-set-b-compact.md",
     "generatedBy": "human",
@@ -1442,7 +1462,12 @@
     "whyOthersWrong": "B) Speech synthesis is handled by Amazon Polly. C) Image classification is handled by Amazon Rekognition. D) Chatbot functionality is provided by Amazon Lex.",
     "trap": "Confusing Comprehend with other AWS AI services. Remember each service has a specific NLP, vision, or speech focus.",
     "mnemonic": "Comprehend = Comprehension of text. NLP service for understanding written language.",
-    "relatedQuestionIds": [],
+    "relatedQuestionIds": [
+      "nxcTcqTajdAn",
+      "eRn8QgDVD6yZ",
+      "nxcTcqTajdAn",
+      "eRn8QgDVD6yZ"
+    ],
     "sourceArticleUrl": null,
     "sourceFile": "aif-c01-set-f-compact.md",
     "generatedBy": "ai",
