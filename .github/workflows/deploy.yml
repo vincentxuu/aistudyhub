@@ -11,7 +11,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     environment: production
     concurrency:
       group: aistudyhub-production
@@ -32,4 +32,5 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           pnpm build
+          npx tsx scripts/seed-d1.ts --remote
           pnpm exec wrangler deploy

@@ -21,7 +21,7 @@ function jsonOrNull(val: unknown): string {
   return escSql(JSON.stringify(val))
 }
 
-const BATCH_SIZE = 50
+const BATCH_SIZE = 10
 const batches: string[][] = []
 let current: string[] = []
 
@@ -72,15 +72,23 @@ for (let i = 0; i < batches.length; i++) {
   const sqlFile = resolve(tmpDir, `seed-batch-${i}.sql`)
   writeFileSync(sqlFile, sql)
 
-  try {
-    execSync(`wrangler d1 execute aistudyhub-db ${target} --file=${sqlFile}`, {
-      stdio: 'pipe',
-      timeout: 30000,
-    })
-    process.stdout.write(`\r  Batch ${i + 1}/${batches.length} ✓`)
-  } catch (e) {
-    console.error(`\n  Batch ${i + 1} FAILED:`, (e as Error).message?.slice(0, 200))
-    process.exit(1)
+  const maxRetries = 3
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      execSync(`wrangler d1 execute aistudyhub-db ${target} --yes --file=${sqlFile}`, {
+        stdio: 'pipe',
+        timeout: 60000,
+      })
+      process.stdout.write(`\r  Batch ${i + 1}/${batches.length} ✓`)
+      break
+    } catch (e) {
+      if (attempt === maxRetries) {
+        console.error(`\n  Batch ${i + 1} FAILED after ${maxRetries} retries:`, (e as Error).message?.slice(0, 200))
+        process.exit(1)
+      }
+      process.stdout.write(`\r  Batch ${i + 1} retry ${attempt}...`)
+      execSync('sleep 2')
+    }
   }
 }
 
