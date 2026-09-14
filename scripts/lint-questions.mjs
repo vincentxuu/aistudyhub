@@ -193,7 +193,7 @@ if (critical.length > 0 || warnings.length > 0 || domainErrors.length > 0 || opt
 
 // --- Bilingual coverage check ---
 // Only check exams registered in exam-registry.ts (keep in sync)
-const registeredExams = new Set(['AIF-C01', 'AIP-C01', 'PMLE', 'NCA-GENL', 'NCP-AAI', 'NCP-GENL', 'AI-103'])
+const registeredExams = new Set(['AIF-C01', 'AIP-C01', 'PMLE', 'NCA-GENL', 'NCP-AAI', 'NCP-GENL', 'AI-103', 'AI-901', 'MLA-C02'])
 const byExamLang = {}
 for (const q of questions) {
   const code = q.examCode || 'unknown'

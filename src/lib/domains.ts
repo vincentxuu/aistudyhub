@@ -62,6 +62,16 @@ export const DOMAIN_LABELS: Record<string, Record<number, LocalizedLabel>> = {
     4: { en: 'Deployment and Monitoring', 'zh-TW': '部署與監控' },
     5: { en: 'Evaluation and Responsible AI', 'zh-TW': '評估與負責任 AI' },
   },
+  'AI-901': {
+    1: { en: 'Identify AI Concepts and Capabilities', 'zh-TW': '辨識 AI 概念與能力' },
+    2: { en: 'Implement AI Solutions by Using Microsoft Foundry', 'zh-TW': '使用 Microsoft Foundry 實作 AI 解決方案' },
+  },
+  'MLA-C02': {
+    1: { en: 'Data Preparation for Machine Learning', 'zh-TW': '機器學習的資料準備' },
+    2: { en: 'ML Model Development', 'zh-TW': 'ML 模型開發' },
+    3: { en: 'Deployment and Orchestration of ML Workflows', 'zh-TW': 'ML 工作流程的部署與編排' },
+    4: { en: 'ML Solution Monitoring, Maintenance, and Security', 'zh-TW': 'ML 解決方案的監控、維護與安全' },
+  },
   'AI-103': {
     1: { en: 'Plan and Manage an Azure AI Solution', 'zh-TW': '規劃與管理 Azure AI 解決方案' },
     2: {
